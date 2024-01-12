@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 아이템 오브젝트를 나타내는 클래스, 상호작용 가능한 인터페이스(IInteractable)를 구현
-public class SW_ItemObject : MonoBehaviour, IInteractable
+public class SW_ItemObject : MonoBehaviour, IInteractable_HT
 {
     public SW_ItemData item; // 아이템의 데이터를 저장하는 변수
 

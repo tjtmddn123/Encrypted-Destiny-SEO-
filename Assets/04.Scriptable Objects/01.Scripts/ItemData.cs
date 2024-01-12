@@ -22,7 +22,7 @@ public class ItemData : ScriptableObject
     [Header("Info")]
     public string displayName;
     public string description;
-    public ItemType type;
+    public EquipmentType type;
     public Sprite icon;
     public GameObject dropPrefab;
 }

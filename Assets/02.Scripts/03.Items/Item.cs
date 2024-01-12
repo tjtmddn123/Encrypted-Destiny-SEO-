@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
+public enum EquipmentType
 {
     Equipment,
 }
@@ -11,7 +11,7 @@ public enum ItemType
 [System.Serializable]
 public class Item
 {
-    public ItemType itemType;
+    public EquipmentType itemType;
     public string itemName;
     public Sprite itemImage;
 
