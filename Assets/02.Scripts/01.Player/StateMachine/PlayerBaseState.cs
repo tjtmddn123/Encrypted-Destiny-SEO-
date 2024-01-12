@@ -55,7 +55,16 @@ public class PlayerBaseState : IState
 
         Move(movementDirection);
     }
+    private void Move(Vector3 movementDirection)
+    {
+        float movementSpeed = GetMovementSpeed();
 
+        stateMachine.Player.Controller.Move(
+            ((movementDirection * movementSpeed)
+            + stateMachine.Player.ForceReceiver.Movement)
+            * Time.deltaTime
+            );
+    }
 
 
     private Vector3 GetMovementDirection()
@@ -71,14 +80,7 @@ public class PlayerBaseState : IState
 
         return forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
     }
-    private void Move(Vector3 movementDirection)
-    {
-        float movementSpeed = GetMovementSpeed();
 
-        stateMachine.Player.Controller.Move(
-            (movementDirection * movementSpeed) * Time.deltaTime
-            );
-    }
 
     private float GetMovementSpeed()
     {

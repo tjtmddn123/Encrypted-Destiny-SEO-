@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
 {
-    public Player Player { get; }
+    public Player_HT Player { get; }
 
     public PlayerIdleState idleState { get; }
     public PlayerWalkState walkState { get; }
@@ -19,7 +19,7 @@ public class PlayerStateMachine : StateMachine
 
     public Transform MainCameraTransform { get; set; }
 
-    public PlayerStateMachine(Player player)
+    public PlayerStateMachine(Player_HT player)
     {
         this.Player = player;
 
