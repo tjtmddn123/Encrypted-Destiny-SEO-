@@ -17,7 +17,7 @@ public class SW_ItemObject : MonoBehaviour, IInteractable
     // 아이템과 상호작용할 때 실행되는 함수
     public void OnInteract()
     {
-        //SW_Inventory.instance.AddItem(item); // 인벤토리에 아이템 추가
+        SW_Inventory.instance.AddItem(item); // 인벤토리에 아이템 추가
         Destroy(gameObject); // 상호작용 후 아이템 오브젝트 제거
     }
 }

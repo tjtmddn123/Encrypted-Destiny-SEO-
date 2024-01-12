@@ -5,7 +5,7 @@ using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class SW_PlayerController : MonoBehaviour
 {
     // 이동 관련 변수 선언
     [Header("Movement")]
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody; // Rigidbody 컴포넌트
 
-    public static PlayerController instance; // 싱글톤 인스턴스
+    public static SW_PlayerController instance; // 싱글톤 인스턴스
     private void Awake()
     {
         instance = this; // 싱글톤 할당
