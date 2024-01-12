@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
+/*public enum ItemType
 {
     Equipable,
-}
+    Etc
+}*/
 
 [System.Serializable]
 public class ItemDataConsumable
