@@ -1,23 +1,45 @@
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
     public bool isOpening;
+    public float openSpeed = 1.5f; // 문이 열리는 속도
+
     public void OpenDoor(GameObject door)
     {
-        Quaternion opening = door.transform.localRotation;
+        Quaternion targetRotation = door.transform.localRotation;
+
         if (isOpening)
         {
-            opening *= Quaternion.Euler(0f, 90f, 0f);
+            targetRotation *= Quaternion.Euler(0f, 90f, 0f);
         }
         else
         {
-            opening *= Quaternion.Euler(0f, -90f, 0f);
+            targetRotation *= Quaternion.Euler(0f, -90f, 0f);
         }
-        door.transform.localRotation = opening;
-        isOpening = !isOpening;
+
+        StartCoroutine(RotateDoor(door.transform, targetRotation));
+        Invoke("ChangeOpenState", openSpeed/2);
     }
 
+    private IEnumerator RotateDoor(Transform doorTransform, Quaternion targetRotation)
+    {
+        float elapsedTime = 0f;
+        Quaternion initialRotation = doorTransform.localRotation;
+
+        while (elapsedTime < 1f)
+        {
+            doorTransform.localRotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime);
+            elapsedTime += Time.deltaTime * openSpeed;
+            yield return null;
+        }
+
+        doorTransform.localRotation = targetRotation;
+    }
+    private void ChangeOpenState()
+    {
+        isOpening = !isOpening;
+    }
 }

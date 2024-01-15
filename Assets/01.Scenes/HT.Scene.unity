@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &22280017
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &60944639
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &157663381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,6 +1066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &165011530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &182614631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,6 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &283561038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,6 +1719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &380314712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2004,6 +2011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &449322739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2203,6 +2211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &579493917 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605114616758810404, guid: beef3bcde1610f04aa96275436147bb9,
@@ -2222,6 +2231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &598261998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2383,6 +2393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &687581008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2789,6 +2800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &850280205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2896,6 +2908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &858078294
 GameObject:
   m_ObjectHideFlags: 0
@@ -2988,6 +3001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &885351522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,6 +3197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &921883321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4151,7 +4166,7 @@ PrefabInstance:
     - target: {fileID: 8605013176929202606, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8605013176929202606, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -4461,7 +4476,7 @@ PrefabInstance:
     - target: {fileID: 8605376584857289984, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8605376584857289984, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -5958,6 +5973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1060859345
 GameObject:
   m_ObjectHideFlags: 0
@@ -6153,6 +6169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &1124526070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6218,6 +6235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 1
+  openSpeed: 2
 --- !u!114 &1165964956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6260,6 +6278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &1193569141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6609,6 +6628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &1290116538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7180,6 +7200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1377729819
 GameObject:
   m_ObjectHideFlags: 0
@@ -7456,6 +7477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1464384711
 GameObject:
   m_ObjectHideFlags: 0
@@ -7540,6 +7562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1477494111
 GameObject:
   m_ObjectHideFlags: 0
@@ -7707,6 +7730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1491778973 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605102890116275932, guid: beef3bcde1610f04aa96275436147bb9,
@@ -7726,6 +7750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1504441276 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604587867905263972, guid: beef3bcde1610f04aa96275436147bb9,
@@ -7745,6 +7770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1508591937 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605317624420088538, guid: beef3bcde1610f04aa96275436147bb9,
@@ -7764,6 +7790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &1553431892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8391,6 +8418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &1647575250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8548,6 +8576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &1742705370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8613,6 +8642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1763108472
 GameObject:
   m_ObjectHideFlags: 0
@@ -8926,6 +8956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1813495544
 GameObject:
   m_ObjectHideFlags: 0
@@ -9110,6 +9141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &1871411414
 GameObject:
   m_ObjectHideFlags: 0
@@ -9603,7 +9635,6 @@ GameObject:
   - component: {fileID: 1962066291}
   - component: {fileID: 1962066292}
   - component: {fileID: 1962066293}
-  - component: {fileID: 1962066294}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9706,26 +9737,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b446daf7290e2c49891052847b5a31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorController: {fileID: 1962066294}
+  doorController: {fileID: 0}
   checkRate: 0.05
   maxCheckDistance: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 128
   promptText: {fileID: 1323195171}
---- !u!114 &1962066294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962066283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d05a12ad7a5fe62489689b9e3bc4b56c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOpening: 0
 --- !u!1 &1965612348
 GameObject:
   m_ObjectHideFlags: 0
@@ -9929,6 +9947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!114 &2014305642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9994,6 +10013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &2049588802
 GameObject:
   m_ObjectHideFlags: 0
@@ -10170,6 +10190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpening: 0
+  openSpeed: 2
 --- !u!1 &2129506121
 GameObject:
   m_ObjectHideFlags: 0

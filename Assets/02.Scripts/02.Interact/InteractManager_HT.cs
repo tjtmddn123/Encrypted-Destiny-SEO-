@@ -18,6 +18,7 @@ public class InteractManager_HT : MonoBehaviour
     private float lastCheckTime;
     public float maxCheckDistance;
     public LayerMask layerMask;
+    private bool canPress = true;
 
     private GameObject curInteractGameobject;
     private IInteractable_HT curInteractable;
@@ -39,13 +40,11 @@ public class InteractManager_HT : MonoBehaviour
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;
-            Debug.Log(lastCheckTime);
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
-
+   
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-                Debug.Log("Raycast"+lastCheckTime);
                 if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Item"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
@@ -58,12 +57,7 @@ public class InteractManager_HT : MonoBehaviour
                     doorController = curInteractGameobject.GetComponent<DoorController>();
                     SetPromptTextDoor();
                     Debug.Log("문을 바라봐");
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        Debug.Log("열림");
-                        doorController.OpenDoor(curInteractGameobject);
-                    }
-                }                
+                }
             }
             else
             {
@@ -72,6 +66,21 @@ public class InteractManager_HT : MonoBehaviour
                 promptText.gameObject.SetActive(false);
             }
         }
+
+        if (canPress && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("열림");
+            doorController.OpenDoor(curInteractGameobject); 
+            StartCoroutine(DelayedInput());
+        }
+    }
+    IEnumerator DelayedInput()
+    {
+        canPress = false;
+
+        yield return new WaitForSeconds(doorController.openSpeed);
+
+        canPress = true;
     }
 
     private void SetPromptTextTake()
@@ -91,7 +100,6 @@ public class InteractManager_HT : MonoBehaviour
         {
             promptText.text = string.Format("[E] Close");
         }
-        
     }
 
     public void OnInteractInput(InputAction.CallbackContext callbackContext)
