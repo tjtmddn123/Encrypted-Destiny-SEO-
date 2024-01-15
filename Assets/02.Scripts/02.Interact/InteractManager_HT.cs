@@ -13,7 +13,7 @@ public interface IInteractable_HT
 }
 public class InteractManager_HT : MonoBehaviour
 {
-
+    public DoorController doorController;
     public float checkRate = 0.05f;
     private float lastCheckTime;
     public float maxCheckDistance;
@@ -35,15 +35,17 @@ public class InteractManager_HT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;
-
+            Debug.Log(lastCheckTime);
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
+                Debug.Log("Raycast"+lastCheckTime);
                 if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Item"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
@@ -53,9 +55,15 @@ public class InteractManager_HT : MonoBehaviour
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Door"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
-                    curInteractable = hit.collider.GetComponent<IInteractable_HT>();
+                    doorController = curInteractGameobject.GetComponent<DoorController>();
                     SetPromptTextDoor();
-                }
+                    Debug.Log("문을 바라봐");
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        Debug.Log("열림");
+                        doorController.OpenDoor(curInteractGameobject);
+                    }
+                }                
             }
             else
             {
@@ -75,7 +83,15 @@ public class InteractManager_HT : MonoBehaviour
     private void SetPromptTextDoor()
     {
         promptText.gameObject.SetActive(true);
-        promptText.text = string.Format("[E] Open");
+        if (doorController.isOpening == false)
+        {
+            promptText.text = string.Format("[E] Open");
+        }
+        else
+        {
+            promptText.text = string.Format("[E] Close");
+        }
+        
     }
 
     public void OnInteractInput(InputAction.CallbackContext callbackContext)

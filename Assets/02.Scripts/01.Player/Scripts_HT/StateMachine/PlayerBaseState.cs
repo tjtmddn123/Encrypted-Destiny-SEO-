@@ -9,6 +9,8 @@ public class PlayerBaseState : IState
 
     protected PlayerStateMachine stateMachine;
     protected readonly PlayerGroundData groundData;
+    private bool isCrouch;
+    private float SpeedModifier= 1f;
 
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
@@ -31,15 +33,13 @@ public class PlayerBaseState : IState
     }
 
 
-
-    public virtual void PhysicsUpdate()
-    {
-        
-    }
-
     public virtual void Update()
     {
         Move();
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
+        {
+            Crouch();
+        }
     }
 
     private void ReadMovementInput()
@@ -66,6 +66,20 @@ public class PlayerBaseState : IState
             );
     }
 
+    private void Crouch()
+    {
+        isCrouch = !isCrouch;
+        if (isCrouch)
+        {
+            stateMachine.Player.Controller.height = 0.7f;
+            SpeedModifier = 0.6f;
+        }
+        else 
+        {
+            stateMachine.Player.Controller.height = 1.8f;
+            SpeedModifier = 1f;
+        }
+    }
 
     private Vector3 GetMovementDirection()
     {
@@ -84,7 +98,7 @@ public class PlayerBaseState : IState
 
     private float GetMovementSpeed()
     {
-        float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
+        float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier * SpeedModifier;
         return movementSpeed;
     }
 

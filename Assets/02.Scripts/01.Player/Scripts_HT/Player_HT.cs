@@ -36,9 +36,4 @@ public class Player_HT : MonoBehaviour
         stateMachine.HandleInput();
         stateMachine.Update();
     }
-
-    private void FixedUpdate()
-    {
-        stateMachine.PhysicsUpdate();
-    }
 }
