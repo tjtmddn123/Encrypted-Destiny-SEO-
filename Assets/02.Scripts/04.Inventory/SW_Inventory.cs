@@ -43,6 +43,9 @@ public class SW_Inventory : MonoBehaviour
     // 아이템 믹스 기능을 위한 변수 선언
     private ItemSlot mixingItem; // 현재 믹스를 위해 선택된 아이템
 
+    public GameObject importantItemDisplay; // 중요한 아이템을 표시할 UI
+    
+
     void Awake()
     {
         // 클래스 인스턴스를 싱글톤으로 설정
@@ -62,6 +65,15 @@ public class SW_Inventory : MonoBehaviour
             uiSlots[i].Clear();
         }
         ClearSelectedItemWindow();
+    }
+
+    void Update()
+    {
+        // 사용자가 마우스 왼쪽 버튼을 클릭했고, 중요한 아이템의 정보가 현재 화면에 표시되어 있다면
+        if (Input.GetMouseButtonDown(0) && importantItemDisplay.activeSelf)
+        {
+            CloseImportantItemDisplay();
+        }
     }
 
     public void OnInventoryButton(InputAction.CallbackContext callbackContext)
@@ -196,9 +208,28 @@ public class SW_Inventory : MonoBehaviour
 
     public void OnUseButton()
     {
-        // Important 타입 아이템일 경우 소모되지 않음. 나머지 아이템은 사용 시 제거
-        if (selectedItem.item.type != ItemType.Important)
-            RemoveSelectedItem();
+        // ImportantMix 또는 Important 타입의 아이템일 경우
+        if (selectedItem.item.type == ItemType.ImportantMix || selectedItem.item.type == ItemType.Important)
+        {
+            // 중요한 아이템의 정보를 담은 UI를 활성화
+            importantItemDisplay.SetActive(true);
+
+            // 인벤토리 창을 닫습니다.
+            inventoryWindow.SetActive(false);
+
+            // 필요한 경우, 추가적인 정보(예: 아이템 설명)를 UI 내에 표시할 수 있다.
+            // 예를 들어, 아이템의 설명을 importantItemDisplay 내의 Text 컴포넌트에 설정하는 코드를 추가할 수 있다.
+        }
+    }
+
+    // 배경이나 닫기 버튼을 클릭했을 때 호출되는 메서드
+    public void CloseImportantItemDisplay()
+    {
+        // 중요한 아이템의 정보를 담은 UI를 비활성화
+        importantItemDisplay.SetActive(false);
+
+        // 인벤토리 창을 다시 연다.
+        inventoryWindow.SetActive(true);
     }
 
     public void OnMixButton()
