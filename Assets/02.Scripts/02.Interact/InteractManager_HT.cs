@@ -62,11 +62,11 @@ public class InteractManager_HT : MonoBehaviour
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Door"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
+                    doorController = curInteractGameobject.GetComponent<DoorController>();
                     SetPromptTextDoor();
                     Debug.Log("문을 바라봐");
                 }
                 waterRemover = curInteractGameobject.GetComponent<WaterRemover>();
-                doorController = curInteractGameobject.GetComponent<DoorController>();
             }
             else
             {
@@ -87,12 +87,6 @@ public class InteractManager_HT : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q) && curInteractGameobject == btn)
             {
                 ChangeTall();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q) && curInteractGameobject == water && canRemove == true)
-            {
-                canRemove = false;
-                waterRemover.WaterRemove();
             }
         }
     }
@@ -156,7 +150,7 @@ public class InteractManager_HT : MonoBehaviour
     public void TallToNormal()
     {
         isSmall = false;
-        player.Controller.transform.localPosition += new Vector3(0, 0.1f, 0);  //커질 때 땅 속으로 들어가는 문제 해결을 위한 코드
+        player.Controller.transform.localPosition += new Vector3(0, 0.2f, 0);  //커질 때 땅 속으로 들어가는 문제 해결을 위한 코드
         player.Controller.transform.localScale = new Vector3(1f, 1f, 1f);      //Scale을 1로
         player.Controller.stepOffset = 0.3f;
 

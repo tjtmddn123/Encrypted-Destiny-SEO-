@@ -11,6 +11,7 @@ public class PlayerBaseState : IState
     protected readonly PlayerGroundData groundData;
     private bool isCrouch;           //앉은 상태 구분
     private float SpeedModifier= 1f; //플레이어 이동속도 배율 제어
+    private bool isRunning = false;
 
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
@@ -39,6 +40,16 @@ public class PlayerBaseState : IState
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
         {
             Crouch();
+        }
+        if (isCrouch == false && Input.GetKey(KeyCode.LeftShift))
+        {
+            isRunning = true;
+            SpeedModifier = 1.4f;
+        }
+        if (isCrouch == false && Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false;
+            SpeedModifier = 1f;
         }
     }
 
