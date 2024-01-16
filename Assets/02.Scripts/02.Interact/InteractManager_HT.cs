@@ -13,24 +13,31 @@ public interface IInteractable_HT
 }
 public class InteractManager_HT : MonoBehaviour
 {
-    public DoorController doorController;
+    private DoorController doorController;
+    private WaterRemover waterRemover;
+    private Player_HT player;
     public float checkRate = 0.05f;
     private float lastCheckTime;
     public float maxCheckDistance;
     public LayerMask layerMask;
     private bool canPress = true;
+    private bool canRemove = true;
+
+    private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
+    public GameObject btn;
+    public GameObject water;
 
     private GameObject curInteractGameobject;
     private IInteractable_HT curInteractable;
 
     public TextMeshProUGUI promptText;
-    private Camera camera;
-
+    private Camera _camera;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
+        player = GetComponent<Player_HT>();
     }
 
     // Update is called once per frame
@@ -40,11 +47,12 @@ public class InteractManager_HT : MonoBehaviour
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
    
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
+
                 if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Item"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
@@ -54,10 +62,11 @@ public class InteractManager_HT : MonoBehaviour
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Door"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
-                    doorController = curInteractGameobject.GetComponent<DoorController>();
                     SetPromptTextDoor();
                     Debug.Log("문을 바라봐");
                 }
+                waterRemover = curInteractGameobject.GetComponent<WaterRemover>();
+                doorController = curInteractGameobject.GetComponent<DoorController>();
             }
             else
             {
@@ -66,12 +75,25 @@ public class InteractManager_HT : MonoBehaviour
                 promptText.gameObject.SetActive(false);
             }
         }
-
-        if (canPress && Input.GetKeyDown(KeyCode.E))
+        if (curInteractGameobject != null)
         {
-            Debug.Log("열림");
-            doorController.OpenDoor(curInteractGameobject); 
-            StartCoroutine(DelayedInput());
+            if (Input.GetKeyDown(KeyCode.E) && curInteractGameobject.CompareTag("Door") && canPress)
+            {
+                Debug.Log("열림");
+                doorController.OpenDoor(curInteractGameobject);
+                StartCoroutine(DelayedInput());
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q) && curInteractGameobject == btn)
+            {
+                ChangeTall();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q) && curInteractGameobject == water && canRemove == true)
+            {
+                canRemove = false;
+                waterRemover.WaterRemove();
+            }
         }
     }
     IEnumerator DelayedInput()
@@ -111,5 +133,32 @@ public class InteractManager_HT : MonoBehaviour
             curInteractable = null;
             promptText.gameObject.SetActive(false);
         }
+    }
+
+    public void ChangeTall()
+    {
+        if (isSmall == false)
+        {
+            TallToSmall();
+        }
+        else
+        {
+            TallToNormal();
+        }
+    }
+
+    public void TallToSmall()
+    {
+        isSmall = true;
+        player.Controller.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); //Scale을 0.01로
+        player.Controller.stepOffset = 0.1f;
+    }
+    public void TallToNormal()
+    {
+        isSmall = false;
+        player.Controller.transform.localPosition += new Vector3(0, 0.1f, 0);  //커질 때 땅 속으로 들어가는 문제 해결을 위한 코드
+        player.Controller.transform.localScale = new Vector3(1f, 1f, 1f);      //Scale을 1로
+        player.Controller.stepOffset = 0.3f;
+
     }
 }

@@ -21,7 +21,7 @@ public class DoorController : MonoBehaviour
         }
 
         StartCoroutine(RotateDoor(door.transform, targetRotation));
-        Invoke("ChangeOpenState", openSpeed/2);
+        ChangeOpenState();
     }
 
     private IEnumerator RotateDoor(Transform doorTransform, Quaternion targetRotation)
@@ -29,7 +29,7 @@ public class DoorController : MonoBehaviour
         float elapsedTime = 0f;
         Quaternion initialRotation = doorTransform.localRotation;
 
-        while (elapsedTime < 1f)
+        while (elapsedTime < openSpeed)
         {
             doorTransform.localRotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime);
             elapsedTime += Time.deltaTime * openSpeed;

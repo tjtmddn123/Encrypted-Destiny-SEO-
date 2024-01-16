@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBaseState : IState
+public class PlayerBaseState : IState 
 {
 
     protected PlayerStateMachine stateMachine;
     protected readonly PlayerGroundData groundData;
-    private bool isCrouch;
-    private float SpeedModifier= 1f;
+    private bool isCrouch;           //앉은 상태 구분
+    private float SpeedModifier= 1f; //플레이어 이동속도 배율 제어
 
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
@@ -78,8 +78,10 @@ public class PlayerBaseState : IState
         {
             stateMachine.Player.Controller.height = 1.8f;
             SpeedModifier = 1f;
-        }
+        }//0.5 
     }
+
+
 
     private Vector3 GetMovementDirection()
     {
