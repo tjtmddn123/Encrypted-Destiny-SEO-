@@ -43,8 +43,9 @@ public class SW_Inventory : MonoBehaviour
     // 아이템 믹스 기능을 위한 변수 선언
     private ItemSlot mixingItem; // 현재 믹스를 위해 선택된 아이템
 
-    public GameObject importantItemDisplay; // 중요한 아이템을 표시할 UI
-    
+    private Canvas currentImportantItemCanvas; // 현재 활성화된 중요 아이템 캔버스
+    private GameObject currentImportantItemUI; // 현재 활성화된 중요 아이템 UI
+
 
     void Awake()
     {
@@ -65,15 +66,6 @@ public class SW_Inventory : MonoBehaviour
             uiSlots[i].Clear();
         }
         ClearSelectedItemWindow();
-    }
-
-    void Update()
-    {
-        // 사용자가 마우스 왼쪽 버튼을 클릭했고, 중요한 아이템의 정보가 현재 화면에 표시되어 있다면
-        if (Input.GetMouseButtonDown(0) && importantItemDisplay.activeSelf)
-        {
-            CloseImportantItemDisplay();
-        }
     }
 
     public void OnInventoryButton(InputAction.CallbackContext callbackContext)
@@ -208,29 +200,37 @@ public class SW_Inventory : MonoBehaviour
 
     public void OnUseButton()
     {
-        // ImportantMix 또는 Important 타입의 아이템일 경우
-        if (selectedItem.item.type == ItemType.ImportantMix || selectedItem.item.type == ItemType.Important)
+        // 현재 선택된 아이템이 null이 아니며, 아이템 타입이 ImportantMix 또는 Important인지 확인
+        if (selectedItem != null && (selectedItem.item.type == ItemType.ImportantMix || selectedItem.item.type == ItemType.Important))
         {
-            // 중요한 아이템의 정보를 담은 UI를 활성화
-            importantItemDisplay.SetActive(true);
+            // 선택된 아이템의 importantItemCanvasPrefab과 importantItemDisplay가 null이 아닌지 확인
+            if (selectedItem.item.importantItemCanvasPrefab != null && selectedItem.item.importantItemDisplay != null)
+            {
+                // 중요 아이템의 캔버스 프리팹을 인스턴스화하여 화면에 표시
+                currentImportantItemCanvas = Instantiate(selectedItem.item.importantItemCanvasPrefab);
 
-            // 인벤토리 창을 닫습니다.
-            inventoryWindow.SetActive(false);
+                // 중요 아이템의 UI를 캔버스의 자식으로 인스턴스화하여 화면에 표시
+                currentImportantItemUI = Instantiate(selectedItem.item.importantItemDisplay, currentImportantItemCanvas.transform);
 
-            // 필요한 경우, 추가적인 정보(예: 아이템 설명)를 UI 내에 표시할 수 있다.
-            // 예를 들어, 아이템의 설명을 importantItemDisplay 내의 Text 컴포넌트에 설정하는 코드를 추가할 수 있다.
+                // 인벤토리 창을 비활성화
+                inventoryWindow.SetActive(false);
+            }
         }
     }
 
-    // 배경이나 닫기 버튼을 클릭했을 때 호출되는 메서드
-    public void CloseImportantItemDisplay()
-    {
-        // 중요한 아이템의 정보를 담은 UI를 비활성화
-        importantItemDisplay.SetActive(false);
 
-        // 인벤토리 창을 다시 연다.
-        inventoryWindow.SetActive(true);
+    void Update()
+    {
+        // 사용자가 마우스 왼쪽 버튼을 클릭하고 중요 아이템 UI가 활성화된 경우
+        if (Input.GetMouseButtonDown(0) && currentImportantItemCanvas != null)
+        {
+            Destroy(currentImportantItemCanvas.gameObject); // 중요 아이템 캔버스와 UI 제거
+            currentImportantItemCanvas = null; // 참조 초기화
+            currentImportantItemUI = null;
+            inventoryWindow.SetActive(true); // 인벤토리 창 다시 열기
+        }
     }
+
 
     public void OnMixButton()
     {
