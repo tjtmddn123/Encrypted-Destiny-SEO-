@@ -14,7 +14,7 @@ public interface IInteractable_HT
 public class InteractManager_HT : MonoBehaviour
 {
     private DoorController doorController;
-    private WaterRemover waterRemover;
+    private NavKeypad.KeypadButton keypad;
     private Player_HT player;
     public float checkRate = 0.05f;
     private float lastCheckTime;
@@ -66,7 +66,12 @@ public class InteractManager_HT : MonoBehaviour
                     SetPromptTextDoor();
                     Debug.Log("문을 바라봐");
                 }
-                waterRemover = curInteractGameobject.GetComponent<WaterRemover>();
+                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Button"))
+                {
+                    curInteractGameobject = hit.collider.gameObject;
+                    keypad = curInteractGameobject.GetComponent<NavKeypad.KeypadButton>();
+                    SetPromptTextPush();
+                }
             }
             else
             {
@@ -84,9 +89,14 @@ public class InteractManager_HT : MonoBehaviour
                 StartCoroutine(DelayedInput());
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) && curInteractGameobject == btn)
+            if (Input.GetKeyDown(KeyCode.E) && curInteractGameobject == btn)
             {
                 ChangeTall();
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && curInteractGameobject.CompareTag("Button"))
+            {
+                keypad.PressButton();
             }
         }
     }
@@ -103,6 +113,12 @@ public class InteractManager_HT : MonoBehaviour
     {
         promptText.gameObject.SetActive(true);
         promptText.text = string.Format("[E] Take");
+    }
+
+    private void SetPromptTextPush()
+    {
+        promptText.gameObject.SetActive(true);
+        promptText.text = string.Format("[E] Push");
     }
 
     private void SetPromptTextDoor()
@@ -150,7 +166,7 @@ public class InteractManager_HT : MonoBehaviour
     public void TallToNormal()
     {
         isSmall = false;
-        player.Controller.transform.localPosition += new Vector3(0, 0.2f, 0);  //커질 때 땅 속으로 들어가는 문제 해결을 위한 코드
+        //player.Controller.transform.localPosition += new Vector3(0, 1f, 0);  //커질 때 땅 속으로 들어가는 문제 해결을 위한 코드
         player.Controller.transform.localScale = new Vector3(1f, 1f, 1f);      //Scale을 1로
         player.Controller.stepOffset = 0.3f;
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - Item
+  - Button
   layers:
   - Default
   - TransparentFX

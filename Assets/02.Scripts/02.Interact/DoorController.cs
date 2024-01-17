@@ -6,22 +6,26 @@ public class DoorController : MonoBehaviour
 {
     public bool isOpening;
     public float openSpeed = 1.5f; // 문이 열리는 속도
+    public bool canOpenState = false;
 
     public void OpenDoor(GameObject door)
     {
-        Quaternion targetRotation = door.transform.localRotation;
-
-        if (isOpening)
+        if(canOpenState == true)
         {
-            targetRotation *= Quaternion.Euler(0f, 90f, 0f);
-        }
-        else
-        {
-            targetRotation *= Quaternion.Euler(0f, -90f, 0f);
-        }
+            Quaternion targetRotation = door.transform.localRotation;
 
-        StartCoroutine(RotateDoor(door.transform, targetRotation));
-        ChangeOpenState();
+            if (isOpening)
+            {
+                targetRotation *= Quaternion.Euler(0f, 90f, 0f);
+            }
+            else
+            {
+                targetRotation *= Quaternion.Euler(0f, -90f, 0f);
+            }
+
+            StartCoroutine(RotateDoor(door.transform, targetRotation));
+            ChangeOpenState();
+        }
     }
 
     private IEnumerator RotateDoor(Transform doorTransform, Quaternion targetRotation)
@@ -32,7 +36,7 @@ public class DoorController : MonoBehaviour
         while (elapsedTime < openSpeed)
         {
             doorTransform.localRotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime);
-            elapsedTime += Time.deltaTime * openSpeed;
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
@@ -41,5 +45,10 @@ public class DoorController : MonoBehaviour
     private void ChangeOpenState()
     {
         isOpening = !isOpening;
+    }
+
+    public void CanOpen()
+    {
+        canOpenState = true;
     }
 }
