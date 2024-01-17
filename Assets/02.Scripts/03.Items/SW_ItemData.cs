@@ -20,4 +20,8 @@ public class SW_ItemData : ScriptableObject
     public ItemType type;        // 아이템의 타입
     public Sprite icon;          // 아이템의 아이콘 (UI에 표시될 이미지)
     public GameObject dropPrefab; // 게임 세계에 드롭될 때 사용되는 프리팹
+
+    [Header("Important Item")]
+    public Canvas importantItemCanvasPrefab; // 중요한 아이템 UI를 위한 캔버스
+    public GameObject importantItemDisplay; // 중요한 아이템을 표시할 UI
 }
