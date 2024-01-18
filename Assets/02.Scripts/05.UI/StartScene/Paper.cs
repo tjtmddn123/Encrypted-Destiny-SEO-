@@ -1,67 +1,65 @@
 using UnityEngine;
 
-public class PaperInteraction : MonoBehaviour
+public class PlayerInteraction : MonoBehaviour
 {
-    public GameObject heldPaper; 
-    public bool isHoldingPaper = false; 
+    public float interactionDistance = 100f; 
+    public LayerMask interactableLayer; 
 
-    public void Update()
+    private GameObject heldObject; 
+
+    void Update()
     {
        
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            
-            if (!isHoldingPaper)
-            {
-                PickUpPaper();
-            }
-            else
+           
+            InteractWithObject();
+        }
+
+       
+        if (heldObject != null && Input.GetKeyDown(KeyCode.E))
+        {
+            DropObject();
+        }
+    }
+
+    void InteractWithObject()
+    {
+        
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, interactionDistance, interactableLayer))
+        {
+          
+            if (hit.collider.CompareTag("Interactable"))
             {
                 
-                DropPaper();
-            }
-        }
-
-        
-        if (isHoldingPaper)
-        {
-            MoveHeldPaper();
-        }
-    }
-
-    public void PickUpPaper()
-    {
-        
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            
-            if (hit.collider.CompareTag("Paper"))
-            {
-                isHoldingPaper = true;
-                heldPaper = hit.collider.gameObject;
+                if (heldObject == null)
+                {
+                  
+                    PickUpObject(hit.collider.gameObject);
+                }
+                else
+                {
+                  
+                    DropObject();
+                }
             }
         }
     }
 
-    public void DropPaper()
+    void PickUpObject(GameObject objToPickUp)
     {
-        
-        isHoldingPaper = false;
-        heldPaper = null;
+       
+        heldObject = objToPickUp;
+        heldObject.SetActive(false); 
     }
 
-    public void MoveHeldPaper()
+    void DropObject()
     {
         
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            heldPaper.transform.position = new Vector3(hit.point.x, hit.point.y, heldPaper.transform.position.z);
-        }
+        heldObject.SetActive(true);
+        heldObject = null;
     }
 }
