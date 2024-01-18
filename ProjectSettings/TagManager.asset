@@ -7,6 +7,7 @@ TagManager:
   - Door
   - Item
   - Button
+  - Water
   layers:
   - Default
   - TransparentFX

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class WaterRemover : MonoBehaviour
 {
-
+    public void WaterDown(GameObject Water)
+    {
+        Destroy(Water);
+    }
 }
