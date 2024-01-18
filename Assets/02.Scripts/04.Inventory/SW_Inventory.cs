@@ -46,6 +46,14 @@ public class SW_Inventory : MonoBehaviour
     private Canvas currentImportantItemCanvas; // 현재 활성화된 중요 아이템 캔버스
     private GameObject currentImportantItemUI; // 현재 활성화된 중요 아이템 UI
 
+    // 조합 성공 및 실패 UI 오브젝트를 참조
+    public GameObject mixSuccessUI;
+    public GameObject mixFailedUI;
+
+    private SW_ItemSlotUI lastSelectedSlot; // 마지막으로 선택된 아이템 슬롯을 저장하는 변수
+
+    private bool isMixing = false; // 조합 중인지 여부를 나타내는 변수
+
 
     void Awake()
     {
@@ -83,6 +91,16 @@ public class SW_Inventory : MonoBehaviour
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke(); // 인벤토리 닫기 이벤트 호출
             controller.ToggleCursor(false);
+
+            ResetAllSlotColors(); // 모든 슬롯 색상 초기화
+
+            if (mixingItem != null)
+            {
+                Debug.Log("조합 진행 중 인벤토리 닫음. 조합 진행 상황 초기화");
+                mixingItem = null;
+            }
+            isMixing = false;
+
         }
         else
         {
@@ -146,10 +164,20 @@ public class SW_Inventory : MonoBehaviour
         if (slots[index].item == null)
             return;
 
+        if (!isMixing && lastSelectedSlot != null)
+        {
+            lastSelectedSlot.ResetSlotColor(); // 조합 중이 아니면 이전 선택된 슬롯의 색상을 초기화
+        }
+
+        // 새로운 슬롯 선택
         selectedItem = slots[index];
         selectedItemIndex = index;
         selectedItemName.text = selectedItem.item.displayName;
         selectedItemDescription.text = selectedItem.item.description;
+
+        // 새로운 슬롯의 색상을 노란색으로 변경
+        lastSelectedSlot = uiSlots[index];
+        lastSelectedSlot.SetSlotColor(Color.yellow);
 
         // 아이템 타입에 따른 버튼 활성화
         switch (selectedItem.item.type)
@@ -238,33 +266,41 @@ public class SW_Inventory : MonoBehaviour
         {
             if (mixingItem == null)
             {
-                // 첫 번째 아이템 선택 시
+                // 첫 번째 아이템 선택
                 mixingItem = selectedItem;
                 Debug.Log("첫 번째 아이템 선택: " + mixingItem.item.displayName);
+                isMixing = true; // 조합 과정 시작
+                // 현재 선택된 아이템 슬롯의 색상을 붉은색으로 변경
+                uiSlots[selectedItemIndex].SetSlotColor(Color.red);
             }
             else
             {
-                // 두 번째 아이템 선택 시
+                // 두 번째 아이템 선택 시도
                 Debug.Log("두 번째 아이템 선택 시도: " + selectedItem.item.displayName);
                 var mixScript = mixingItem.item.dropPrefab.GetComponent<SW_ItemMix>();
                 if (mixScript == null)
                 {
                     Debug.Log("SW_ItemMix 컴포넌트를 찾을 수 없음");
+                    ResetMixingProcess(); // 조합 진행 상황 초기화
                     return;
                 }
 
                 if (mixScript != null && mixScript.CanMix(new List<ItemSlot> { mixingItem, selectedItem }))
                 {
-                    // 조합 성공, 결과 아이템 생성 및 인벤토리에 추가
+                    // 조합 성공
                     AddItem(mixScript.resultItem);
                     RemoveItem(mixingItem);
                     RemoveSelectedItem();
-                    Debug.Log("아이템 조합 완료: " + mixScript.resultItem.displayName);
+                    ResetAllSlotColors();
+                    StartCoroutine(ShowAndHideUI(mixSuccessUI)); // 조합 성공 UI 표시
+                    isMixing = false; // 조합 과정 종료
                 }
                 else
                 {
                     // 조합 실패
+                    StartCoroutine(ShowAndHideUI(mixFailedUI)); // 조합 실패 UI 표시
                     Debug.Log("조합 실패");
+                    ResetMixingProcess(); // 조합 진행 상황 초기화
                 }
                 mixingItem = null; // 믹스 대상 아이템 초기화
             }
@@ -274,6 +310,15 @@ public class SW_Inventory : MonoBehaviour
             Debug.Log("선택된 아이템이 없거나 아이템 타입이 Normal이 아님");
         }
     }
+
+    // 지정된 UI를 표시하고 일정 시간 후에 숨기는 코루틴
+    IEnumerator ShowAndHideUI(GameObject uiObject)
+    {
+        uiObject.SetActive(true); // UI 활성화
+        yield return new WaitForSeconds(1.5f); // 1.5초 동안 기다림
+        uiObject.SetActive(false); // UI 비활성화
+    }
+
 
 
     // 아이템을 인벤토리에서 제거하는 메서드
@@ -297,6 +342,23 @@ public class SW_Inventory : MonoBehaviour
         selectedItem.item = null;
         ClearSelectedItemWindow();
         UpdateUI();
+    }
+
+    private void ResetAllSlotColors()
+    {
+        // 모든 슬롯의 색상을 초기화하는 메서드
+        foreach (var uiSlot in uiSlots)
+        {
+            uiSlot.ResetSlotColor();
+        }
+    }
+
+    private void ResetMixingProcess()
+    {
+        mixingItem = null;
+        ResetAllSlotColors(); // 모든 슬롯 색상 초기화
+        isMixing = false;
+        Debug.Log("조합 진행 상황 초기화");
     }
 }
 

@@ -13,11 +13,22 @@ public class SW_ItemSlotUI : MonoBehaviour
 
     public int index;              // 아이템 슬롯의 인덱스
 
+    public Image background; // 아이템 슬롯의 배경 이미지
+    private Color originalColor; // 배경의 원래 색상을 저장하는 변수
+
     // 객체가 활성화될 때 실행되는 메서드
     private void Awake()
     {
         // 버튼 컴포넌트에 클릭 이벤트 리스너 추가
         button.onClick.AddListener(OnButtonClick);
+        if (background != null)
+        {
+            originalColor = background.color; // 초기 색상 저장
+        }
+        else
+        {
+            Debug.LogError("배경 이미지가 설정되지 않았습니다: " + gameObject.name);
+        }
     }
  
 
@@ -48,5 +59,17 @@ public class SW_ItemSlotUI : MonoBehaviour
     public void OnButtonClick()
     {
         SW_Inventory.instance.SelectItem(index);  // 인벤토리에서 현재 인덱스의 아이템 선택
+    }
+
+    // 슬롯의 색상을 변경하는 메서드
+    public void SetSlotColor(Color color)
+    {
+        background.color = color;
+    }
+
+    // 슬롯의 색상을 원래 색상으로 초기화하는 메서드
+    public void ResetSlotColor()
+    {
+        background.color = originalColor;
     }
 }

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 648dce27598eec04f9c554776d7700e6, type: 3}
-  m_Name: Mug
+  m_Name: Mug 2
   m_EditorClassIdentifier: 
-  displayName: "\uBA38\uADF8\uC794"
+  displayName: "\uBA38\uADF8\uC7942"
   description: "\uC0C1\uD638\uC791\uC6A9"
   type: 0
   icon: {fileID: 21300000, guid: dba3e88a8acfa484881fa42f5d02d891, type: 3}
-  dropPrefab: {fileID: 7456554350392859145, guid: 8798dce7c0d63594dba2a74f63e237cf,
+  dropPrefab: {fileID: 3598558119147686869, guid: a9e0fbc02bbbe6244892f88d2058aebf,
     type: 3}
-  uniqueID: Mix1
+  uniqueID: Mix2
   importantItemCanvasPrefab: {fileID: 0}
   importantItemDisplay: {fileID: 0}

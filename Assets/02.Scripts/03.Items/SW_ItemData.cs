@@ -15,10 +15,10 @@ public enum ItemType
 public class SW_ItemData : ScriptableObject
 {
     [Header("Info")]
-    public string displayName;   // 아이템의 표시 이름
-    public string description;   // 아이템의 설명
-    public ItemType type;        // 아이템의 타입
-    public Sprite icon;          // 아이템의 아이콘 (UI에 표시될 이미지)
+    public string displayName;    // 아이템의 표시 이름
+    public string description;    // 아이템의 설명
+    public ItemType type;         // 아이템의 타입
+    public Sprite icon;           // 아이템의 아이콘 (UI에 표시될 이미지)
     public GameObject dropPrefab; // 게임 세계에 드롭될 때 사용되는 프리팹
 
     [Header("Important Item")]

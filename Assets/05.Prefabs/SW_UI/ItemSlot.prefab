@@ -57,6 +57,7 @@ MonoBehaviour:
   button: {fileID: 1111261762454770726}
   icon: {fileID: 2227636311824361203}
   index: 0
+  background: {fileID: 8537095183840850754}
 --- !u!222 &6154674080592331986
 CanvasRenderer:
   m_ObjectHideFlags: 0

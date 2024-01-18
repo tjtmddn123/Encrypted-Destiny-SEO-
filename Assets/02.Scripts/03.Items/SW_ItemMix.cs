@@ -16,7 +16,7 @@ public class SW_ItemMix : MonoBehaviour
             bool found = false;
             foreach (var slot in inventorySlots)
             {
-                if (slot.item == requiredItem)
+                if (slot.item != null && slot.item.displayName == requiredItem.displayName)
                 {
                     found = true;
                     Debug.Log("필요한 아이템 발견: " + requiredItem.displayName);
