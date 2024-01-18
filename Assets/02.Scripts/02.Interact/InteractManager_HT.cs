@@ -16,12 +16,12 @@ public class InteractManager_HT : MonoBehaviour
     private DoorController doorController;
     private NavKeypad.KeypadButton keypad;
     private Player_HT player;
+    private WaterRemover waterRemover;
     public float checkRate = 0.05f;
     private float lastCheckTime;
     public float maxCheckDistance;
     public LayerMask layerMask;
     private bool canPress = true;
-    private bool canRemove = true;
 
     private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
     public GameObject btn;
@@ -57,20 +57,28 @@ public class InteractManager_HT : MonoBehaviour
                 {
                     curInteractGameobject = hit.collider.gameObject;
                     curInteractable = hit.collider.GetComponent<IInteractable_HT>();
-                    SetPromptTextTake();
+                    waterRemover = curInteractGameobject.GetComponent<WaterRemover>();
+                    SetPromptText("[E] Take");
                 }
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Door"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
                     doorController = curInteractGameobject.GetComponent<DoorController>();
-                    SetPromptTextDoor();
+                    if (doorController.isOpening == false)
+                    {
+                        SetPromptText("[E] Open");
+                    }
+                    else
+                    {
+                        SetPromptText("[E] Close");
+                    }
                     Debug.Log("문을 바라봐");
                 }
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Button"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
                     keypad = curInteractGameobject.GetComponent<NavKeypad.KeypadButton>();
-                    SetPromptTextPush();
+                    SetPromptText("[E] Push");
                 }
             }
             else
@@ -82,21 +90,22 @@ public class InteractManager_HT : MonoBehaviour
         }
         if (curInteractGameobject != null)
         {
-            if (Input.GetKeyDown(KeyCode.E) && curInteractGameobject.CompareTag("Door") && canPress)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("열림");
-                doorController.OpenDoor(curInteractGameobject);
-                StartCoroutine(DelayedInput());
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) && curInteractGameobject == btn)
-            {
-                ChangeTall();
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) && curInteractGameobject.CompareTag("Button"))
-            {
-                keypad.PressButton();
+                if (curInteractGameobject.CompareTag("Door") && canPress)
+                {
+                    Debug.Log("열림");
+                    doorController.OpenDoor(curInteractGameobject);
+                    StartCoroutine(DelayedInput());
+                }
+                if (curInteractGameobject == btn)
+                {
+                    ChangeTall();
+                }
+                if (curInteractGameobject.CompareTag("Button"))
+                {
+                    keypad.PressButton();
+                }
             }
         }
     }
@@ -109,29 +118,10 @@ public class InteractManager_HT : MonoBehaviour
         canPress = true;
     }
 
-    private void SetPromptTextTake()
+    private void SetPromptText(string text)
     {
         promptText.gameObject.SetActive(true);
-        promptText.text = string.Format("[E] Take");
-    }
-
-    private void SetPromptTextPush()
-    {
-        promptText.gameObject.SetActive(true);
-        promptText.text = string.Format("[E] Push");
-    }
-
-    private void SetPromptTextDoor()
-    {
-        promptText.gameObject.SetActive(true);
-        if (doorController.isOpening == false)
-        {
-            promptText.text = string.Format("[E] Open");
-        }
-        else
-        {
-            promptText.text = string.Format("[E] Close");
-        }
+        promptText.text = string.Format(text);
     }
 
     public void OnInteractInput(InputAction.CallbackContext callbackContext)
