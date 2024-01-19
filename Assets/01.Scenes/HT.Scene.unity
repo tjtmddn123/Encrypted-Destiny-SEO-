@@ -353,6 +353,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &22280017
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +490,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 1
 --- !u!1 &60944639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,6 +1034,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &157663381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1102,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &165011530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,7 +1188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpening: 0
   openSpeed: 2
-  canOpenState: 0
+  canOpenState: 1
+  isReverse: 0
 --- !u!114 &182614631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,7 +1224,7 @@ GameObject:
   - component: {fileID: 195218201}
   - component: {fileID: 195218203}
   - component: {fileID: 195218202}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1554,9 +1559,10 @@ GameObject:
   m_Component:
   - component: {fileID: 265212384}
   - component: {fileID: 265212385}
-  m_Layer: 5
+  - component: {fileID: 265212386}
+  m_Layer: 7
   m_Name: Slider
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1635,6 +1641,22 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &265212386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265212383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd20103c7d3532a46976294d7fc30d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max: 5
+  min: 0
+  flash: {fileID: 131338077}
+  slider: {fileID: 265212385}
 --- !u!114 &266663540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1972,6 +1994,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &283561038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2317,6 +2340,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &356646460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604744492513983118, guid: beef3bcde1610f04aa96275436147bb9,
@@ -2346,7 +2370,7 @@ GameObject:
   - component: {fileID: 357470969}
   - component: {fileID: 357470971}
   - component: {fileID: 357470970}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2704,6 +2728,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &449322739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2905,6 +2930,7 @@ MonoBehaviour:
   isOpening: 1
   openSpeed: 1.5
   canOpenState: 1
+  isReverse: 0
 --- !u!65 &500985315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3065,6 +3091,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &579493917 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605114616758810404, guid: beef3bcde1610f04aa96275436147bb9,
@@ -3085,7 +3112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpening: 0
   openSpeed: 2
-  canOpenState: 0
+  canOpenState: 1
+  isReverse: 0
 --- !u!114 &598261998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3249,6 +3277,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &687581008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3656,7 +3685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpening: 0
   openSpeed: 2
-  canOpenState: 0
+  canOpenState: 1
+  isReverse: 0
 --- !u!114 &850280205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3766,6 +3796,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &858078294
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,7 +3856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 863429585}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3897,6 +3928,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &885351522
 GameObject:
   m_ObjectHideFlags: 0
@@ -4093,7 +4125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpening: 0
   openSpeed: 2
-  canOpenState: 0
+  canOpenState: 1
+  isReverse: 0
 --- !u!1 &921883321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4754,6 +4787,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 8604605653330710506, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8604611038180523792, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_Layer
@@ -4844,6 +4882,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 8604700770285963400, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8604708317158160476, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_Layer
@@ -4893,6 +4936,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604725143090690082, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8604726112772419666, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -4979,6 +5027,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 8604842251446419608, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8604862424028811366, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_Layer
@@ -5058,6 +5111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604964335001757162, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8604967314815499824, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -5526,7 +5584,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7689182096849245368, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8606311150240844717, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8610727835560245122, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -7056,6 +7115,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1060859345
 GameObject:
   m_ObjectHideFlags: 0
@@ -7252,7 +7312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpening: 0
   openSpeed: 2
-  canOpenState: 0
+  canOpenState: 1
+  isReverse: 0
 --- !u!114 &1124526070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7320,6 +7381,7 @@ MonoBehaviour:
   isOpening: 1
   openSpeed: 2
   canOpenState: 0
+  isReverse: 0
 --- !u!114 &1165964956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7364,6 +7426,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &1193569141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7715,6 +7778,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &1290116538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8264,7 +8328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1346516479}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8401,6 +8465,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1377729819
 GameObject:
   m_ObjectHideFlags: 0
@@ -8706,6 +8771,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1464384711
 GameObject:
   m_ObjectHideFlags: 0
@@ -8792,6 +8858,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1477494111
 GameObject:
   m_ObjectHideFlags: 0
@@ -8961,6 +9028,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1491778973 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605102890116275932, guid: beef3bcde1610f04aa96275436147bb9,
@@ -8982,6 +9050,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1504441276 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604587867905263972, guid: beef3bcde1610f04aa96275436147bb9,
@@ -9003,6 +9072,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1508591937 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605317624420088538, guid: beef3bcde1610f04aa96275436147bb9,
@@ -9023,7 +9093,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpening: 0
   openSpeed: 2
-  canOpenState: 0
+  canOpenState: 1
+  isReverse: 1
 --- !u!114 &1553431892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9753,6 +9824,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &1647575250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9912,6 +9984,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &1742705370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9979,6 +10052,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 0
+  isReverse: 0
 --- !u!1 &1763108472
 GameObject:
   m_ObjectHideFlags: 0
@@ -10294,6 +10368,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1813495544
 GameObject:
   m_ObjectHideFlags: 0
@@ -10365,6 +10440,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 1.5
   canOpenState: 1
+  isReverse: 0
 --- !u!65 &1820165287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10625,6 +10701,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &1871411414
 GameObject:
   m_ObjectHideFlags: 0
@@ -11220,14 +11297,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b446daf7290e2c49891052847b5a31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkRate: 0.05
   maxCheckDistance: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 128
+  promptText: {fileID: 1323195171}
   btn: {fileID: 1611737379}
   water: {fileID: 1396456115}
-  promptText: {fileID: 1323195171}
 --- !u!1 &1965612348
 GameObject:
   m_ObjectHideFlags: 0
@@ -11433,6 +11509,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!114 &2014305642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11500,6 +11577,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &2049588802
 GameObject:
   m_ObjectHideFlags: 0
@@ -11632,6 +11710,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 0
+  isReverse: 0
 --- !u!114 &2081447132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11699,6 +11778,7 @@ MonoBehaviour:
   isOpening: 0
   openSpeed: 2
   canOpenState: 1
+  isReverse: 0
 --- !u!1 &2129506121
 GameObject:
   m_ObjectHideFlags: 0

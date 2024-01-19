@@ -9,6 +9,7 @@ TagManager:
   - Button
   - BGM
   - Paper
+  - Water
   layers:
   - Default
   - TransparentFX

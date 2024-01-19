@@ -7,10 +7,11 @@ public class DoorController : MonoBehaviour
     public bool isOpening;
     public float openSpeed = 1.5f; // 문이 열리는 속도
     public bool canOpenState = false;
+    public bool isReverse = false;
 
     public void OpenDoor(GameObject door)
     {
-        if(canOpenState == true)
+        if (canOpenState == true)
         {
             Quaternion targetRotation = door.transform.localRotation;
 

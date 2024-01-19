@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class WaterRemover : MonoBehaviour
 {
-    public void WaterDown(GameObject Water)
+    public void MoveWater(GameObject water)
     {
-        Destroy(Water);
+        float x = water.transform.localPosition.x;
+        float y = water.transform.localPosition.y;
+        float z = water.transform.localPosition.z;
+
+        water.transform.localPosition = new Vector3(x, -5, z);
     }
 }

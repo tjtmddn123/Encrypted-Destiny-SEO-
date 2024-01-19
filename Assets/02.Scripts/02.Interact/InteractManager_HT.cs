@@ -13,24 +13,36 @@ public interface IInteractable_HT
 }
 public class InteractManager_HT : MonoBehaviour
 {
+
+    [Header("Door")]
     private DoorController doorController;
+    
+
+
+    [Header("Keypad")]
     private NavKeypad.KeypadButton keypad;
+
+    [Header("Interact")]
+    [SerializeField] private float maxCheckDistance;    //최대 상호작용 가능 거리
+    [SerializeField] private LayerMask layerMask;       //상호작용 시킬 레이어
     private Player_HT player;
-    private WaterRemover waterRemover;
-    public float checkRate = 0.05f;
+    private float checkRate = 0.05f;
     private float lastCheckTime;
-    public float maxCheckDistance;
-    public LayerMask layerMask;
     private bool canPress = true;
-
-    private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
-    public GameObject btn;
-    public GameObject water;
-
+    public TextMeshProUGUI promptText;
     private GameObject curInteractGameobject;
     private IInteractable_HT curInteractable;
 
-    public TextMeshProUGUI promptText;
+
+    [Header("ChangeTall")]
+    private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
+    public GameObject btn;           //작아지게 하는 오브젝트
+
+    [Header("Water")]
+    public GameObject water;
+    private WaterRemover waterRemover; 
+
+    [Header("Camera")]
     private Camera _camera;
 
     // Start is called before the first frame update
@@ -57,28 +69,51 @@ public class InteractManager_HT : MonoBehaviour
                 {
                     curInteractGameobject = hit.collider.gameObject;
                     curInteractable = hit.collider.GetComponent<IInteractable_HT>();
-                    waterRemover = curInteractGameobject.GetComponent<WaterRemover>();
                     SetPromptText("[E] Take");
                 }
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Door"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
                     doorController = curInteractGameobject.GetComponent<DoorController>();
-                    if (doorController.isOpening == false)
+                    if (doorController.isReverse == false)
                     {
-                        SetPromptText("[E] Open");
+                        if (doorController.isOpening == false)
+                        {
+                            SetPromptText("[E] Open");
+                        }
+                        else
+                        {
+                            SetPromptText("[E] Close");
+                        }
                     }
-                    else
+                    if (doorController.isReverse == true)
                     {
-                        SetPromptText("[E] Close");
+                        if (doorController.isOpening == false)
+                        {
+                            SetPromptText("[E] Close");
+                        }
+                        else
+                        {
+                            SetPromptText("[E] Open");
+                        }
                     }
-                    Debug.Log("문을 바라봐");
                 }
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Button"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
                     keypad = curInteractGameobject.GetComponent<NavKeypad.KeypadButton>();
                     SetPromptText("[E] Push");
+                }
+                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Water"))
+                {
+                    curInteractGameobject = hit.collider.gameObject;
+                    waterRemover = curInteractGameobject.GetComponent<WaterRemover>();
+                    SetPromptText("[E] Use");
+                }
+                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("MainCamera"))
+                {
+                    curInteractGameobject = hit.collider.gameObject;
+                    SetPromptText("[Click] Use");
                 }
             }
             else
@@ -105,6 +140,10 @@ public class InteractManager_HT : MonoBehaviour
                 if (curInteractGameobject.CompareTag("Button"))
                 {
                     keypad.PressButton();
+                }
+                if (curInteractGameobject.CompareTag("Water"))
+                {
+                    waterRemover.MoveWater(water);
                 }
             }
         }
@@ -137,6 +176,7 @@ public class InteractManager_HT : MonoBehaviour
 
     public void ChangeTall()
     {
+        player.Controller.transform.localPosition += new Vector3(0,1f,0);
         if (isSmall == false)
         {
             TallToSmall();
