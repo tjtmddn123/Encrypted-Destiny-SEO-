@@ -322,7 +322,7 @@ public class SW_Inventory : MonoBehaviour
 
 
     // 아이템을 인벤토리에서 제거하는 메서드
-    private void RemoveItem(ItemSlot itemSlot)
+    public void RemoveItem(ItemSlot itemSlot)
     {
         if (itemSlot == null || itemSlot.item == null) return;
         itemSlot.item = null;
