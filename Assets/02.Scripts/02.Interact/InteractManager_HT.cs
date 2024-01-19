@@ -23,7 +23,7 @@ public class InteractManager_HT : MonoBehaviour
     public LayerMask layerMask;
     private bool canPress = true;
 
-    private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
+    private bool isSmall = false;    
     public GameObject btn;
     public GameObject water;
 

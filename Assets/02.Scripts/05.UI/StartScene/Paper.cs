@@ -1,65 +1,64 @@
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float interactionDistance = 100f; 
-    public LayerMask interactableLayer; 
+    private Camera playerCamera;
+    private bool isHoldingObject = false;
+    private GameObject heldObject;
 
-    private GameObject heldObject; 
+    void Start()
+    {
+        playerCamera = Camera.main;
+    }
 
     void Update()
     {
-       
         if (Input.GetKeyDown(KeyCode.E))
         {
-           
             InteractWithObject();
-        }
-
-       
-        if (heldObject != null && Input.GetKeyDown(KeyCode.E))
-        {
-            DropObject();
         }
     }
 
     void InteractWithObject()
     {
-        
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, interactionDistance, interactableLayer))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 2f))
         {
-          
-            if (hit.collider.CompareTag("Interactable"))
+            if (hit.collider.CompareTag("Item"))
             {
-                
-                if (heldObject == null)
+                if (isHoldingObject)
                 {
-                  
-                    PickUpObject(hit.collider.gameObject);
+                    
+                    DropObject();
                 }
                 else
                 {
-                  
-                    DropObject();
+                    
+                    PickUpObject(hit.collider.gameObject);
                 }
             }
         }
+        else if (isHoldingObject)
+        {
+            
+            DropObject();
+        }
     }
 
-    void PickUpObject(GameObject objToPickUp)
+    void PickUpObject(GameObject objToPickup)
     {
-       
-        heldObject = objToPickUp;
-        heldObject.SetActive(false); 
+        isHoldingObject = true;
+        heldObject = objToPickup;
+        objToPickup.transform.SetParent(transform);
+        objToPickup.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     void DropObject()
     {
-        
-        heldObject.SetActive(true);
+        isHoldingObject = false;
+        heldObject.transform.SetParent(null);
+        heldObject.GetComponent<Rigidbody>().isKinematic = false;
         heldObject = null;
     }
 }
