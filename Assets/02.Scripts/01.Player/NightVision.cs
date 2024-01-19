@@ -5,6 +5,7 @@ using UnityEngine;
 public class NightVision : MonoBehaviour
 {
     public GameObject nightvision;
+    public GameObject nightvisionItem;
   
     private void Update()
     {
