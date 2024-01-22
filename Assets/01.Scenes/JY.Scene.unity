@@ -3027,7 +3027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf98dda7f5e292498b1ee8dd721134b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nightvision: {fileID: 2109660627}
+  nightvision: {fileID: 1180972740}
   nightvisionItem: {fileID: 0}
 --- !u!1001 &1415016849
 PrefabInstance:
@@ -4907,12 +4907,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095972716}
   m_CullTransparentMesh: 1
---- !u!1 &2109660627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6412760530448882589, guid: cea723d4ca6111648906e2b95b2885f3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5708645731303674088}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1764758698238364561
 PrefabInstance:
   m_ObjectHideFlags: 0

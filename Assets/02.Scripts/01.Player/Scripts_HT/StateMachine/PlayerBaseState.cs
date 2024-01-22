@@ -145,4 +145,9 @@ public class PlayerBaseState : IState
     {
 
     }
+
+    public void ToggleCursor(bool toggle)
+    {
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked; // 커서 상태 변경
+    }
 }

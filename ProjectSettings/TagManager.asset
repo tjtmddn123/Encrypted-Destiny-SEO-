@@ -10,6 +10,7 @@ TagManager:
   - BGM
   - Paper
   - Water
+  - None
   layers:
   - Default
   - TransparentFX

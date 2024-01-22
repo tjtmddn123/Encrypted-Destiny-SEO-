@@ -71,6 +71,12 @@ public class InteractManager_HT : MonoBehaviour
                     curInteractable = hit.collider.GetComponent<IInteractable_HT>();
                     SetPromptText("[E] Take");
                 }
+                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("None"))
+                {
+                    curInteractGameobject = hit.collider.gameObject;
+                    curInteractable = hit.collider.GetComponent<IInteractable_HT>();
+                    SetPromptText("[E] Use");
+                }
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Door"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
@@ -173,6 +179,17 @@ public class InteractManager_HT : MonoBehaviour
             promptText.gameObject.SetActive(false);
         }
     }
+
+    //public void OnInteractInput(InputAction.CallbackContext callbackContext)
+    //{
+    //    if (callbackContext.phase == InputActionPhase.Started && curInteractable != null)
+    //    {
+    //        curInteractable.OnInteract();
+    //        curInteractGameobject = null;
+    //        curInteractable = null;
+    //        promptText.gameObject.SetActive(false);
+    //    }
+    //}
 
     public void ChangeTall()
     {

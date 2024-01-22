@@ -32,8 +32,6 @@ public class SW_Inventory : MonoBehaviour
     public GameObject mixButton;       // 믹스(조합) 버튼 UI
     public GameObject dropButton;      // 버리기 버튼 UI
 
-    private SW_PlayerController controller;   // 플레이어 컨트롤러
-
     [Header("Events")]
     public UnityEvent onOpenInventory;   // 인벤토리 열기 이벤트
     public UnityEvent onCloseInventory;  // 인벤토리 닫기 이벤트
@@ -59,7 +57,6 @@ public class SW_Inventory : MonoBehaviour
     {
         // 클래스 인스턴스를 싱글톤으로 설정
         instance = this;
-        controller = GetComponent<SW_PlayerController>();
     }
 
     private void Start()
@@ -90,7 +87,7 @@ public class SW_Inventory : MonoBehaviour
         {
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke(); // 인벤토리 닫기 이벤트 호출
-            controller.ToggleCursor(false);
+            ToggleCursor(false);
 
             ResetAllSlotColors(); // 모든 슬롯 색상 초기화
 
@@ -106,8 +103,12 @@ public class SW_Inventory : MonoBehaviour
         {
             inventoryWindow.SetActive(true);
             onOpenInventory?.Invoke(); // 인벤토리 열기 이벤트 호출
-            controller.ToggleCursor(true);
+            ToggleCursor(true);
         }
+    }
+    public void ToggleCursor(bool toggle)
+    {
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked; // 커서 상태 변경
     }
 
     public bool IsOpen()
