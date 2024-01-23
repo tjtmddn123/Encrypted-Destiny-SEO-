@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648dce27598eec04f9c554776d7700e6, type: 3}
+  m_Name: clip2
+  m_EditorClassIdentifier: 
+  displayName: "\uD074\uB9BD2"
+  description: "\uC7AC\uB8CC \uC544\uC774\uD15C."
+  type: 0
+  icon: {fileID: 21300000, guid: ccc8e264aecaa9343b96ad1d1deff7df, type: 3}
+  dropPrefab: {fileID: 6379363958277375340, guid: 36975f630b9e97445b8424136b2b5b4c,
+    type: 3}
+  importantItemCanvasPrefab: {fileID: 0}
+  importantItemDisplay: {fileID: 0}
