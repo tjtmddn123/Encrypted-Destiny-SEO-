@@ -12,6 +12,7 @@ TagManager:
   - Water
   - None
   - Case
+  - Lamp
   layers:
   - Default
   - TransparentFX

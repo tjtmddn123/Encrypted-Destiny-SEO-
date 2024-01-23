@@ -128,6 +128,11 @@ public class InteractManager_HT : MonoBehaviour
                         SetPromptText("[E] Close");
                     }
                 }
+                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Lamp"))
+                {
+                    curInteractGameobject = hit.collider.gameObject;
+                    SetPromptText("[E] Turn on");
+                }
             }
             else
             {
