@@ -89,10 +89,8 @@ public class PlayerBaseState : IState
         {
             stateMachine.Player.Controller.height = 1.8f;
             SpeedModifier = 1f;
-        }//0.5 
+        }
     }
-
-
 
     private Vector3 GetMovementDirection()
     {
@@ -107,7 +105,6 @@ public class PlayerBaseState : IState
 
         return forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
     }
-
 
     private float GetMovementSpeed()
     {
@@ -134,11 +131,6 @@ public class PlayerBaseState : IState
     {
         PlayerInput input = stateMachine.Player.Input;
         input.PlayerActions.Move.canceled -= OnMovementCanceled;
-
-    }
-    protected virtual void OnRunStarted(InputAction.CallbackContext context)
-    {
-
     }
 
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)

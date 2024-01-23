@@ -64,7 +64,6 @@ public class InteractManager_HT : MonoBehaviour
    
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-
                 if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Item"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
@@ -116,10 +115,18 @@ public class InteractManager_HT : MonoBehaviour
                     waterRemover = curInteractGameobject.GetComponent<WaterRemover>();
                     SetPromptText("[E] Use");
                 }
-                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("MainCamera"))
+                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Case"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
-                    SetPromptText("[Click] Use");
+                    doorController = curInteractGameobject.GetComponent<DoorController>();
+                    if (doorController.isOpening == false)
+                    {
+                        SetPromptText("[E] Open");
+                    }
+                    else
+                    {
+                        SetPromptText("[E] Close");
+                    }
                 }
             }
             else
@@ -150,6 +157,10 @@ public class InteractManager_HT : MonoBehaviour
                 if (curInteractGameobject.CompareTag("Water"))
                 {
                     waterRemover.MoveWater(water);
+                }
+                if (curInteractGameobject.CompareTag("Case"))
+                {
+                    doorController.OpenRackCase(curInteractGameobject);
                 }
             }
         }
@@ -213,7 +224,6 @@ public class InteractManager_HT : MonoBehaviour
     public void TallToNormal()
     {
         isSmall = false;
-        //player.Controller.transform.localPosition += new Vector3(0, 1f, 0);  //커질 때 땅 속으로 들어가는 문제 해결을 위한 코드
         player.Controller.transform.localScale = new Vector3(1f, 1f, 1f);      //Scale을 1로
         player.Controller.stepOffset = 0.3f;
 

@@ -11,6 +11,7 @@ TagManager:
   - Paper
   - Water
   - None
+  - Case
   layers:
   - Default
   - TransparentFX
