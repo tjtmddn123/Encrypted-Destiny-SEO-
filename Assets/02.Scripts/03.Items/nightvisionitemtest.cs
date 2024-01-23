@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class nightvisionitemtest : MonoBehaviour
 {
-    public GameObject Rustkey;
-    public GameObject Text;
+    public GameObject WallText;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
-        { 
-            Rustkey.SetActive(!Rustkey.activeInHierarchy); 
-            Text.SetActive(!Text.activeInHierarchy);
+        {
+            WallText.SetActive(!WallText.activeInHierarchy); 
         }
     }
 }
