@@ -47,10 +47,13 @@ public class SW_Inventory : MonoBehaviour
     // 조합 성공 및 실패 UI 오브젝트를 참조
     public GameObject mixSuccessUI;
     public GameObject mixFailedUI;
+    public GameObject mixingUI; // Mixing UI 오브젝트 참조
 
     private SW_ItemSlotUI lastSelectedSlot; // 마지막으로 선택된 아이템 슬롯을 저장하는 변수
 
     private bool isMixing = false; // 조합 중인지 여부를 나타내는 변수
+
+    private SW_ItemSlotUI firstMixSlotUI = null;
 
 
     void Awake()
@@ -165,20 +168,45 @@ public class SW_Inventory : MonoBehaviour
         if (slots[index].item == null)
             return;
 
-        if (!isMixing && lastSelectedSlot != null)
-        {
-            lastSelectedSlot.ResetSlotColor(); // 조합 중이 아니면 이전 선택된 슬롯의 색상을 초기화
-        }
-
         // 새로운 슬롯 선택
         selectedItem = slots[index];
         selectedItemIndex = index;
         selectedItemName.text = selectedItem.item.displayName;
         selectedItemDescription.text = selectedItem.item.description;
 
-        // 새로운 슬롯의 색상을 노란색으로 변경
-        lastSelectedSlot = uiSlots[index];
-        lastSelectedSlot.SetSlotColor(Color.yellow);
+        if (isMixing)
+        {
+            // 첫 번째 아이템이 이미 선택되어 있는 경우
+            if (mixingItem != null && mixingItem == slots[index])
+            {
+                // 첫 번째 아이템을 다시 선택한 경우, 색상 변경 없이 리턴
+                return;
+            }
+            else
+            {
+                // 두 번째 아이템 선택 시 이전 선택된 슬롯의 색상 초기화 (첫 번째 아이템 제외)
+                if (lastSelectedSlot != null && lastSelectedSlot != firstMixSlotUI)
+                {
+                    lastSelectedSlot.ResetSlotColor();
+                }
+
+                // 두 번째 아이템의 색상을 노란색으로 변경
+                lastSelectedSlot = uiSlots[index];
+                lastSelectedSlot.SetSlotColor(Color.yellow);
+            }
+        }
+        else
+        {
+            // 조합 과정이 아니면 이전 선택된 슬롯의 색상 초기화
+            if (lastSelectedSlot != null)
+            {
+                lastSelectedSlot.ResetSlotColor();
+            }
+
+            // 새로운 슬롯의 색상을 노란색으로 변경
+            lastSelectedSlot = uiSlots[index];
+            lastSelectedSlot.SetSlotColor(Color.yellow);
+        }
 
         // 아이템 타입에 따른 버튼 활성화
         switch (selectedItem.item.type)
@@ -263,7 +291,7 @@ public class SW_Inventory : MonoBehaviour
 
     public void OnMixButton()
     {
-        if (selectedItem != null && selectedItem.item.type == ItemType.Normal)
+        if (selectedItem != null && (selectedItem.item.type == ItemType.Normal || selectedItem.item.type == ItemType.ImportantMix))
         {
             if (mixingItem == null)
             {
@@ -273,6 +301,7 @@ public class SW_Inventory : MonoBehaviour
                 isMixing = true; // 조합 과정 시작
                 // 현재 선택된 아이템 슬롯의 색상을 붉은색으로 변경
                 uiSlots[selectedItemIndex].SetSlotColor(Color.red);
+                StartCoroutine(ShowAndHideUI(mixingUI)); // 조합중 UI 표시
             }
             else
             {
@@ -308,7 +337,7 @@ public class SW_Inventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("선택된 아이템이 없거나 아이템 타입이 Normal이 아님");
+            Debug.Log("선택된 아이템이 없거나 아이템 타입이 Normal 또는 ImportantMix가 아님");
         }
     }
 
@@ -316,7 +345,7 @@ public class SW_Inventory : MonoBehaviour
     IEnumerator ShowAndHideUI(GameObject uiObject)
     {
         uiObject.SetActive(true); // UI 활성화
-        yield return new WaitForSeconds(1.5f); // 1.5초 동안 기다림
+        yield return new WaitForSeconds(2f); // 2초 동안 기다림
         uiObject.SetActive(false); // UI 비활성화
     }
 
