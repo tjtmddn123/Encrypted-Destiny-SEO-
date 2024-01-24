@@ -6,30 +6,36 @@ public class SW_AutoCloseDoor : MonoBehaviour
 {
     public DoorController doorController; // DoorController 컴포넌트 참조
     public GameObject door; // 자동으로 닫힐 문 객체
-    public float autoCloseDelay; // 자동으로 닫히는 지연 시간 (초)
+    public GameObject autoCloseTrigger; // AutoCloseTrigger 오브젝트
     public string newTag; // 문이 닫힌 후 적용할 새 태그
 
     private bool hasAutoClosed = false; // 문이 자동으로 닫힌 적이 있는지 확인
 
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        // 문이 열려 있고 아직 자동으로 닫힌 적이 없는 경우
-        if (doorController.isOpening && !hasAutoClosed)
+        // 플레이어 태그와 충돌했는지 확인
+        if (other.CompareTag("Player") && !hasAutoClosed)
         {
-            // 태그 변경
-            if (!string.IsNullOrEmpty(newTag))
-            {
-                door.tag = newTag;
-            }
-
-            StartCoroutine(AutoCloseDoor());
+            Debug.Log("플레이어와 충돌. 문을 닫습니다.");
+            CloseDoor();
         }
+    }
+
+    private void CloseDoor()
+    {
+        // 태그 변경
+        if (!string.IsNullOrEmpty(newTag))
+        {
+            door.tag = newTag;
+            Debug.Log("태그 변경됨");
+        }
+
+        // 문 닫히는 애니메이션 시작
+        StartCoroutine(AutoCloseDoor());
     }
 
     private IEnumerator AutoCloseDoor()
     {
-        // 2초의 지연시간 후에 실행
-        yield return new WaitForSeconds(autoCloseDelay);
 
         // 닫히는 과정 시작
         float elapsedTime = 0f;

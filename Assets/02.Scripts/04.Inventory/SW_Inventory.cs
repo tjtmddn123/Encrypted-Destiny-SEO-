@@ -52,6 +52,7 @@ public class SW_Inventory : MonoBehaviour
     private SW_ItemSlotUI lastSelectedSlot; // 마지막으로 선택된 아이템 슬롯을 저장하는 변수
 
     private bool isMixing = false; // 조합 중인지 여부를 나타내는 변수
+    public bool isInventoryOpen = false; //인벤토리가 열려있는 상태인지 나타내는 변수
 
     private SW_ItemSlotUI firstMixSlotUI = null;
 
