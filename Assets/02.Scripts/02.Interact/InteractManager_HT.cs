@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using TMPro;
-
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +16,7 @@ public class InteractManager_HT : MonoBehaviour
 
     [Header("Door")]
     private DoorController doorController;
-    
+
 
 
     [Header("Keypad")]
@@ -33,6 +33,8 @@ public class InteractManager_HT : MonoBehaviour
     private GameObject curInteractGameobject;
     private IInteractable_HT curInteractable;
 
+    public LampBtn lampBtn;
+    public SW_Inventory inventory;
 
     [Header("ChangeTall")]
     private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
@@ -40,7 +42,7 @@ public class InteractManager_HT : MonoBehaviour
 
     [Header("Water")]
     public GameObject water;
-    private WaterRemover waterRemover; 
+    private WaterRemover waterRemover;
 
     [Header("Camera")]
     private Camera _camera;
@@ -55,15 +57,16 @@ public class InteractManager_HT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;
             Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
-   
+
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
+
                 if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Item"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
@@ -133,6 +136,8 @@ public class InteractManager_HT : MonoBehaviour
                     curInteractGameobject = hit.collider.gameObject;
                     SetPromptText("[E] Turn on");
                 }
+
+
             }
             else
             {
@@ -166,10 +171,19 @@ public class InteractManager_HT : MonoBehaviour
                 if (curInteractGameobject.CompareTag("Case"))
                 {
                     doorController.OpenRackCase(curInteractGameobject);
+                }                            
+                if (curInteractGameobject.CompareTag("Lamp"))
+                {                  
+                    lampBtn.ToggleLight();                  
                 }
+
+
             }
         }
+
     }
+   
+
     IEnumerator DelayedInput()
     {
         canPress = false;
@@ -233,4 +247,6 @@ public class InteractManager_HT : MonoBehaviour
         player.Controller.stepOffset = 0.3f;
 
     }
+    
+
 }

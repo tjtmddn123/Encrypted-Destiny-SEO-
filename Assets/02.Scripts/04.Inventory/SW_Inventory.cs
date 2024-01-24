@@ -139,7 +139,7 @@ public class SW_Inventory : MonoBehaviour
         Instantiate(item.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360f));
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         // 인벤토리 UI 업데이트. 각 슬롯의 상태를 반영
         for (int i = 0; i < slots.Length; i++)
