@@ -11,7 +11,6 @@ public class PlayerBaseState : IState
     protected readonly PlayerGroundData groundData;
     private bool isCrouch;           //앉은 상태 구분
     private float SpeedModifier= 1f; //플레이어 이동속도 배율 제어
-    private bool isRunning = false;
 
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
@@ -33,7 +32,6 @@ public class PlayerBaseState : IState
         ReadMovementInput();
     }
 
-
     public virtual void Update()
     {
         Move();
@@ -43,12 +41,10 @@ public class PlayerBaseState : IState
         }
         if (isCrouch == false && Input.GetKey(KeyCode.LeftShift))
         {
-            isRunning = true;
             SpeedModifier = 1.4f;
         }
         if (isCrouch == false && Input.GetKeyUp(KeyCode.LeftShift))
         {
-            isRunning = false;
             SpeedModifier = 1f;
         }
     }
@@ -62,7 +58,7 @@ public class PlayerBaseState : IState
     {
         Vector3 movementDirection = GetMovementDirection();
 
-        Rotate(movementDirection);
+        Rotate(movementDirection);               
 
         Move(movementDirection);
     }
@@ -94,6 +90,7 @@ public class PlayerBaseState : IState
 
     private Vector3 GetMovementDirection()
     {
+
         Vector3 forward = stateMachine.MainCameraTransform.forward;
         Vector3 right = stateMachine.MainCameraTransform.right;
 
@@ -101,7 +98,7 @@ public class PlayerBaseState : IState
         right.y = 0;
 
         forward.Normalize();
-        right.Normalize();
+        right.Normalize();        
 
         return forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
     }
@@ -118,6 +115,10 @@ public class PlayerBaseState : IState
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
             stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -136,10 +137,5 @@ public class PlayerBaseState : IState
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
     {
 
-    }
-
-    public void ToggleCursor(bool toggle)
-    {
-        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked; // 커서 상태 변경
     }
 }

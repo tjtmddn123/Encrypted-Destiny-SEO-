@@ -34,13 +34,11 @@ public class InteractManager_HT : MonoBehaviour
     private IInteractable_HT curInteractable;
 
 
+    /*
     [Header("ChangeTall")]
     private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
-    public GameObject btn;           //작아지게 하는 오브젝트
-
-    [Header("Water")]
-    public GameObject water;
-    private WaterRemover waterRemover; 
+    public GameObject changeTallObject;           //작아지게 하는 오브젝트
+    */
 
     [Header("Camera")]
     private Camera _camera;
@@ -109,12 +107,6 @@ public class InteractManager_HT : MonoBehaviour
                     keypad = curInteractGameobject.GetComponent<NavKeypad.KeypadButton>();
                     SetPromptText("[E] Push");
                 }
-                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Water"))
-                {
-                    curInteractGameobject = hit.collider.gameObject;
-                    waterRemover = curInteractGameobject.GetComponent<WaterRemover>();
-                    SetPromptText("[E] Use");
-                }
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Case"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
@@ -151,17 +143,13 @@ public class InteractManager_HT : MonoBehaviour
                     doorController.OpenDoor(curInteractGameobject);
                     StartCoroutine(DelayedInput());
                 }
-                if (curInteractGameobject == btn)
+                /*if (curInteractGameobject == changeTallObject)
                 {
                     ChangeTall();
-                }
+                }*/
                 if (curInteractGameobject.CompareTag("Button"))
                 {
                     keypad.PressButton();
-                }
-                if (curInteractGameobject.CompareTag("Water"))
-                {
-                    waterRemover.MoveWater(water);
                 }
                 if (curInteractGameobject.CompareTag("Case"))
                 {
@@ -195,42 +183,30 @@ public class InteractManager_HT : MonoBehaviour
             promptText.gameObject.SetActive(false);
         }
     }
-
-    //public void OnInteractInput(InputAction.CallbackContext callbackContext)
+    //public void ChangeTall()
     //{
-    //    if (callbackContext.phase == InputActionPhase.Started && curInteractable != null)
+    //    player.Controller.transform.localPosition += new Vector3(0,1f,0);
+    //    if (isSmall == false)
     //    {
-    //        curInteractable.OnInteract();
-    //        curInteractGameobject = null;
-    //        curInteractable = null;
-    //        promptText.gameObject.SetActive(false);
+    //        TallToSmall();
+    //    }
+    //    else
+    //    {
+    //        TallToNormal();
     //    }
     //}
 
-    public void ChangeTall()
-    {
-        player.Controller.transform.localPosition += new Vector3(0,1f,0);
-        if (isSmall == false)
-        {
-            TallToSmall();
-        }
-        else
-        {
-            TallToNormal();
-        }
-    }
+    //public void TallToSmall()
+    //{
+    //    isSmall = true;
+    //    player.Controller.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); //Scale을 0.01로
+    //    player.Controller.stepOffset = 0.1f;
+    //}
+    //public void TallToNormal()
+    //{
+    //    isSmall = false;
+    //    player.Controller.transform.localScale = new Vector3(1f, 1f, 1f);      //Scale을 1로
+    //    player.Controller.stepOffset = 0.3f;
 
-    public void TallToSmall()
-    {
-        isSmall = true;
-        player.Controller.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); //Scale을 0.01로
-        player.Controller.stepOffset = 0.1f;
-    }
-    public void TallToNormal()
-    {
-        isSmall = false;
-        player.Controller.transform.localScale = new Vector3(1f, 1f, 1f);      //Scale을 1로
-        player.Controller.stepOffset = 0.3f;
-
-    }
+    //}
 }

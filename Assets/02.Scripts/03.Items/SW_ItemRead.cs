@@ -1,11 +1,15 @@
+using Cinemachine;
+
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine;
 
 public class SW_ItemRead : MonoBehaviour, IInteractable_HT
 {
     public GameObject imageUI; // 이미지 UI에 대한 참조
+    public CinemachineVirtualCamera virtualCamera;
+
+
 
     public void OnInteract()
     {
