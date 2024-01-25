@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageReport scope="Summary">
+  <Summary>
+    <Generatedon>2024-01-25 - 오후 7:13:03</Generatedon>
+    <Parser>MultiReportParser (2x OpenCoverParser)</Parser>
+    <Assemblies>1</Assemblies>
+    <Classes>1</Classes>
+    <Files>1</Files>
+    <Coveredlines>93</Coveredlines>
+    <Uncoveredlines>31</Uncoveredlines>
+    <Coverablelines>124</Coverablelines>
+    <Totallines>227</Totallines>
+    <Linecoverage>75</Linecoverage>
+    <Coveredbranches>0</Coveredbranches>
+    <Totalbranches>0</Totalbranches>
+    <Coveredmethods>6</Coveredmethods>
+    <Totalmethods>6</Totalmethods>
+    <Methodcoverage>100</Methodcoverage>
+  </Summary>
+  <Coverage>
+    <Assembly name="Assembly-CSharp" classes="1" coverage="75" coveredlines="93" coverablelines="124" totallines="227" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="6" methodcoverage="100">
+      <Class name="InteractManager_HT" coverage="75" coveredlines="93" coverablelines="124" totallines="227" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="6" methodcoverage="100" />
+    </Assembly>
+  </Coverage>
+</CoverageReport>

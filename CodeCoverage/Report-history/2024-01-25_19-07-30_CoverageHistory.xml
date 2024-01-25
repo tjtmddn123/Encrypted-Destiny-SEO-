@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2024-01-25_19-07-30" tag="">
+  <assembly name="Assembly-CSharp">
+    <class name="NightVision" coveredlines="0" coverablelines="3" totallines="15" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>
