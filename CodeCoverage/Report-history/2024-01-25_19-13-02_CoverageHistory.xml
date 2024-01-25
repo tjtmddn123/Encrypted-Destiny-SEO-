@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2024-01-25_19-13-02" tag="">
+  <assembly name="Assembly-CSharp">
+    <class name="InteractManager_HT" coveredlines="93" coverablelines="124" totallines="227" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>
