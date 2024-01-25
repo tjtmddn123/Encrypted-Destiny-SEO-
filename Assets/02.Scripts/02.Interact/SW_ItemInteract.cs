@@ -73,9 +73,12 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
 
     IEnumerator ShowAndHideUI(GameObject uiObject, float delay)
     {
-        uiObject.SetActive(true);
-        yield return new WaitForSeconds(delay);
-        uiObject.SetActive(false);
+        if (uiObject != null)
+        {
+            uiObject.SetActive(true);
+            yield return new WaitForSeconds(delay);
+            uiObject.SetActive(false);
+        }
     }
 }
 
