@@ -16,7 +16,7 @@ MonoBehaviour:
   description: "\uC0C8\uB85C\uC6B4\uAC78 \uBCFC\uC9C0\uB3C4?"
   type: 1
   icon: {fileID: 21300000, guid: 20cf55f8532b02f4484dacf8dbfc603b, type: 3}
-  dropPrefab: {fileID: 5942741585620168065, guid: 22dfe04ee23b57e41828cee9dbafa463,
+  dropPrefab: {fileID: 1293460826848341296, guid: 41ff1a5df76f38a438d62944de3062b2,
     type: 3}
   importantItemCanvasPrefab: {fileID: 0}
   importantItemDisplay: {fileID: 0}
