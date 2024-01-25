@@ -5,11 +5,25 @@ using UnityEngine;
 public class NightVision : MonoBehaviour
 {
     public GameObject nightvision;
-    public GameObject nightvisionItem;
-  
+    public GameObject nightvisionn;
+    private bool hasNightVision = false;
+    private bool canUseNightVision = true;
+
+    public void AddNightVisionItem()
+    {
+        hasNightVision = true;
+        canUseNightVision = true;
+    }
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.N))
-            nightvision.SetActive(!nightvision.activeInHierarchy);
+        if (hasNightVision && Input.GetKeyDown(KeyCode.N))
+        {
+            nightvisionn.SetActive(!nightvisionn.activeInHierarchy);
+        }
+        else if (!hasNightVision)
+        {
+            canUseNightVision = false;
+        }
     }
 }
