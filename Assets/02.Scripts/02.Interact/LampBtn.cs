@@ -11,15 +11,7 @@ public class LampBtn : MonoBehaviour
 
     void Start()
     {
-       
         paperText.gameObject.SetActive(false);
-    }
-
-    void Update()
-    {
-       
-
-
     }
 
     public void ToggleLight()
@@ -39,7 +31,4 @@ public class LampBtn : MonoBehaviour
             paperText.gameObject.SetActive(false);
         }
     }
-
-
-    
 }
