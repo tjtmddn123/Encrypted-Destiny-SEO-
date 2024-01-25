@@ -7,6 +7,8 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+using static UnityEngine.InputSystem.Controls.AxisControl;
+
 public interface IInteractable_HT
 {
     void OnInteract();
@@ -17,7 +19,8 @@ public class InteractManager_HT : MonoBehaviour
     [Header("Door")]
     private DoorController doorController;
 
-
+    [Header("Lamp")]
+    private LampBtn lamp;
 
     [Header("Keypad")]
     private NavKeypad.KeypadButton keypad;
@@ -32,9 +35,6 @@ public class InteractManager_HT : MonoBehaviour
     public TextMeshProUGUI promptText;
     private GameObject curInteractGameobject;
     private IInteractable_HT curInteractable;
-
-    public LampBtn lampBtn;
-    public SW_Inventory inventory;
 
     /*
     [Header("ChangeTall")]
@@ -126,6 +126,7 @@ public class InteractManager_HT : MonoBehaviour
                 else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Lamp"))
                 {
                     curInteractGameobject = hit.collider.gameObject;
+                    lamp = curInteractGameobject.GetComponent<LampBtn>();
                     SetPromptText("[E] Turn on");
                 }
 
@@ -161,8 +162,8 @@ public class InteractManager_HT : MonoBehaviour
                     doorController.OpenRackCase(curInteractGameobject);
                 }                            
                 if (curInteractGameobject.CompareTag("Lamp"))
-                {                  
-                    lampBtn.ToggleLight();                  
+                {
+                    lamp.ToggleLight();                  
                 }
 
 
