@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NightVision : MonoBehaviour
 {
-    public GameObject nightvision;
+    //public GameObject nightvision;
     public GameObject nightvisionn;
     private bool hasNightVision = false;
     private bool canUseNightVision = true;
@@ -17,13 +17,13 @@ public class NightVision : MonoBehaviour
 
     private void Update()
     {
-        if (hasNightVision && Input.GetKeyDown(KeyCode.N))
+        if (/*hasNightVision && */Input.GetKeyDown(KeyCode.N))
         {
             nightvisionn.SetActive(!nightvisionn.activeInHierarchy);
         }
-        else if (!hasNightVision)
+        /*else if (!hasNightVision)
         {
             canUseNightVision = false;
-        }
+        }*/
     }
 }
