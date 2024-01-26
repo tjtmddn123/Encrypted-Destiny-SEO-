@@ -53,7 +53,7 @@ public class SW_AutoCloseDoor : MonoBehaviour
         door.transform.localRotation = targetRotation; // 최종적으로 목표 회전값 설정
 
         // isOpening 상태 업데이트 및 자동 닫힘 플래그 설정
-        doorController.isOpening = false;
+        doorController.isOpen = false;
         hasAutoClosed = true;
     }
 }

@@ -4,35 +4,53 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public bool isOpening;      //열려있는 문인지를 판단하기 위한 bool
+    [Header("Door")]
+    public bool isOpen;      //열려있는 문인지를 판단하기 위한 bool
     public bool isReverse = false;  //반대로 열리는 문이 있으면 true로 해주세요
     public float openSpeed = 1.5f; // 문이 열리는 속도
 
-    [SerializeField]
-    private float moveRange = 0.35f; //서랍 이동 거리입니다.
+    [SerializeField] 
+    private bool isOpening = false;
     [SerializeField]
     private bool canOpenState = false;   //열수 있는지 구분 
 
+    [Header("Case")]
+    [SerializeField]
+    private float moveRange = 0.35f; //서랍 이동 거리입니다.
+
+
     public void OpenDoor(GameObject door)
     {
-        if (canOpenState == true)
+        if (!isOpening)
         {
-            Quaternion targetRotation = door.transform.localRotation;
-
-            if (isOpening)
+            StartCoroutine(DoorOpening());
+            if (canOpenState == true)
             {
-                targetRotation *= Quaternion.Euler(0f, 90f, 0f);
-            }
-            else
-            {
-                targetRotation *= Quaternion.Euler(0f, -90f, 0f);
-            }
+                Quaternion targetRotation = door.transform.localRotation;
 
-            StartCoroutine(RotateDoor(door.transform, targetRotation));
-            ChangeOpenState();
+                if (isOpen)
+                {
+                    targetRotation *= Quaternion.Euler(0f, 90f, 0f);
+                }
+                else
+                {
+                    targetRotation *= Quaternion.Euler(0f, -90f, 0f);
+                }
+
+                StartCoroutine(RotateDoor(door.transform, targetRotation));
+                ChangeOpenState();
+            }
         }
     }
 
+    private IEnumerator DoorOpening()
+    {
+        isOpening = true;
+
+        yield return new WaitForSeconds(openSpeed);
+
+        isOpening = false;
+    }
     private IEnumerator RotateDoor(Transform doorTransform, Quaternion targetRotation)
     {
         float elapsedTime = 0f;
@@ -47,27 +65,7 @@ public class DoorController : MonoBehaviour
 
         doorTransform.localRotation = targetRotation;
     }
-    private void ChangeOpenState()
-    {
-        isOpening = !isOpening;
-    }
 
-    public void CanOpen()
-    {
-        canOpenState = true;
-    }
-
-    public void OpenRackCase(GameObject rackCase)
-    {
-        if (isOpening)
-        {
-            StartCoroutine(MoveRackCase(rackCase, moveRange));
-        }
-        else
-        {
-            StartCoroutine(MoveRackCase(rackCase, -moveRange));
-        }
-    }
 
     private IEnumerator MoveRackCase(GameObject rackCase, float offsetZ)
     {
@@ -86,5 +84,26 @@ public class DoorController : MonoBehaviour
 
         rackCase.transform.localPosition = targetPosition;
         ChangeOpenState(); 
+    }
+    private void ChangeOpenState()
+    {
+        isOpen = !isOpen;
+    }
+
+    public void CanOpen()
+    {
+        canOpenState = true;
+    }
+
+    public void OpenRackCase(GameObject rackCase)
+    {
+        if (isOpen)
+        {
+            StartCoroutine(MoveRackCase(rackCase, moveRange));
+        }
+        else
+        {
+            StartCoroutine(MoveRackCase(rackCase, -moveRange));
+        }
     }
 }

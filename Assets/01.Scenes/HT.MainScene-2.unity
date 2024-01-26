@@ -2223,8 +2223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf98dda7f5e292498b1ee8dd721134b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nightvision: {fileID: 857000727}
-  nightvisionItem: {fileID: 0}
+  nightvisionn: {fileID: 857000727}
 --- !u!114 &330585550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2237,8 +2236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf98dda7f5e292498b1ee8dd721134b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nightvision: {fileID: 878673292}
-  nightvisionItem: {fileID: 0}
+  nightvisionn: {fileID: 857000727}
 --- !u!1 &368726085
 GameObject:
   m_ObjectHideFlags: 0
@@ -11878,7 +11876,6 @@ MonoBehaviour:
   <Data>k__BackingField: {fileID: 11400000, guid: 3497ff85118365142af160363455b5c1,
     type: 2}
   virtualCamera: {fileID: 1841712220}
-  inventory: {fileID: 0}
   memo: {fileID: 383398160}
 --- !u!143 &1309784365
 CharacterController:
