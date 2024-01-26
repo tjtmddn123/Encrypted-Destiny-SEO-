@@ -4,8 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
-using static UnityEditor.Progress;
 
 public class ItemSlot
 {
