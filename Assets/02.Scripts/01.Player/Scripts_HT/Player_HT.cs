@@ -19,7 +19,7 @@ public class Player_HT : MonoBehaviour
 
     public CinemachineVirtualCamera virtualCamera;
 
-    public SW_Inventory inventory;
+    private SW_Inventory inventory;
 
     public GameObject memo;
 
@@ -35,7 +35,6 @@ public class Player_HT : MonoBehaviour
 
     private void Start()
     {
-        
         Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.idleState);
     }

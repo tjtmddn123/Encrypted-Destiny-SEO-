@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-using static UnityEngine.InputSystem.Controls.AxisControl;
 
 public interface IInteractable_HT
 {
@@ -31,28 +27,26 @@ public class InteractManager_HT : MonoBehaviour
     private Player_HT player;
     private float checkRate = 0.05f;
     private float lastCheckTime;
-    private bool canPress = true;
     public TextMeshProUGUI promptText;
     private GameObject curInteractGameobject;
     private IInteractable_HT curInteractable;
+    private SW_ItemInteract SWinteract;
 
     /*
     [Header("ChangeTall")]
     private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
     */
-   
+
 
     [Header("Camera")]
     private Camera _camera;
 
-    // Start is called before the first frame update
     void Start()
     {
         _camera = Camera.main;
         player = GetComponent<Player_HT>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -64,73 +58,11 @@ public class InteractManager_HT : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-
-                if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Item"))
+                if (hit.collider.gameObject != curInteractGameobject)
                 {
                     curInteractGameobject = hit.collider.gameObject;
-                    curInteractable = hit.collider.GetComponent<IInteractable_HT>();
-                    SetPromptText("[E] Take");
+                    LookAtThis(curInteractGameobject.tag, curInteractGameobject);
                 }
-                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("None"))
-                {
-                    curInteractGameobject = hit.collider.gameObject;
-                    curInteractable = hit.collider.GetComponent<IInteractable_HT>();
-                    SetPromptText("[E] Use");
-                }
-                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Door"))
-                {
-                    curInteractGameobject = hit.collider.gameObject;
-                    doorController = curInteractGameobject.GetComponent<DoorController>();
-                    if (doorController.isReverse == false)
-                    {
-                        if (doorController.isOpening == false)
-                        {
-                            SetPromptText("[E] Open");
-                        }
-                        else
-                        {
-                            SetPromptText("[E] Close");
-                        }
-                    }
-                    if (doorController.isReverse == true)
-                    {
-                        if (doorController.isOpening == false)
-                        {
-                            SetPromptText("[E] Close");
-                        }
-                        else
-                        {
-                            SetPromptText("[E] Open");
-                        }
-                    }
-                }
-                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Button"))
-                {
-                    curInteractGameobject = hit.collider.gameObject;
-                    keypad = curInteractGameobject.GetComponent<NavKeypad.KeypadButton>();
-                    SetPromptText("[E] Push");
-                }
-                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Case"))
-                {
-                    curInteractGameobject = hit.collider.gameObject;
-                    doorController = curInteractGameobject.GetComponent<DoorController>();
-                    if (doorController.isOpening == false)
-                    {
-                        SetPromptText("[E] Open");
-                    }
-                    else
-                    {
-                        SetPromptText("[E] Close");
-                    }
-                }
-                else if (hit.collider.gameObject != curInteractGameobject && hit.collider.CompareTag("Lamp"))
-                {
-                    curInteractGameobject = hit.collider.gameObject;
-                    lamp = curInteractGameobject.GetComponent<LampBtn>();
-                    SetPromptText("[E] Turn on");
-                }
-
-
             }
             else
             {
@@ -143,43 +75,88 @@ public class InteractManager_HT : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (curInteractGameobject.CompareTag("Door") && canPress)
-                {
-                    Debug.Log("열림");
-                    doorController.OpenDoor(curInteractGameobject);
-                    StartCoroutine(DelayedInput());
-                }
-                /*if (curInteractGameobject == changeTallObject)
-                {
-                    ChangeTall();
-                }*/
-                if (curInteractGameobject.CompareTag("Button"))
-                {
-                    keypad.PressButton();
-                }
-                if (curInteractGameobject.CompareTag("Case"))
-                {
-                    doorController.OpenRackCase(curInteractGameobject);
-                }                            
-                if (curInteractGameobject.CompareTag("Lamp"))
-                {
-                    lamp.ToggleLight();                  
-                }
-
-
+                Interact(curInteractGameobject.tag);
             }
         }
-
     }
-   
 
-    IEnumerator DelayedInput()
+    private void LookAtThis(string tag, GameObject lookThis)
     {
-        canPress = false;
+        
+        switch (tag)
+        {
+            case "Item":
+                SetPromptText("[E] Take");
+                curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                break;
+            case "None":
+                SetPromptText("[E] Use");
+                curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                break;
+            case "Door":
+                doorController = lookThis.GetComponent<DoorController>();
+                if (doorController.isReverse == false)
+                {
+                    if (doorController.isOpen == false)
+                    {
+                        SetPromptText("[E] Open");
+                    }
+                    else
+                    {
+                        SetPromptText("[E] Close");
+                    }
+                }
+                if (doorController.isReverse == true)
+                {
+                    if (doorController.isOpen == false)
+                    {
+                        SetPromptText("[E] Close");
+                    }
+                    else
+                    {
+                        SetPromptText("[E] Open");
+                    }
+                }
+                break;
+            case "Button":
+                keypad = lookThis.GetComponent<NavKeypad.KeypadButton>();
+                SetPromptText("[E] Push");
+                break;
+            case "Case":
+                doorController = lookThis.GetComponent<DoorController>();
+                if (doorController.isOpen == false)
+                {
+                    SetPromptText("[E] Open");
+                }
+                else
+                {
+                    SetPromptText("[E] Close");
+                }
+                break;
+            case "Lamp":
+                lamp = lookThis.GetComponent<LampBtn>();
+                SetPromptText("[E] Turn on");
+                break;
+        }
+    }
 
-        yield return new WaitForSeconds(doorController.openSpeed);
-
-        canPress = true;
+    private void Interact(string tag)
+    {
+        switch (tag)
+        {
+            case "Door":
+                doorController.OpenDoor(curInteractGameobject);                
+                break;
+            case "Button":
+                keypad.PressButton();
+                break;
+            case "Case":
+                doorController.OpenRackCase(curInteractGameobject);
+                break;
+            case "Lamp":
+                lamp.ToggleLight();
+                break;
+        }
     }
 
     private void SetPromptText(string text)
