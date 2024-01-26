@@ -4,26 +4,24 @@ using UnityEngine;
 
 public class NightVision : MonoBehaviour
 {
-    //public GameObject nightvision;
-    public GameObject nightvisionn;
+    public GameObject nightvision;
     private bool hasNightVision = false;
-    private bool canUseNightVision = true;
 
     public void AddNightVisionItem()
     {
         hasNightVision = true;
-        canUseNightVision = true;
+        nightvision.SetActive(hasNightVision);
     }
 
     private void Update()
     {
-        if (/*hasNightVision && */Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            nightvisionn.SetActive(!nightvisionn.activeInHierarchy);
+            if (hasNightVision)
+            {
+                nightvision.SetActive(!nightvision.activeInHierarchy);
+            }
         }
-        /*else if (!hasNightVision)
-        {
-            canUseNightVision = false;
-        }*/
+        
     }
 }
