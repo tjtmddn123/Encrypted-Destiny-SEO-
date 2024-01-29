@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBaseState : IState 
+public class PlayerBaseState : IState
 {
 
     protected PlayerStateMachine stateMachine;
     protected readonly PlayerGroundData groundData;
     private bool isCrouch;           //앉은 상태 구분
-    private float SpeedModifier= 1f; //플레이어 이동속도 배율 제어
+    private float SpeedModifier = 1f; //플레이어 이동속도 배율 제어
 
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
@@ -58,7 +58,7 @@ public class PlayerBaseState : IState
     {
         Vector3 movementDirection = GetMovementDirection();
 
-        Rotate(movementDirection);               
+        Rotate(movementDirection);
 
         Move(movementDirection);
     }
@@ -80,13 +80,16 @@ public class PlayerBaseState : IState
         {
             stateMachine.Player.Controller.height = 0.7f;
             SpeedModifier = 0.6f;
+            stateMachine.Player.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         }
-        else 
+        else
         {
             stateMachine.Player.Controller.height = 1.8f;
             SpeedModifier = 1f;
+            stateMachine.Player.transform.localScale = new Vector3(1, 1, 1);
         }
     }
+
 
     private Vector3 GetMovementDirection()
     {

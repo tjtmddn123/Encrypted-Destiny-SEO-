@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public interface IInteractable_HT
 {
@@ -24,13 +25,11 @@ public class InteractManager_HT : MonoBehaviour
     [Header("Interact")]
     [SerializeField] private float maxCheckDistance;    //최대 상호작용 가능 거리
     [SerializeField] private LayerMask layerMask;       //상호작용 시킬 레이어
-    private Player_HT player;
     private float checkRate = 0.05f;
     private float lastCheckTime;
     public TextMeshProUGUI promptText;
     private GameObject curInteractGameobject;
     private IInteractable_HT curInteractable;
-    private SW_ItemInteract SWinteract;
 
     /*
     [Header("ChangeTall")]
@@ -41,10 +40,15 @@ public class InteractManager_HT : MonoBehaviour
     [Header("Camera")]
     private Camera _camera;
 
+    [Header("outLine")]
+    private Material material;
+    private Renderer renderers;
+    private List<Material> materialList = new List<Material>();
+
     void Start()
     {
         _camera = Camera.main;
-        player = GetComponent<Player_HT>();
+        material = new Material(Shader.Find("Shader Graphs/Interact"));
     }
 
     void Update()
@@ -62,10 +66,20 @@ public class InteractManager_HT : MonoBehaviour
                 {
                     curInteractGameobject = hit.collider.gameObject;
                     LookAtThis(curInteractGameobject.tag, curInteractGameobject);
-                }
+                }   
             }
             else
             {
+                if (curInteractGameobject != null && curInteractGameobject.CompareTag("Item"))
+                {
+                    Renderer renderer = curInteractGameobject.GetComponent<Renderer>();
+
+                    materialList.Clear();
+                    materialList.AddRange(renderer.sharedMaterials);
+                    materialList.Remove(material);
+
+                    renderer.materials = materialList.ToArray();
+                }
                 curInteractGameobject = null;
                 curInteractable = null;
                 promptText.gameObject.SetActive(false);
@@ -88,6 +102,13 @@ public class InteractManager_HT : MonoBehaviour
             case "Item":
                 SetPromptText("[E] Take");
                 curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                renderers = curInteractGameobject.GetComponent<Renderer>();
+
+                materialList.Clear();
+                materialList.AddRange(renderers.sharedMaterials);
+                materialList.Add(material);
+
+                renderers.materials = materialList.ToArray();
                 break;
             case "None":
                 SetPromptText("[E] Use");
