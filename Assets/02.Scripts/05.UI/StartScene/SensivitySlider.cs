@@ -1,30 +1,27 @@
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
-public class SensitivitySlider : MonoBehaviour
+public class CameraSensitivityController : MonoBehaviour
 {
-    public Slider sensitivitySlider;
-    public CinemachineVirtualCamera virtualCamera;
+    public Slider sensitivitySlider; 
+    public CinemachineVirtualCamera virtualCamera; 
 
-    public float minSensitivity = 1f; // 최소 감도
-    public float maxSensitivity = 100f; // 최대 감도
-    public float sensitivityMultiplier = 1000f; // 감도배율
+    public float minSensitivity = 1f; 
+    public float maxSensitivity = 100f; 
 
-    private void Start()
+    void Update()
     {
         sensitivitySlider.onValueChanged.AddListener(delegate { UpdateCameraSensitivity(); });
     }
 
     public void UpdateCameraSensitivity()
     {
-        float sensitivityValue = sensitivitySlider.value; 
-
+        float sensitivityValue = sensitivitySlider.value; // 슬라이더 값
         
         float clampedSensitivity = Mathf.Clamp(sensitivityValue, minSensitivity, maxSensitivity);
-
-        
-        virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value = clampedSensitivity * sensitivityMultiplier;
-        virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.Value = clampedSensitivity * sensitivityMultiplier;
+      
+        virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = clampedSensitivity;
+        virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = clampedSensitivity;
     }
 }
