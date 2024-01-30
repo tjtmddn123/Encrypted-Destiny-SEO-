@@ -41,16 +41,6 @@ public class Player_HT : MonoBehaviour
 
     private void Update()
     {
-        if (inventory.inventoryWindow.activeInHierarchy || memo.activeInHierarchy)
-        {
-            virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = 0;
-            virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = 0;
-        }
-        else
-        {
-            virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = 300;
-            virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = 300;
-        }
         stateMachine.HandleInput();
         stateMachine.Update();
     }
