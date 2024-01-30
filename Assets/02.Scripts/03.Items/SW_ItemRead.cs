@@ -5,25 +5,30 @@ using UnityEngine;
 
 public class SW_ItemRead : MonoBehaviour, IInteractable_HT
 {
-    public GameObject imageUI; // 이미지 UI에 대한 참조
+    public GameObject imageBackground; // 이미지 UI에 대한 참조
     public CinemachineVirtualCamera virtualCamera;
+    public TMPro.TextMeshProUGUI text;
 
+    [SerializeField]
+    [TextArea]
+    private string Info;
     public void OnInteract()
     {
         // 상호작용 시 이미지 UI 활성화
-        if (imageUI != null)
+        if (imageBackground != null)
         {
-            imageUI.SetActive(true);
+            imageBackground.SetActive(true);
+            text.text = string.Format(Info);
         }
     }
 
     void Update()
     {
         // 사용자가 배경을 클릭하면 이미지 UI 비활성화
-        if (Input.GetMouseButtonDown(0) && imageUI != null && !RectTransformUtility.RectangleContainsScreenPoint(
-            imageUI.GetComponent<RectTransform>(), Input.mousePosition, Camera.main))
+        if (Input.GetMouseButtonDown(0) && imageBackground != null && !RectTransformUtility.RectangleContainsScreenPoint(
+            imageBackground.GetComponent<RectTransform>(), Input.mousePosition, Camera.main))
         {
-            imageUI.SetActive(false);
+            imageBackground.SetActive(false);
         }
     }
 }

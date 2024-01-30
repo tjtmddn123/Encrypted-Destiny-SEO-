@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648dce27598eec04f9c554776d7700e6, type: 3}
+  m_Name: CaseKey
+  m_EditorClassIdentifier: 
+  displayName: "\uC11C\uB78D \uC5F4\uC1E0"
+  description: "\uC57C\uAC04\uD22C\uC2DC\uACBD\uC774 \uB4E4\uC5B4\uC788\uB294 \uC11C\uB78D\uC758
+    \uC5F4\uC1E0\uC774\uB2E4"
+  type: 0
+  icon: {fileID: 0}
+  dropPrefab: {fileID: 0}
+  importantItemCanvasPrefab: {fileID: 0}
+  importantItemDisplay: {fileID: 0}

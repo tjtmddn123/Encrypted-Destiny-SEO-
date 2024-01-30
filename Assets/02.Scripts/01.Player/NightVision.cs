@@ -5,12 +5,11 @@ using UnityEngine;
 public class NightVision : MonoBehaviour
 {
     public GameObject nightvision;
-    private bool hasNightVision = false;
+    public bool hasNightVision = false;
 
     public void AddNightVisionItem()
     {
         hasNightVision = true;
-        nightvision.SetActive(hasNightVision);
     }
 
     private void Update()
@@ -22,6 +21,5 @@ public class NightVision : MonoBehaviour
                 nightvision.SetActive(!nightvision.activeInHierarchy);
             }
         }
-        
     }
 }

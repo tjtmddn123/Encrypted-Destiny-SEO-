@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
 {
     public SW_ItemData requiredItemData; // 필요한 아이템 데이터
     public GameObject actionUI; // 성공 표시할 UI 오브젝트
     public GameObject failUI; // 실패 표시할 UI 오브젝트
+    [SerializeField]
+    private TMPro.TextMeshProUGUI failText;
+    [SerializeField]
+    private string Info;
     public string newTag; // 상호작용 후 변경할 태그
-
-
     public void OnInteract()
     {
         Interact();
@@ -32,7 +36,7 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
             // 아이템을 인벤토리에서 제거
             inventory.RemoveItem(foundItem);
             Debug.Log($"아이템 '{requiredItemData.displayName}'이(가) 인벤토리에서 제거되었습니다.");
-            
+
             // 필요한 동작 수행 (예: 문 열기, 기계 작동 등)
             PerformRequiredAction();
 
@@ -41,7 +45,6 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
         }
         else
         {
-            Debug.Log($"필요한 아이템 '{requiredItemData.displayName}'을(를) 찾을 수 없습니다.");
 
             // 실패 UI 표시
             StartCoroutine(ShowAndHideUI(failUI, 1.5f));
@@ -78,6 +81,14 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
             uiObject.SetActive(true);
             yield return new WaitForSeconds(delay);
             uiObject.SetActive(false);
+        }
+        else
+        {
+            failText.gameObject.SetActive(true);
+            failText.text = string.Format(Info);
+            yield return new WaitForSeconds(delay);
+            failText.gameObject.SetActive(false);
+            failText.text = string.Format("");
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public interface IInteractable_HT
 {
@@ -30,15 +29,18 @@ public class InteractManager_HT : MonoBehaviour
     public TextMeshProUGUI promptText;
     private GameObject curInteractGameobject;
     private IInteractable_HT curInteractable;
-
+    private int i = 0;
+    private SW_ItemObject itemObj; // 아이템의 데이터를 저장하는 변수
     /*
     [Header("ChangeTall")]
     private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
     */
 
-
     [Header("Camera")]
     private Camera _camera;
+    private NightVision nightVision;
+    [SerializeField]
+    private TextMeshProUGUI getText;
 
     [Header("outLine")]
     private Material material;
@@ -49,6 +51,7 @@ public class InteractManager_HT : MonoBehaviour
     {
         _camera = Camera.main;
         material = new Material(Shader.Find("Shader Graphs/Interact"));
+        nightVision = _camera.GetComponent<NightVision>();
     }
 
     void Update()
@@ -70,12 +73,12 @@ public class InteractManager_HT : MonoBehaviour
             }
             else
             {
-                if (curInteractGameobject != null && curInteractGameobject.CompareTag("Item"))
+                if (curInteractGameobject != null)
                 {
                     Renderer renderer = curInteractGameobject.GetComponent<Renderer>();
 
                     materialList.Clear();
-                    materialList.AddRange(renderer.sharedMaterials);
+                    materialList.AddRange(renderer.sharedMaterials);   
                     materialList.Remove(material);
 
                     renderer.materials = materialList.ToArray();
@@ -98,17 +101,22 @@ public class InteractManager_HT : MonoBehaviour
     {
         
         switch (tag)
-        {
+{
             case "Item":
-                SetPromptText("[E] Take");
-                curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                itemObj = curInteractGameobject.GetComponent<SW_ItemObject>();
+                curInteractable = lookThis.GetComponent<IInteractable_HT>(); 
                 renderers = curInteractGameobject.GetComponent<Renderer>();
+                SetPromptText($"[E] Take {itemObj.item.displayName}");
 
                 materialList.Clear();
                 materialList.AddRange(renderers.sharedMaterials);
                 materialList.Add(material);
-
+                if (materialList.Count >= 3)
+                {
+                    materialList.RemoveAt(materialList.Count);
+                }
                 renderers.materials = materialList.ToArray();
+
                 break;
             case "None":
                 SetPromptText("[E] Use");
@@ -144,15 +152,16 @@ public class InteractManager_HT : MonoBehaviour
                 SetPromptText("[E] Push");
                 break;
             case "Case":
-                doorController = lookThis.GetComponent<DoorController>();
-                if (doorController.isOpen == false)
-                {
-                    SetPromptText("[E] Open");
-                }
-                else
-                {
-                    SetPromptText("[E] Close");
-                }
+                //doorController = lookThis.GetComponent<DoorController>();
+                //if (doorController.isOpen == false)
+                //{
+                //    SetPromptText("[E] Open");
+                //}
+                //else
+                //{
+                //    SetPromptText("[E] Close");
+                //}
+                SetPromptText("[E] Take");
                 break;
             case "Lamp":
                 lamp = lookThis.GetComponent<LampBtn>();
@@ -172,7 +181,13 @@ public class InteractManager_HT : MonoBehaviour
                 keypad.PressButton();
                 break;
             case "Case":
-                doorController.OpenRackCase(curInteractGameobject);
+                nightVision.AddNightVisionItem();
+                if(i == 0)
+                {
+                    StartCoroutine(TakeItem());
+                    i = 1;
+                }                
+                //doorController.OpenRackCase(curInteractGameobject);
                 break;
             case "Lamp":
                 lamp.ToggleLight();
@@ -180,6 +195,14 @@ public class InteractManager_HT : MonoBehaviour
         }
     }
 
+    private IEnumerator TakeItem()
+    {
+        getText.gameObject.SetActive(true);
+        getText.text = string.Format("야간투시경을 주웠다. \n N을 눌러 사용 할 수 있다.");
+        yield return new WaitForSeconds(2f);
+
+        getText.gameObject.SetActive(false);
+    }
     private void SetPromptText(string text)
     {
         promptText.gameObject.SetActive(true);
@@ -190,7 +213,7 @@ public class InteractManager_HT : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started && curInteractable != null)
         {
-            curInteractable.OnInteract();
+            curInteractable.OnInteract();            
             curInteractGameobject = null;
             curInteractable = null;
             promptText.gameObject.SetActive(false);
