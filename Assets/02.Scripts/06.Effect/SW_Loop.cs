@@ -20,6 +20,13 @@ public class SW_Loop : MonoBehaviour
 
     IEnumerator FadeScreenAndTeleport(GameObject player)
     {
+        // 움직임 비활성화
+        CharacterController controller = player.GetComponent<CharacterController>();
+        if (controller != null)
+        {
+            controller.enabled = false;
+        }
+
         // 화면을 어두워지게 하는 과정
         float timer = 0;
         while (timer < delayBeforeTeleport)
@@ -44,6 +51,12 @@ public class SW_Loop : MonoBehaviour
             float alpha = Mathf.Clamp01(1 - (timer / delayBeforeTeleport));
             fadePanel.color = new Color(0, 0, 0, alpha); // 패널의 투명도 변경
             yield return null;
+        }
+
+        // 움직임 다시 활성화
+        if (controller != null)
+        {
+            controller.enabled = true;
         }
     }
 }
