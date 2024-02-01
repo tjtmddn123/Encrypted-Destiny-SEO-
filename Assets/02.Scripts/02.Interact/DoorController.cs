@@ -9,7 +9,7 @@ public class DoorController : MonoBehaviour
     public bool isReverse = false;  //반대로 열리는 문이 있으면 true로 해주세요
     public float openSpeed = 1.5f; // 문이 열리는 속도
 
-    [SerializeField] 
+    [SerializeField]
     private bool isOpening = false;
     [SerializeField]
     private bool canOpenState = false;   //열수 있는지 구분 
@@ -17,6 +17,13 @@ public class DoorController : MonoBehaviour
     [Header("Case")]
     [SerializeField]
     private float moveRange = 0.35f; //서랍 이동 거리입니다.
+
+    [Header("Audio")]
+    public AudioClip openSound;
+    public AudioClip closeSound;
+    public AudioClip rackMoveSound;
+
+    private AudioSource audioSource;
 
 
     public void OpenDoor(GameObject door)
@@ -38,6 +45,13 @@ public class DoorController : MonoBehaviour
                 }
 
                 StartCoroutine(RotateDoor(door.transform, targetRotation));
+
+                if (isOpen)
+                    PlaySound(closeSound);
+                else
+                    PlaySound(openSound);
+
+
                 ChangeOpenState();
             }
         }
@@ -83,7 +97,8 @@ public class DoorController : MonoBehaviour
         }
 
         rackCase.transform.localPosition = targetPosition;
-        ChangeOpenState(); 
+        PlaySound(rackMoveSound);
+        ChangeOpenState();
     }
     private void ChangeOpenState()
     {
@@ -104,6 +119,14 @@ public class DoorController : MonoBehaviour
         else
         {
             StartCoroutine(MoveRackCase(rackCase, -moveRange));
+        }
+    }
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
         }
     }
 }

@@ -5,51 +5,16 @@ using UnityEngine;
 public class Footstep : MonoBehaviour
 {
     public GameObject footstep;
-    // Start is called before the first frame update
-    void Start()
-    {
-        footstep.SetActive(false);
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey("w"))
+        bool isMoving = Input.GetKey("w") || Input.GetKey("s") || Input.GetKey("a") || Input.GetKey("d");
+
+        if (isMoving)
         {
             footsteps();
         }
-
-        if (Input.GetKey("s"))
-        {
-            footsteps();
-        }
-
-        if (Input.GetKey("a"))
-        {
-            footsteps();
-        }
-
-        if (Input.GetKey("d"))
-        {
-            footsteps();
-        }
-
-        if(Input.GetKeyUp("w"))
-        {
-            StopFootsteps();
-        }
-
-        if (Input.GetKeyUp("s"))
-        {
-            StopFootsteps();
-        }
-
-        if (Input.GetKeyUp("a"))
-        {
-            StopFootsteps();
-        }
-
-        if (Input.GetKeyUp("d"))
+        else
         {
             StopFootsteps();
         }
@@ -57,11 +22,11 @@ public class Footstep : MonoBehaviour
 
     void footsteps()
     {
-        footstep.SetActive (true);
+        footstep.SetActive(true);
     }
 
     void StopFootsteps()
     {
-        footstep.SetActive (false);
+        footstep.SetActive(false);
     }
 }
