@@ -113,7 +113,7 @@ public class InteractManager_HT : MonoBehaviour
                 materialList.Add(material);
                 if (materialList.Count >= 3)
                 {
-                    materialList.RemoveAt(materialList.Count);
+                    materialList.RemoveAt(materialList.Count-1);
                 }
                 renderers.materials = materialList.ToArray();
 
