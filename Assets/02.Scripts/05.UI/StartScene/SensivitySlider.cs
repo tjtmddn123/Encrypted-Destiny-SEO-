@@ -57,6 +57,6 @@ public class CameraSensitivityController : MonoBehaviour
 
         virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = sensitivityValue;
         virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = sensitivityValue;
-
+        
     }
 }
