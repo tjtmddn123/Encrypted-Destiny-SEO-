@@ -82,10 +82,10 @@ public class InteractManager_HT : MonoBehaviour
                     materialList.Remove(material);
 
                     renderer.materials = materialList.ToArray();
-                }
-                curInteractGameobject = null;
-                curInteractable = null;
+                }                
                 promptText.gameObject.SetActive(false);
+                curInteractable = null;
+                curInteractGameobject = null;
             }
         }
         if (curInteractGameobject != null)
