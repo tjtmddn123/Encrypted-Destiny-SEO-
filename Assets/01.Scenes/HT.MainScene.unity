@@ -246,14 +246,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20808409}
-  m_LocalRotation: {x: 0, y: -0.043619405, z: 0, w: 0.9990483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.53001726, y: 1.9714341, z: -0.08199704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1809057400}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -5, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &20808411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +291,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!64 &20808413
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -387,6 +390,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &35886414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,6 +1209,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &137362455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3951,6 +3960,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &441028819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6179,6 +6191,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 0
   moveRange: 0.4
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!64 &685346842
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6498,7 +6513,7 @@ PrefabInstance:
     - target: {fileID: 8604416326238269954, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8604417094735626246, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -6508,7 +6523,7 @@ PrefabInstance:
     - target: {fileID: 8604434553400904168, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8604435911739658700, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -6523,7 +6538,7 @@ PrefabInstance:
     - target: {fileID: 8604455175403631720, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8604458315327195246, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -6758,7 +6773,7 @@ PrefabInstance:
     - target: {fileID: 8604847078022355694, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8604849593216242662, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -6828,7 +6843,7 @@ PrefabInstance:
     - target: {fileID: 8604952694305725436, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8604966225951862116, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -6858,7 +6873,7 @@ PrefabInstance:
     - target: {fileID: 8605008706433442872, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8605013176929202606, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -6869,6 +6884,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605024288090977870, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8605028330115454936, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -6998,7 +7018,7 @@ PrefabInstance:
     - target: {fileID: 8605280438373493602, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8605282417630416066, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -7068,7 +7088,7 @@ PrefabInstance:
     - target: {fileID: 8605349783081045614, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8605356730769053780, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -8557,6 +8577,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!1 &737476444
 GameObject:
   m_ObjectHideFlags: 0
@@ -10728,6 +10751,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!1001 &903699386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11112,6 +11138,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!1 &967324356
 GameObject:
   m_ObjectHideFlags: 0
@@ -11957,6 +11986,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &1051449832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11975,6 +12007,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 0
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!1001 &1069969621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12687,7 +12722,7 @@ PrefabInstance:
     - target: {fileID: 2303921294396319334, guid: 2cf8072ebed1149479d25d30c324125c,
         type: 3}
       propertyPath: keypadCombo
-      value: 1234
+      value: 5678
       objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319334, guid: 2cf8072ebed1149479d25d30c324125c,
         type: 3}
@@ -14115,6 +14150,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &1256921528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14987,6 +15025,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &1309944307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15243,6 +15284,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964196599360074172, guid: cbb346559e670594893dad10b7c136cc,
+        type: 3}
+      propertyPath: m_text
+      value: 9876
       objectReference: {fileID: 0}
     - target: {fileID: 8964196599360074172, guid: cbb346559e670594893dad10b7c136cc,
         type: 3}
@@ -16337,6 +16383,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!1 &1421585147
 GameObject:
   m_ObjectHideFlags: 0
@@ -16552,6 +16601,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &1486916924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16912,6 +16964,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &1529655700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19329,7 +19384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 2 3 4
+  m_text: 5 6 7 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19964,7 +20019,7 @@ PrefabInstance:
     - target: {fileID: 2303921294396319334, guid: 2cf8072ebed1149479d25d30c324125c,
         type: 3}
       propertyPath: keypadCombo
-      value: 1234
+      value: 9876
       objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319334, guid: 2cf8072ebed1149479d25d30c324125c,
         type: 3}
@@ -20826,6 +20881,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!1 &1866411096
 GameObject:
   m_ObjectHideFlags: 0
@@ -22284,6 +22342,9 @@ MonoBehaviour:
   isOpening: 0
   canOpenState: 1
   moveRange: 0.35
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  rackMoveSound: {fileID: 0}
 --- !u!114 &2020994174
 MonoBehaviour:
   m_ObjectHideFlags: 0
