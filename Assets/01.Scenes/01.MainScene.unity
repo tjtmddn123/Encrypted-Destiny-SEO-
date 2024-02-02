@@ -20034,7 +20034,7 @@ PrefabInstance:
     - target: {fileID: 2303921294396319334, guid: 2cf8072ebed1149479d25d30c324125c,
         type: 3}
       propertyPath: onAccessGranted.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319334, guid: 2cf8072ebed1149479d25d30c324125c,
         type: 3}
@@ -20060,7 +20060,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onAccessGranted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1826377790}
+      objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319334, guid: 2cf8072ebed1149479d25d30c324125c,
         type: 3}
       propertyPath: onAccessGranted.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -20303,10 +20303,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1826377784}
-    - targetCorrespondingSourceObject: {fileID: 2303921294396319335, guid: 2cf8072ebed1149479d25d30c324125c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1826377790}
   m_SourcePrefab: {fileID: 100100000, guid: 2cf8072ebed1149479d25d30c324125c, type: 3}
 --- !u!1 &1826377781 stripped
 GameObject:
@@ -20355,24 +20351,6 @@ MonoBehaviour:
   amplitudeGain: 2
   frequencyGain: 2
   keypad: {fileID: 1826377783}
---- !u!114 &1826377790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826377781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f0e2bc0888c2b4f8e0cffc03fa6071, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredItemData: {fileID: 0}
-  actionUI: {fileID: 548550464}
-  failUI: {fileID: 0}
-  failText: {fileID: 261577132}
-  Info: "\uC5B4\uB518\uAC00\uC758 \uBB3C\uC774 \uBE60\uC9C4\uAC70 \uAC19\uB2E4"
-  newTag: 
 --- !u!1 &1841712218
 GameObject:
   m_ObjectHideFlags: 0
