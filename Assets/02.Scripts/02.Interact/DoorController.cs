@@ -112,13 +112,32 @@ public class DoorController : MonoBehaviour
 
     public void OpenRackCase(GameObject rackCase)
     {
-        if (isOpen)
+        if (!isOpening)
         {
-            StartCoroutine(MoveRackCase(rackCase, moveRange));
-        }
-        else
-        {
-            StartCoroutine(MoveRackCase(rackCase, -moveRange));
+            StartCoroutine(DoorOpening());
+            if (isReverse == true)
+            {
+                if (isOpen)
+                {
+                    StartCoroutine(MoveRackCase(rackCase, moveRange));
+                }
+                else
+                {
+                    StartCoroutine(MoveRackCase(rackCase, -moveRange));
+                }
+            }
+            else
+            {
+                if (isOpen)
+                {
+                    StartCoroutine(MoveRackCase(rackCase, -moveRange));
+                }
+                else
+                {
+                    StartCoroutine(MoveRackCase(rackCase, moveRange));
+                }
+            }
+
         }
     }
     private void PlaySound(AudioClip clip)

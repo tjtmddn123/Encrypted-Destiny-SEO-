@@ -34,18 +34,23 @@ public class PlayerBaseState : IState
 
     public virtual void Update()
     {
+        if (stateMachine.Player.IsUIOpening())
+        {
+            SpeedModifier = 0;
+        }
+        else
+        {
+            SpeedModifier = 1f;
+
+            if (isCrouch == false && Input.GetKey(KeyCode.LeftShift))
+            {
+                SpeedModifier = 1.6f;
+            }
+        }
         Move();
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
         {
             Crouch();
-        }
-        if (isCrouch == false && Input.GetKey(KeyCode.LeftShift))
-        {
-            SpeedModifier = 1.4f;
-        }
-        if (isCrouch == false && Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            SpeedModifier = 1f;
         }
     }
 

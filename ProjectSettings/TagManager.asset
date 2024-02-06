@@ -13,6 +13,7 @@ TagManager:
   - None
   - Case
   - Lamp
+  - CameraChanger
   layers:
   - Default
   - TransparentFX

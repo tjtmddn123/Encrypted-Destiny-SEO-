@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 public class WaterRemover : MonoBehaviour
 {
@@ -13,11 +12,13 @@ public class WaterRemover : MonoBehaviour
 
         //water.transform.localPosition = new Vector3(x, -5, z);
 
-        StartCoroutine(MoveRackCase(water, -5));
+        StartCoroutine(MoveFloor(water, -5));
         
     }
-    private IEnumerator MoveRackCase(GameObject water, float offsetY)
+    private IEnumerator MoveFloor(GameObject water, float offsetY)
     {
+        yield return new WaitForSeconds(2f);
+
         float elapsedTime = 0f;
         float duration = 1f;
 

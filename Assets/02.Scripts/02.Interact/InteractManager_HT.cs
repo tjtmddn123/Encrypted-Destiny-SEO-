@@ -41,6 +41,8 @@ public class InteractManager_HT : MonoBehaviour
     private NightVision nightVision;
     [SerializeField]
     private TextMeshProUGUI getText;
+    private ChangeCinemachine cinemachine;
+    public bool CameraChaging = false;
 
     [Header("outLine")]
     private Material material;
@@ -75,13 +77,15 @@ public class InteractManager_HT : MonoBehaviour
             {
                 if (curInteractGameobject != null)
                 {
-                    Renderer renderer = curInteractGameobject.GetComponent<Renderer>();
 
-                    materialList.Clear();
-                    materialList.AddRange(renderer.sharedMaterials);   
-                    materialList.Remove(material);
+                        Renderer renderer = curInteractGameobject.GetComponent<Renderer>();
 
-                    renderer.materials = materialList.ToArray();
+                        materialList.Clear();
+                        materialList.AddRange(renderer.sharedMaterials);
+                        materialList.Remove(material);
+
+                        renderer.materials = materialList.ToArray();
+                    
                 }                
                 promptText.gameObject.SetActive(false);
                 curInteractable = null;
@@ -99,74 +103,71 @@ public class InteractManager_HT : MonoBehaviour
 
     private void LookAtThis(string tag, GameObject lookThis)
     {
-        
-        switch (tag)
-{
-            case "Item":
-                itemObj = curInteractGameobject.GetComponent<SW_ItemObject>();
-                curInteractable = lookThis.GetComponent<IInteractable_HT>(); 
-                renderers = curInteractGameobject.GetComponent<Renderer>();
-                SetPromptText($"[E] Take {itemObj.item.displayName}");
+        if (CameraChaging == false)
+        {
+            switch (tag)
+            {
+                case "Item":
+                    itemObj = curInteractGameobject.GetComponent<SW_ItemObject>();
+                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                    renderers = curInteractGameobject.GetComponent<Renderer>();
+                    SetPromptText($"[E] Take {itemObj.item.displayName}");
 
-                materialList.Clear();
-                materialList.AddRange(renderers.sharedMaterials);
-                materialList.Add(material);
-                if (materialList.Count >= 3)
-                {
-                    materialList.RemoveAt(materialList.Count-1);
-                }
-                renderers.materials = materialList.ToArray();
+                    materialList.Clear();
+                    materialList.AddRange(renderers.sharedMaterials);
+                    materialList.Add(material);
+                    if (materialList.Count >= 3)
+                    {
+                        materialList.RemoveAt(materialList.Count - 1);
+                    }
+                    renderers.materials = materialList.ToArray();
 
-                break;
-            case "None":
-                SetPromptText("[E] Use");
-                curInteractable = lookThis.GetComponent<IInteractable_HT>();
-                break;
-            case "Door":
-                doorController = lookThis.GetComponent<DoorController>();
-                if (doorController.isReverse == false)
-                {
-                    if (doorController.isOpen == false)
+                    break;
+                case "None":
+                    SetPromptText("[E] Use");
+                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                    break;
+                case "Door":
+                    doorController = lookThis.GetComponent<DoorController>();
+                    if (doorController.isReverse == false)
                     {
-                        SetPromptText("[E] Open");
+                        if (doorController.isOpen == false)
+                        {
+                            SetPromptText("[E] Open");
+                        }
+                        else
+                        {
+                            SetPromptText("[E] Close");
+                        }
                     }
-                    else
+                    if (doorController.isReverse == true)
                     {
-                        SetPromptText("[E] Close");
+                        if (doorController.isOpen == false)
+                        {
+                            SetPromptText("[E] Close");
+                        }
+                        else
+                        {
+                            SetPromptText("[E] Open");
+                        }
                     }
-                }
-                if (doorController.isReverse == true)
-                {
-                    if (doorController.isOpen == false)
-                    {
-                        SetPromptText("[E] Close");
-                    }
-                    else
-                    {
-                        SetPromptText("[E] Open");
-                    }
-                }
-                break;
-            case "Button":
-                keypad = lookThis.GetComponent<NavKeypad.KeypadButton>();
-                SetPromptText("[E] Push");
-                break;
-            case "Case":
-                //doorController = lookThis.GetComponent<DoorController>();
-                //if (doorController.isOpen == false)
-                //{
-                //    SetPromptText("[E] Open");
-                //}
-                //else
-                //{
-                //    SetPromptText("[E] Close");
-                //}
-                SetPromptText("[E] Take");
-                break;
-            case "Lamp":
-                lamp = lookThis.GetComponent<LampBtn>();
-                SetPromptText("[E] Turn on");
-                break;
+                    break;
+                case "Button":
+                    keypad = lookThis.GetComponent<NavKeypad.KeypadButton>();
+                    SetPromptText("[E] Push");
+                    break;
+                case "Case":
+                    SetPromptText("[E] Take");
+                    break;
+                case "Lamp":
+                    lamp = lookThis.GetComponent<LampBtn>();
+                    SetPromptText("[E] Turn on");
+                    break;
+                case "CameraChanger":
+                    cinemachine = curInteractGameobject.GetComponent<ChangeCinemachine>();
+                    SetPromptText("[E] Interact");
+                    break;
+            }
         }
     }
 
@@ -186,11 +187,14 @@ public class InteractManager_HT : MonoBehaviour
                 {
                     StartCoroutine(TakeItem());
                     i = 1;
-                }                
-                //doorController.OpenRackCase(curInteractGameobject);
+                }
+                doorController.OpenRackCase(curInteractGameobject);
                 break;
             case "Lamp":
                 lamp.ToggleLight();
+                break;
+            case "CameraChanger":
+                cinemachine.CinemachineTest();
                 break;
         }
     }

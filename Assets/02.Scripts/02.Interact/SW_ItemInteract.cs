@@ -39,14 +39,14 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
 
             // 필요한 동작 수행 (예: 문 열기, 기계 작동 등)
             PerformRequiredAction();
-
-            // 성공 UI 표시
-            StartCoroutine(ShowAndHideUI(actionUI, 1.5f));
+            if (actionUI != null)
+            {
+                // 성공 UI 표시
+                StartCoroutine(ShowAndHideUI(actionUI, 1.5f));
+            }
         }
         else
         {
-
-            // 실패 UI 표시
             StartCoroutine(ShowAndHideUI(failUI, 1.5f));
         }
     }

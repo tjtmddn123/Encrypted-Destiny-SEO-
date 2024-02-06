@@ -23,7 +23,6 @@ public class SW_ItemRead : MonoBehaviour, IInteractable_HT
         // 상호작용 시 이미지 UI 활성화
         if (imageBackground != null)
         {
-            sensitivity.CameraStop();
             imageBackground.SetActive(true);
             text.text = string.Format(Info);
         }
@@ -35,7 +34,6 @@ public class SW_ItemRead : MonoBehaviour, IInteractable_HT
         if (Input.GetMouseButtonDown(0) && imageBackground != null && !RectTransformUtility.RectangleContainsScreenPoint(
             imageBackground.GetComponent<RectTransform>(), Input.mousePosition, Camera.main))
         {
-            sensitivity.CameraMove();
             imageBackground.SetActive(false);
         }
     }

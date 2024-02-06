@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class Player_HT : MonoBehaviour
 {
@@ -19,13 +20,10 @@ public class Player_HT : MonoBehaviour
 
     public CinemachineVirtualCamera virtualCamera;
 
-    private SW_Inventory inventory;
-
-    public GameObject memo;
+    public GameObject[] OpenableUI;
 
     private void Awake()
     {
-        inventory = GetComponent<SW_Inventory>();
         Rigidbody = GetComponent<Rigidbody>();
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
@@ -43,5 +41,18 @@ public class Player_HT : MonoBehaviour
     {
         stateMachine.HandleInput();
         stateMachine.Update();
+    }
+    public bool IsUIOpening()
+    {
+        if (Array.Find(OpenableUI, element => element.activeInHierarchy == true))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            return true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            return false;
+        }
     }
 }

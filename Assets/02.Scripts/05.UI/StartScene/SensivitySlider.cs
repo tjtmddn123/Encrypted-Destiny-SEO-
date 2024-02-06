@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using System;
 
 public class CameraSensitivityController : MonoBehaviour
 {
     public Slider sensitivitySlider; 
     public CinemachineVirtualCamera virtualCamera;
-    public InteractManager_HT InteractManager;
-    public SW_Inventory Sinventory;
+    public Player_HT player;
 
     [SerializeField]
     private float minSensitivity = 1f;
     [SerializeField]
-    private float maxSensitivity = 100f;
+    private float maxSensitivity = 1000f;
     [SerializeField]
-    private float Sensitivity;
+    private float Sensitivity = 300f;    
 
     void Start()
     {
@@ -27,16 +27,16 @@ public class CameraSensitivityController : MonoBehaviour
 
     private void Update()
     {
-        if (Sinventory.inventoryWindow.activeInHierarchy)
+        if (player.IsUIOpening())
         {
             CameraStop();
         }
         else
         {
-            //현재 이 코드에 문제점이 있습니다. 위의 if문에 써 있듯이 인벤토리가 닫혀 있다면 무조건 Sensitivity의 값으로 감도가 고정이 됩니다.
             CameraMove();
         }
     }
+
 
     public void CameraStop()
     {
