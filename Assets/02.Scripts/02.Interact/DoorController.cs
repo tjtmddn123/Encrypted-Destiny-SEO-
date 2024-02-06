@@ -17,14 +17,7 @@ public class DoorController : MonoBehaviour
     [Header("Case")]
     [SerializeField]
     private float moveRange = 0.35f; //서랍 이동 거리입니다.
-
-    [Header("Audio")]
-    public AudioClip openSound;
-    public AudioClip closeSound;
-    public AudioClip rackMoveSound;
-
-    private AudioSource audioSource;
-
+    public AudioClip clip;
 
     public void OpenDoor(GameObject door)
     {
@@ -34,24 +27,19 @@ public class DoorController : MonoBehaviour
             if (canOpenState == true)
             {
                 Quaternion targetRotation = door.transform.localRotation;
-
+                AudioClip soundClip;
                 if (isOpen)
                 {
                     targetRotation *= Quaternion.Euler(0f, 90f, 0f);
+                    soundClip = SoundManager.instance.closeClip;
                 }
                 else
                 {
                     targetRotation *= Quaternion.Euler(0f, -90f, 0f);
+                    soundClip = SoundManager.instance.openClip;
                 }
-
+                SoundManager.instance.SFXPlay(isOpen ? "Open" : "Close", soundClip);
                 StartCoroutine(RotateDoor(door.transform, targetRotation));
-
-                if (isOpen)
-                    PlaySound(closeSound);
-                else
-                    PlaySound(openSound);
-
-
                 ChangeOpenState();
             }
         }
@@ -97,7 +85,6 @@ public class DoorController : MonoBehaviour
         }
 
         rackCase.transform.localPosition = targetPosition;
-        PlaySound(rackMoveSound);
         ChangeOpenState();
     }
     private void ChangeOpenState()
@@ -140,12 +127,5 @@ public class DoorController : MonoBehaviour
 
         }
     }
-    private void PlaySound(AudioClip clip)
-    {
-        if (audioSource != null && clip != null)
-        {
-            audioSource.clip = clip;
-            audioSource.Play();
-        }
-    }
+    
 }
