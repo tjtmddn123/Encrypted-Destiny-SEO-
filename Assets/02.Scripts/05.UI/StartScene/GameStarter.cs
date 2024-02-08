@@ -1,35 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStarter : MonoBehaviour
 {
-    public GameObject startCamera;
-    public GameObject startBtn;
+    public GameObject[] DisactiveObj;
 
-    public GameObject playerCamera;
-    public GameObject player;
+    public GameObject[] ActiveObj;
 
-    public GameObject Dummy;
-    public GameObject StatueLight;
+    public GameObject[] NeedDelayObj;
 
     public void GameStart()
     {
-        startCamera.SetActive(false);        
-        startBtn.SetActive(false);
-        player.SetActive(true);
-        playerCamera.SetActive(true);
+
+        Array.ForEach(DisactiveObj, disactiveObj => { disactiveObj.SetActive(false); });
+
+        Array.ForEach(ActiveObj, activeObj => { activeObj.SetActive(true); });
+
         StartCoroutine(WaitSec());
     }
 
     private IEnumerator WaitSec()
     {
         yield return new WaitForSeconds(2f);
-        Dummy.SetActive(false);
-        StatueLight.SetActive(false);
+
+        Array.ForEach(NeedDelayObj, needDelayObj => { needDelayObj.SetActive(false); });
     }
 
 
-       
-  
+
+
 }

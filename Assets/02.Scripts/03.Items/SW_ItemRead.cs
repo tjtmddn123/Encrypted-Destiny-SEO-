@@ -8,16 +8,11 @@ public class SW_ItemRead : MonoBehaviour, IInteractable_HT
     public GameObject imageBackground; // 이미지 UI에 대한 참조
     public CinemachineVirtualCamera virtualCamera;
     public TMPro.TextMeshProUGUI text;
-    private CameraSensitivityController sensitivity;
 
     [SerializeField]
     [TextArea]
     private string Info;
 
-    private void Start()
-    {
-        sensitivity = Camera.main.GetComponent<CameraSensitivityController>();
-    }
     public void OnInteract()
     {
         // 상호작용 시 이미지 UI 활성화
