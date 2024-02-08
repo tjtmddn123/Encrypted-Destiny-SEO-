@@ -102,6 +102,7 @@ public class DoorController : MonoBehaviour
         if (!isOpening)
         {
             StartCoroutine(DoorOpening());
+            AudioClip soundClip;
             if (isReverse == true)
             {
                 if (isOpen)
@@ -124,7 +125,7 @@ public class DoorController : MonoBehaviour
                     StartCoroutine(MoveRackCase(rackCase, moveRange));
                 }
             }
-
+            
         }
     }
     

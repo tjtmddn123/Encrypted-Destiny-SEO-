@@ -2032,6 +2032,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openClip: {fileID: 8300000, guid: a200ceb3276a64815ba89e6db4488604, type: 3}
   closeClip: {fileID: 8300000, guid: 0210c1127dd754ced9c723f73428cc1c, type: 3}
+  openCase: {fileID: 0}
+  closeCase: {fileID: 0}
 --- !u!4 &406309546
 Transform:
   m_ObjectHideFlags: 0
@@ -9270,6 +9272,7 @@ MonoBehaviour:
     m_Bits: 128
   promptText: {fileID: 1277124186}
   getText: {fileID: 0}
+  CameraChaging: 0
 --- !u!114 &1309784362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9311,7 +9314,7 @@ MonoBehaviour:
   <Data>k__BackingField: {fileID: 11400000, guid: 3497ff85118365142af160363455b5c1,
     type: 2}
   virtualCamera: {fileID: 1841712220}
-  memo: {fileID: 383398160}
+  OpenableUI: []
 --- !u!143 &1309784365
 CharacterController:
   m_ObjectHideFlags: 0
