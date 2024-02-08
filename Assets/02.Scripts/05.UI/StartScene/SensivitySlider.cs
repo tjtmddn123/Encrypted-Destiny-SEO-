@@ -27,14 +27,14 @@ public class CameraSensitivityController : MonoBehaviour
 
     private void Update()
     {
-        if (player.IsUIOpening())
+        /*if (player.isuiopening())
         {
-            CameraStop();
+            camerastop();
         }
         else
         {
-            CameraMove();
-        }
+            cameramove();
+        }*/
     }
 
 
