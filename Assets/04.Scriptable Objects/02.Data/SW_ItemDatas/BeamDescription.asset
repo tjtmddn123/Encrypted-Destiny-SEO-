@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 648dce27598eec04f9c554776d7700e6, type: 3}
-  m_Name: Important
+  m_Name: BeamDescription
   m_EditorClassIdentifier: 
-  displayName: "\uC911\uC694\uBB38\uC11C"
-  description: "\uB2E8\uC11C"
+  displayName: "\uBE54 \uC0AC\uC6A9 \uC124\uBA85\uC11C"
+  description: "\uBE54\uC744 \uC0AC\uC6A9\uD558\uB294 \uBC29\uBC95\uC774 \uC801\uD78C
+    \uC124\uBA85\uC11C\uC774\uB2E4."
   type: 3
-  icon: {fileID: 21300000, guid: 6dbd5a93c28512f41b4f17240581d676, type: 3}
+  icon: {fileID: 21300000, guid: e7f39c57525a4314fa402311ff6c83ff, type: 3}
   dropPrefab: {fileID: 8070321166939290965, guid: 4aa3264cc9a96784ea0d3b0a99515ae7,
     type: 3}
-  uniqueID: MainHint1
   importantItemCanvasPrefab: {fileID: 5049441961516149587, guid: d2ca2d31e2780d543bba20cf204e61dd,
     type: 3}
   importantItemDisplay: {fileID: 7101155610718726121, guid: 8892af6686713ae419d241f3123ba193,
