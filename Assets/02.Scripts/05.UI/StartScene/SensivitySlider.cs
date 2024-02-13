@@ -27,14 +27,14 @@ public class CameraSensitivityController : MonoBehaviour
 
     private void Update()
     {
-        /*if (player.isuiopening())
+        if (player.IsUIOpening())
         {
-            camerastop();
+            CameraStop();
         }
         else
         {
-            cameramove();
-        }*/
+            CameraMove();
+        }
     }
 
 
@@ -51,9 +51,6 @@ public class CameraSensitivityController : MonoBehaviour
     public void UpdateCameraSensitivity(float sensitivityValue)
     {
         Sensitivity = sensitivityValue;
-        //sensitivityValue = sensitivitySlider.value; // 슬라이더 값
-
-        //float clampedSensitivity = Mathf.Clamp(sensitivityValue, minSensitivity, maxSensitivity);
 
         virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = sensitivityValue;
         virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = sensitivityValue;

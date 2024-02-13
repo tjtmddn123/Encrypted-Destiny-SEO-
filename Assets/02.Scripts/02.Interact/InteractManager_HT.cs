@@ -1,9 +1,13 @@
+using NavKeypad;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+using static UnityEngine.InputSystem.Controls.AxisControl;
 
 public interface IInteractable_HT
 {
@@ -77,7 +81,8 @@ public class InteractManager_HT : MonoBehaviour
             {
                 if (curInteractGameobject != null)
                 {
-
+                    if (curInteractGameobject.tag == "Item")
+                    {
                         Renderer renderer = curInteractGameobject.GetComponent<Renderer>();
 
                         materialList.Clear();
@@ -85,8 +90,14 @@ public class InteractManager_HT : MonoBehaviour
                         materialList.Remove(material);
 
                         renderer.materials = materialList.ToArray();
-                    
-                }                
+                    }
+                }
+                doorController = null;
+                itemObj = null;
+                curInteractable = null;
+                keypad = null;
+                cinemachine = null;
+                lamp = null;
                 promptText.gameObject.SetActive(false);
                 curInteractable = null;
                 curInteractGameobject = null;
@@ -188,7 +199,10 @@ public class InteractManager_HT : MonoBehaviour
                     StartCoroutine(TakeItem());
                     i = 1;
                 }
-                doorController.OpenRackCase(curInteractGameobject);
+                if (doorController != null)
+                {
+                    doorController.OpenRackCase(curInteractGameobject);
+                }                
                 break;
             case "Lamp":
                 lamp.ToggleLight();

@@ -9,7 +9,9 @@ public class GameStarter : MonoBehaviour
 
     public GameObject[] ActiveObj;
 
-    public GameObject[] NeedDelayObj;
+    public GameObject[] NeedDelayObjSetActiveFalse;
+
+    public GameObject[] NeedDelayObjSetActiveTrue;
 
     public void GameStart()
     {
@@ -25,7 +27,9 @@ public class GameStarter : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        Array.ForEach(NeedDelayObj, needDelayObj => { needDelayObj.SetActive(false); });
+        Array.ForEach(NeedDelayObjSetActiveFalse, needDelayObj => { needDelayObj.SetActive(false); });
+
+        Array.ForEach(NeedDelayObjSetActiveTrue, needDelayObj => { needDelayObj.SetActive(true); });
     }
 
 
