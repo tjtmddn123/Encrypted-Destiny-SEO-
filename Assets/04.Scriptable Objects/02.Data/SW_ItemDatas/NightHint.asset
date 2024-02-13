@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 648dce27598eec04f9c554776d7700e6, type: 3}
-  m_Name: BeamDescription
+  m_Name: NightHint
   m_EditorClassIdentifier: 
-  displayName: "\uBE54 \uC0AC\uC6A9 \uC124\uBA85\uC11C"
-  description: "\uBE54\uC744 \uC0AC\uC6A9\uD558\uB294 \uBC29\uBC95\uC774 \uC801\uD78C
-    \uC124\uBA85\uC11C\uC774\uB2E4."
+  displayName: "\uC774\uC0C1\uD55C \uD78C\uD2B8"
+  description: "\uC5B4\uB514\uC5D0 \uC0AC\uC6A9\uD558\uB294\uAC70\uC9C0?"
   type: 3
-  icon: {fileID: 21300000, guid: e7f39c57525a4314fa402311ff6c83ff, type: 3}
-  dropPrefab: {fileID: 8070321166939290965, guid: 4aa3264cc9a96784ea0d3b0a99515ae7,
+  icon: {fileID: 21300000, guid: a9b2446a33d7eea4aaf5625f5232f8c8, type: 3}
+  dropPrefab: {fileID: 8492257525827554196, guid: 606d53024824b1144b5fc1a3d4db276b,
     type: 3}
   importantItemCanvasPrefab: {fileID: 5049441961516149587, guid: d2ca2d31e2780d543bba20cf204e61dd,
     type: 3}
-  importantItemDisplay: {fileID: 7101155610718726121, guid: 8892af6686713ae419d241f3123ba193,
+  importantItemDisplay: {fileID: 5304764625429321424, guid: 303d44d83eb67784bb42094db67028dc,
     type: 3}

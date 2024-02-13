@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3031159859183595805}
   - component: {fileID: 2967674685181989985}
+  - component: {fileID: 6861080129671089133}
   - component: {fileID: -6449095638158052396}
   - component: {fileID: 6268660581986894834}
   - component: {fileID: 1973932436863534649}
   - component: {fileID: 3464335496354364751}
   m_Layer: 7
-  m_Name: rust_key2
+  m_Name: key1
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +50,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 9779c59f88eeb434396310cb5d6a727b, type: 2}
+--- !u!114 &6861080129671089133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7596517084797318732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb7d787676c5374ab9b911b4d8922d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+  - {fileID: 11400000, guid: 9779c59f88eeb434396310cb5d6a727b, type: 2}
+  - {fileID: 11400000, guid: 03b46ab1ee65440429ae1147646d6ab3, type: 2}
+  resultItem: {fileID: 11400000, guid: 789d52ad2c02bd24eb08ebb05ddbc985, type: 2}
 --- !u!54 &-6449095638158052396
 Rigidbody:
   m_ObjectHideFlags: 0
