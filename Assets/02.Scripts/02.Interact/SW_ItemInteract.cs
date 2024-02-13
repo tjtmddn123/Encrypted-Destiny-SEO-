@@ -33,12 +33,13 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
         {
             Debug.Log($"필요한 아이템 '{requiredItemData.displayName}'을(를) 찾았습니다.");
 
-            // 아이템을 인벤토리에서 제거
-            inventory.RemoveItem(foundItem);
-            Debug.Log($"아이템 '{requiredItemData.displayName}'이(가) 인벤토리에서 제거되었습니다.");
-
             // 필요한 동작 수행 (예: 문 열기, 기계 작동 등)
             PerformRequiredAction();
+
+            // 아이템 타입을 Normal로 변경
+            foundItem.item.type = ItemType.Normal; // 아이템 타입 변경 로직 추가
+            Debug.Log($"아이템 타입을 {ItemType.Normal}로 변경했습니다.");
+
             if (actionUI != null)
             {
                 // 성공 UI 표시
