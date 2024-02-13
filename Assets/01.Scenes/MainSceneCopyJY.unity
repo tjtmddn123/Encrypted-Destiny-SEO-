@@ -12620,8 +12620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fcf397fc13d814a837ca072db59c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WallText: {fileID: 1769911660}
-  RText: {fileID: 1195177564}
+  WallTexts: []
+  RTexts: []
 --- !u!23 &2034987622
 MeshRenderer:
   m_ObjectHideFlags: 0

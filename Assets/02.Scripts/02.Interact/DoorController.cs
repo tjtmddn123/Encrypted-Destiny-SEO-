@@ -108,10 +108,12 @@ public class DoorController : MonoBehaviour
                 if (isOpen)
                 {
                     StartCoroutine(MoveRackCase(rackCase, moveRange));
+                    soundClip = SoundManager.instance.closeCase;
                 }
                 else
                 {
                     StartCoroutine(MoveRackCase(rackCase, -moveRange));
+                    soundClip = SoundManager.instance.openCase;
                 }
             }
             else
@@ -119,13 +121,15 @@ public class DoorController : MonoBehaviour
                 if (isOpen)
                 {
                     StartCoroutine(MoveRackCase(rackCase, -moveRange));
+                    soundClip = SoundManager.instance.closeCase;
                 }
                 else
                 {
                     StartCoroutine(MoveRackCase(rackCase, moveRange));
+                    soundClip = SoundManager.instance.openCase;
                 }
             }
-            
+            SoundManager.instance.SFXPlay(isOpen ? "Openn" : "Closee", soundClip);
         }
     }
     
