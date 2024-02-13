@@ -7,6 +7,7 @@ public class ChangeCinemachine : MonoBehaviour
     public CinemachineVirtualCamera playerCameras;
     public CinemachineVirtualCamera changedCamera;
     public InteractManager_HT interact;
+    public GameObject player;
     [SerializeField]
     private float ChangingTime = 4f;
 
@@ -22,10 +23,12 @@ public class ChangeCinemachine : MonoBehaviour
         changedCamera.gameObject.SetActive(true);
         interact.CameraChaging = true;
         interact.promptText.gameObject.SetActive(false);
+        player.SetActive(false);
         yield return new WaitForSeconds(ChangingTime);
         playerCameras.gameObject.SetActive(true);
         changedCamera.gameObject.SetActive(false);
         interact.CameraChaging = false;
         interact.promptText.gameObject.SetActive(true);
+        player.SetActive(true);
     }
 }
