@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Key2
   m_EditorClassIdentifier: 
   displayName: "\uC5F4\uC1E02"
-  description: "2\uBC88\uBC29 \uD0C8\uCD9C\uC6A9!"
+  description: "Office \uC5F4\uC1E0"
   type: 0
   icon: {fileID: 21300000, guid: 3e8d37def6c1f8041800d7b3c1755ae3, type: 3}
   dropPrefab: {fileID: 3580920088536834563, guid: 6fae026c521c2de4c828fabb110df151,

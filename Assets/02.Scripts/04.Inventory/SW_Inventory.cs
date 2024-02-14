@@ -29,6 +29,7 @@ public class SW_Inventory : MonoBehaviour
     public GameObject useButton;       // 사용 버튼 UI
     public GameObject mixButton;       // 믹스(조합) 버튼 UI
     public GameObject dropButton;      // 버리기 버튼 UI
+    public GameObject dismantleButton; // 분해 버튼 Ui
 
     [Header("Events")]
     public UnityEvent onOpenInventory;   // 인벤토리 열기 이벤트
@@ -38,6 +39,7 @@ public class SW_Inventory : MonoBehaviour
 
     // 아이템 믹스 기능을 위한 변수 선언
     private ItemSlot mixingItem; // 현재 믹스를 위해 선택된 아이템
+    private ItemSlot dismantlingItem; // 현재 분해를 위해 선택된 아이템
 
     private Canvas currentImportantItemCanvas; // 현재 활성화된 중요 아이템 캔버스
     private GameObject currentImportantItemUI; // 현재 활성화된 중요 아이템 UI
@@ -215,30 +217,35 @@ public class SW_Inventory : MonoBehaviour
                 useButton.SetActive(false);
                 mixButton.SetActive(true);
                 dropButton.SetActive(true);
+                dismantleButton.SetActive(false);
                 break;
             case ItemType.Unique:
                 // 유니크 아이템: 드랍 버튼만 활성화
                 useButton.SetActive(false);
                 mixButton.SetActive(false);
                 dropButton.SetActive(true);
+                dismantleButton.SetActive(true);
                 break;
             case ItemType.ImportantMix:
                 // 중요한단서 용 아이템 조합형: 유즈 및 믹스 버튼 활성화
                 useButton.SetActive(true);
                 mixButton.SetActive(true);
                 dropButton.SetActive(false);
+                dismantleButton.SetActive(false);
                 break;
             case ItemType.Important:
                 // 중요한단서 용 아이템: 유즈 버튼만 활성화
                 useButton.SetActive(true);
                 mixButton.SetActive(false);
                 dropButton.SetActive(false);
+                dismantleButton.SetActive(false);
                 break;
             default:
                 // 기본 설정: 모든 버튼 비활성화
                 useButton.SetActive(false);
                 mixButton.SetActive(false);
                 dropButton.SetActive(false);
+                dismantleButton.SetActive(false);
                 break;
         }
     }
@@ -252,6 +259,7 @@ public class SW_Inventory : MonoBehaviour
         useButton.SetActive(false);
         mixButton.SetActive(false);
         dropButton.SetActive(false);
+        dismantleButton.SetActive(false);
     }
 
     public void OnUseButton()
@@ -340,11 +348,54 @@ public class SW_Inventory : MonoBehaviour
         }
     }
 
+    public void OnDismantleButton()
+    {
+        // Unique 타입의 아이템만 분해 가능
+        if (selectedItem != null && selectedItem.item.type == ItemType.Unique)
+        {
+            // 분해할 아이템 선택 및 바로 분해 로직 실행
+            dismantlingItem = selectedItem; // 분해할 아이템 선택
+            Debug.Log("분해할 아이템 선택: " + dismantlingItem.item.displayName);
+
+            // 분해 스크립트 가져오기
+            var dismantleScript = dismantlingItem.item.dropPrefab.GetComponent<SW_ItemDismantle>();
+            if (dismantleScript == null)
+            {
+                Debug.Log("SW_ItemDismantle 컴포넌트를 찾을 수 없음");
+                dismantlingItem = null; // 분해 대상 아이템 초기화
+                return;
+            }
+
+            if (dismantleScript.CanDismantle(new List<ItemSlot> { dismantlingItem }))
+            {
+                // 분해 성공: 결과 아이템들을 인벤토리에 추가
+                foreach (var item in dismantleScript.resultItems_D)
+                {
+                    AddItem(item);
+                }
+                RemoveItem(dismantlingItem); // 분해할 아이템 제거
+                Debug.Log("분해 성공");
+            }
+            else
+            {
+                Debug.Log("분해 실패");
+            }
+
+            dismantlingItem = null; // 분해 과정 종료 및 분해 대상 아이템 초기화
+        }
+        else
+        {
+            Debug.Log("선택된 아이템이 없거나 아이템 타입이 Unique가 아님");
+        }
+    }
+
+
+
     // 지정된 UI를 표시하고 일정 시간 후에 숨기는 코루틴
     IEnumerator ShowAndHideUI(GameObject uiObject)
     {
         uiObject.SetActive(true); // UI 활성화
-        yield return new WaitForSeconds(2f); // 2초 동안 기다림
+        yield return new WaitForSeconds(1.5f); // 2초 동안 기다림
         uiObject.SetActive(false); // UI 비활성화
     }
 

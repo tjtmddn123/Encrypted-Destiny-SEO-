@@ -5,7 +5,7 @@ using UnityEngine;
 public class SW_ItemMix : MonoBehaviour
 {
     public List<SW_ItemData> requiredItems; // 조합에 필요한 아이템 목록
-    public SW_ItemData resultItem; // 조합 결과로 얻게 될 유니크 아이템
+    public SW_ItemData resultItem; // 조합 결과로 얻게 될 아이템
 
     // 조합 가능 여부를 판단하는 메서드
     public bool CanMix(List<ItemSlot> inventorySlots)
