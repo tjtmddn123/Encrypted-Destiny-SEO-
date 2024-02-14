@@ -24,6 +24,20 @@ public class SW_LoopSwitch : MonoBehaviour, IInteractable_HT
             Debug.Log("모든 루프 지점 오브젝트 제거 완료");
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            foreach (var loopPointObject in loopPointObjects)
+            {
+                if (loopPointObject != null)
+                {
+                    Destroy(loopPointObject); // 각 루프 지점 오브젝트 제거
+                }
+            }
+        }
+    }
 }
 
 
