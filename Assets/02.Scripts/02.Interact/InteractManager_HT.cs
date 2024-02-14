@@ -99,7 +99,6 @@ public class InteractManager_HT : MonoBehaviour
                 cinemachine = null;
                 lamp = null;
                 promptText.gameObject.SetActive(false);
-                curInteractable = null;
                 curInteractGameobject = null;
             }
         }

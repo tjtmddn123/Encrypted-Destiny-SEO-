@@ -10,10 +10,6 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
     public SW_ItemData requiredItemData; // 필요한 아이템 데이터
     public GameObject actionUI; // 성공 표시할 UI 오브젝트
     public GameObject failUI; // 실패 표시할 UI 오브젝트
-    [SerializeField]
-    private TMPro.TextMeshProUGUI failText;
-    [SerializeField]
-    private string Info;
     public string newTag; // 상호작용 후 변경할 태그
     public void OnInteract()
     {
@@ -35,16 +31,6 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
 
             // 필요한 동작 수행 (예: 문 열기, 기계 작동 등)
             PerformRequiredAction();
-
-            if (actionUI != null)
-            {
-                // 성공 UI 표시
-                StartCoroutine(ShowAndHideUI(actionUI, 1.5f));
-            }
-        }
-        else
-        {
-            StartCoroutine(ShowAndHideUI(failUI, 1.5f));
         }
     }
 
@@ -69,24 +55,6 @@ public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
         // 실제 GameObject의 태그 변경
         gameObject.tag = newTag;
         Debug.Log($"GameObject의 태그가 '{newTag}'로 변경되었습니다.");
-    }
-
-    IEnumerator ShowAndHideUI(GameObject uiObject, float delay)
-    {
-        if (uiObject != null)
-        {
-            uiObject.SetActive(true);
-            yield return new WaitForSeconds(delay);
-            uiObject.SetActive(false);
-        }
-        else
-        {
-            failText.gameObject.SetActive(true);
-            failText.text = string.Format(Info);
-            yield return new WaitForSeconds(delay);
-            failText.gameObject.SetActive(false);
-            failText.text = string.Format("");
-        }
     }
 }
 
