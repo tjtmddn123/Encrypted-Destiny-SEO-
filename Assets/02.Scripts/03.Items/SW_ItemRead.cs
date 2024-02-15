@@ -6,7 +6,6 @@ using UnityEngine;
 public class SW_ItemRead : MonoBehaviour, IInteractable_HT
 {
     public GameObject imageBackground; // 이미지 UI에 대한 참조
-    public CinemachineVirtualCamera virtualCamera;
     public TMPro.TextMeshProUGUI text;
 
     [SerializeField]
