@@ -5,7 +5,7 @@ using Cinemachine;
 public class ChangeCinemachine : MonoBehaviour
 {
     public CinemachineVirtualCamera playerCameras;
-    public CinemachineVirtualCamera changedCamera;
+    public GameObject changedCamera;
     public InteractManager_HT interact;
     public GameObject player;
     [SerializeField]
@@ -20,13 +20,13 @@ public class ChangeCinemachine : MonoBehaviour
     private IEnumerator ChangeCamera()
     {
         playerCameras.gameObject.SetActive(false);
-        changedCamera.gameObject.SetActive(true);
+        changedCamera.SetActive(true);
         interact.CameraChaging = true;
         interact.promptText.gameObject.SetActive(false);
         player.SetActive(false);
         yield return new WaitForSeconds(ChangingTime);
         playerCameras.gameObject.SetActive(true);
-        changedCamera.gameObject.SetActive(false);
+        changedCamera.SetActive(false);
         interact.CameraChaging = false;
         interact.promptText.gameObject.SetActive(true);
         player.SetActive(true);
