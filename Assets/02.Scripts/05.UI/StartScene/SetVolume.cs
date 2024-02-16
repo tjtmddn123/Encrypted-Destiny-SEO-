@@ -8,14 +8,17 @@ public class SetVolume : MonoBehaviour
 {
     public AudioMixer mixer;
     public Slider slider;
-    void Start()
+
+    public void AudioControl()
     {
-        slider.value = PlayerPrefs.GetFloat("BGM", 0.75f);
+        float sound = slider.value;
+
+        if (sound == -40f) mixer.SetFloat("BGM", -80);
+        else mixer.SetFloat("BGM", sound);
     }
 
-    public void SetLevel(float sliderValue)
+    public void ToggleAudioVolume()
     {
-        mixer.SetFloat("BGM", Mathf.Log10(sliderValue)*20);
-        PlayerPrefs.SetFloat("BGM", sliderValue);
+        AudioListener.volume = AudioListener.volume == 0 ? 1 : 0;
     }
 }
