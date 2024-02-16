@@ -133,10 +133,10 @@ public class InteractManager_HT : MonoBehaviour
                     renderers.materials = materialList.ToArray();
 
                     break;
-                case "None":
-                    SetPromptText("[E] Use");
-                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
-                    break;
+                //case "None":
+                //    SetPromptText("[E] Use");
+                //    curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                //    break;
                 case "Door":
                     doorController = lookThis.GetComponent<DoorController>();
                     if (doorController.isReverse == false)
@@ -163,7 +163,7 @@ public class InteractManager_HT : MonoBehaviour
                     }
                     break;
                 case "Button":
-                    keypad = lookThis.GetComponent<NavKeypad.KeypadButton>();
+                    keypad = lookThis.GetComponent<KeypadButton>();
                     SetPromptText("[E] Push");
                     break;
                 case "Case":
@@ -176,6 +176,10 @@ public class InteractManager_HT : MonoBehaviour
                 case "CameraChanger":
                     cinemachine = curInteractGameobject.GetComponent<ChangeCinemachine>();
                     SetPromptText("[E] Interact");
+                    break;
+                default:
+                    SetPromptText("[E] Interact");
+                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
                     break;
             }
         }
