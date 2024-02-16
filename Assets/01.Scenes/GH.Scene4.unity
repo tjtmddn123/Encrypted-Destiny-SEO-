@@ -479,9 +479,6 @@ MonoBehaviour:
   requiredItemData: {fileID: 11400000, guid: 9779c59f88eeb434396310cb5d6a727b, type: 2}
   actionUI: {fileID: 0}
   failUI: {fileID: 0}
-  failText: {fileID: 261577132}
-  Info: "\uAC11\uC790\uAE30 \uC7A0\uACBC\uB2E4 \uC5F4\uC1E0\uAC00 \uC774 \uC548\uC5D0
-    \uC788\uAE38 \uBC14\uB77C\uC790"
   newTag: Door
 --- !u!114 &20808412
 MonoBehaviour:
@@ -5314,7 +5311,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.23820904, y: 0.009632942, z: 0.0023627887, w: 0.9711633}
+  m_LocalRotation: {x: -0.23820904, y: 0.009632958, z: 0.002362793, w: 0.9711633}
   m_LocalPosition: {x: 0.35703427, y: 1.8200002, z: -2.42839}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14879,8 +14876,6 @@ MonoBehaviour:
   requiredItemData: {fileID: 11400000, guid: 752028d68a1fba245bbcd5b714edc905, type: 2}
   actionUI: {fileID: 643099103}
   failUI: {fileID: 517887752}
-  failText: {fileID: 0}
-  Info: 
   newTag: Lamp
 --- !u!114 &775141147
 MonoBehaviour:
@@ -18686,8 +18681,6 @@ MonoBehaviour:
   requiredItemData: {fileID: 11400000, guid: c342383485f822046af996eb56a304de, type: 2}
   actionUI: {fileID: 0}
   failUI: {fileID: 0}
-  failText: {fileID: 0}
-  Info: 
   newTag: Door
 --- !u!114 &1051449831
 MonoBehaviour:
@@ -22399,8 +22392,6 @@ MonoBehaviour:
   requiredItemData: {fileID: 11400000, guid: 85c5c44f6744ac04d9f0c71de85c2ea6, type: 2}
   actionUI: {fileID: 0}
   failUI: {fileID: 0}
-  failText: {fileID: 261577132}
-  Info: "\uC7A0\uACA8 \uC788\uB2E4"
   newTag: Case
 --- !u!114 &1244083476
 MonoBehaviour:
@@ -22442,6 +22433,7 @@ MonoBehaviour:
   playerCameras: {fileID: 1841712220}
   changedCamera: {fileID: 1998618731}
   interact: {fileID: 1309784361}
+  player: {fileID: 0}
   ChangingTime: 4
 --- !u!114 &1256921528
 MonoBehaviour:
@@ -23684,6 +23676,7 @@ MonoBehaviour:
   useButton: {fileID: 891954354}
   mixButton: {fileID: 791421793}
   dropButton: {fileID: 737476444}
+  dismantleButton: {fileID: 0}
   onOpenInventory:
     m_PersistentCalls:
       m_Calls: []
@@ -23822,8 +23815,6 @@ MonoBehaviour:
   requiredItemData: {fileID: 11400000, guid: 03b46ab1ee65440429ae1147646d6ab3, type: 2}
   actionUI: {fileID: 0}
   failUI: {fileID: 0}
-  failText: {fileID: 261577132}
-  Info: "\uC7A0\uACA8\uC788\uB2E4"
   newTag: Door
 --- !u!1 &1310344971
 GameObject:
@@ -24411,7 +24402,7 @@ SpriteRenderer:
   m_Size: {x: 8, y: 6.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1370630365
@@ -26907,8 +26898,6 @@ MonoBehaviour:
   requiredItemData: {fileID: 11400000, guid: 789d52ad2c02bd24eb08ebb05ddbc985, type: 2}
   actionUI: {fileID: 0}
   failUI: {fileID: 0}
-  failText: {fileID: 261577132}
-  Info: "\uC5F4\uC1E0\uC640 \uC554\uD638\uAC00 \uD544\uC694\uD558\uB2E4."
   newTag: Door
 --- !u!1 &1499988564
 GameObject:
@@ -27743,8 +27732,6 @@ MonoBehaviour:
   requiredItemData: {fileID: 11400000, guid: 789d52ad2c02bd24eb08ebb05ddbc985, type: 2}
   actionUI: {fileID: 0}
   failUI: {fileID: 0}
-  failText: {fileID: 0}
-  Info: "\uC7A0\uACA8\uC788\uB2E4"
   newTag: Door
 --- !u!114 &1539517715
 MonoBehaviour:
@@ -28845,7 +28832,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625441455}
-  m_LocalRotation: {x: -0.23820904, y: 0.009632942, z: 0.0023627887, w: 0.9711633}
+  m_LocalRotation: {x: -0.23820904, y: 0.009632958, z: 0.002362793, w: 0.9711633}
   m_LocalPosition: {x: 10.342672, y: 8.173578, z: -10.556704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32510,6 +32497,7 @@ MonoBehaviour:
   playerCameras: {fileID: 1841712220}
   changedCamera: {fileID: 1838432093}
   interact: {fileID: 1309784361}
+  player: {fileID: 0}
   ChangingTime: 4
 --- !u!1 &1827395997
 GameObject:
@@ -34879,6 +34867,7 @@ MonoBehaviour:
   playerCameras: {fileID: 1841712220}
   changedCamera: {fileID: 336371170}
   interact: {fileID: 1309784361}
+  player: {fileID: 0}
   ChangingTime: 4
 --- !u!1 &1988623331
 GameObject:
@@ -35219,7 +35208,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crosshair
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8289511288788132463, guid: 0e4cefb47656e204baa3b24d5f51a73e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -35246,6 +35236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e742140cc7b0646af732cb49678018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crossHair: {fileID: 2005177126}
 --- !u!1 &2008007663
 GameObject:
   m_ObjectHideFlags: 0
@@ -37178,7 +37169,8 @@ AudioSource:
   m_GameObject: {fileID: 2131346217}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3293798561209667278, guid: 93da6ffefc5a04a498567ad0441c6067,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 06bdb31f7a6cbf340867d9901f5e1a66, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.4
