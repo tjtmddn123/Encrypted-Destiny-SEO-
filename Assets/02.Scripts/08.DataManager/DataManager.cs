@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class DataManager : MonoBehaviour
 {
     static GameObject container;
-
     static DataManager instance;
+
     public static DataManager Instance
     {
         get
@@ -24,31 +29,79 @@ public class DataManager : MonoBehaviour
 
     string GameDataFileName = "GameData.json";
 
-    
-    public Data data = new Data();
+    [System.Serializable]
+    public class GameObjectState
+    {
+        public GameObject gameObject;
+        public string gameObjectName;
+        public Vector3 position;
+        public Quaternion rotation;
+       
+    }
+
+    public List<GameObjectState> gameObjectStates = new List<GameObjectState>();
 
     public void LoadGameData()
     {
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
 
-        // 저장된 게임이 있다면
         if (File.Exists(filePath))
         {
-            // 저장된 파일 읽어오고 Json을 클래스 형식으로 전환해서 할당
             string FromJsonData = File.ReadAllText(filePath);
-            data = JsonUtility.FromJson<Data>(FromJsonData);
+            gameObjectStates = JsonUtility.FromJson<List<GameObjectState>>(FromJsonData);
             print("불러오기 완료");
         }
     }
 
     public void SaveGameData()
     {
-        // 클래스를 Json 형식으로 전환 
-        string ToJsonData = JsonUtility.ToJson(data, true);
+        string ToJsonData = JsonUtility.ToJson(gameObjectStates, true);
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
-
-        // 이미 저장된 파일이 있다면 덮어쓰고, 없다면 새로 만들어서 저장
         File.WriteAllText(filePath, ToJsonData);
-       
     }
+
+    private void Start()
+    {
+        DataManager.Instance.LoadGameData();
+    }
+
+    private void OnApplicationQuit()
+    {
+        DataManager.Instance.SaveGameData();
+    }
+
+    public class DataManagerEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            DataManager dataManager = (DataManager)target;
+
+           
+            if (GUILayout.Button("Add GameObject"))
+            {
+                GameObject selectedObject = Selection.activeGameObject;
+                if (selectedObject != null)
+                {
+                    dataManager.gameObjectStates.Add(new DataManager.GameObjectState
+                    {
+                        gameObject = selectedObject,
+                        gameObjectName = selectedObject.name,
+                        position = selectedObject.transform.position,
+                        rotation = selectedObject.transform.rotation
+                    });
+                }
+            }
+
+           
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Game Object States", EditorStyles.boldLabel);
+            foreach (var state in dataManager.gameObjectStates)
+            {
+                EditorGUILayout.LabelField(state.gameObjectName);
+            }
+        }
+    }
+
 }
