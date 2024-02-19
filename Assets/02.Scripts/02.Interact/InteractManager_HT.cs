@@ -119,10 +119,10 @@ public class InteractManager_HT : MonoBehaviour
             {
                 case "Item":
                     itemObj = curInteractGameobject.GetComponent<SW_ItemObject>();
-                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
-                    renderers = curInteractGameobject.GetComponent<Renderer>();
+                    curInteractable = lookThis.GetComponent<IInteractable_HT>();                    
                     SetPromptText($"[E] Take {itemObj.item.displayName}");
 
+                    renderers = curInteractGameobject.GetComponent<Renderer>();
                     materialList.Clear();
                     materialList.AddRange(renderers.sharedMaterials);
                     materialList.Add(material);
@@ -133,10 +133,10 @@ public class InteractManager_HT : MonoBehaviour
                     renderers.materials = materialList.ToArray();
 
                     break;
-                //case "None":
-                //    SetPromptText("[E] Use");
-                //    curInteractable = lookThis.GetComponent<IInteractable_HT>();
-                //    break;
+                case "None":
+                    SetPromptText("[E] Interact");
+                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                    break;
                 case "Door":
                     doorController = lookThis.GetComponent<DoorController>();
                     if (doorController.isReverse == false)
@@ -167,7 +167,29 @@ public class InteractManager_HT : MonoBehaviour
                     SetPromptText("[E] Push");
                     break;
                 case "Case":
-                    SetPromptText("[E] Take");
+                    doorController = lookThis.GetComponent<DoorController>();
+                    if (doorController.isReverse == false)
+                    {
+                        if (doorController.isOpen == false)
+                        {
+                            SetPromptText("[E] Open");
+                        }
+                        else
+                        {
+                            SetPromptText("[E] Close");
+                        }
+                    }
+                    if (doorController.isReverse == true)
+                    {
+                        if (doorController.isOpen == false)
+                        {
+                            SetPromptText("[E] Close");
+                        }
+                        else
+                        {
+                            SetPromptText("[E] Open");
+                        }
+                    }
                     break;
                 case "Lamp":
                     lamp = lookThis.GetComponent<LampBtn>();
@@ -202,10 +224,7 @@ public class InteractManager_HT : MonoBehaviour
                     StartCoroutine(TakeItem());
                     i = 1;
                 }
-                if (doorController != null)
-                {
-                    doorController.OpenRackCase(curInteractGameobject);
-                }                
+                doorController.OpenRackCase(curInteractGameobject);                               
                 break;
             case "Lamp":
                 lamp.ToggleLight();
