@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648dce27598eec04f9c554776d7700e6, type: 3}
+  m_Name: KeyF
+  m_EditorClassIdentifier: 
+  displayName: "\uC5F4\uC1E0F"
+  description: "\uC911\uC559\uD604\uAD00 \uD0C8\uCD9C\uC5F4\uC1E0"
+  type: 1
+  icon: {fileID: 21300000, guid: 3e8d37def6c1f8041800d7b3c1755ae3, type: 3}
+  dropPrefab: {fileID: 4219375325355242650, guid: b46774b428d23b041909b7cf93ce58e5,
+    type: 3}
+  importantItemCanvasPrefab: {fileID: 0}
+  importantItemDisplay: {fileID: 0}
