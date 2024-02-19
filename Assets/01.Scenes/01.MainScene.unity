@@ -7117,6 +7117,44 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 692759452}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &298475696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8604367122496853544, guid: beef3bcde1610f04aa96275436147bb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 692759452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &298475697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298475696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f0e2bc0888c2b4f8e0cffc03fa6071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItemData: {fileID: 0}
+  actionUI: {fileID: 0}
+  failUI: {fileID: 0}
+  newTag: Finish
+--- !u!114 &298475698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298475696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4645a6657700884798c64c2b8d22d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Subtitle: "\"\uC774 \uBB38\uC73C\uB85C \uB4E4\uC5B4\uC654\uB358\uAC70 \uAC19\uC740\uB370...
+    \uBB38\uC774 \uC7A0\uACA8\uC788\uB2E4. \uC77C\uB2E8 \uC548\uCABD\uC744 \uC0B4\uD3B4\uBCF4\uC790
+    \uBB34\uC5B8\uAC00 \uBC29\uBC95\uC774 \uC788\uC744\uAC70\uC57C\""
+  SubtitleTMPro: {fileID: 1832074813}
 --- !u!114 &299248800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17394,7 +17432,7 @@ GameObject:
   - component: {fileID: 676102909}
   m_Layer: 7
   m_Name: Memo (2)
-  m_TagString: Untagged
+  m_TagString: None
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18433,7 +18471,7 @@ PrefabInstance:
     - target: {fileID: 8604359690466869414, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Case
       objectReference: {fileID: 0}
     - target: {fileID: 8604361826385377856, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -18444,6 +18482,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604367122496853544, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604367122496853544, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8604411227073623196, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -18623,7 +18671,7 @@ PrefabInstance:
     - target: {fileID: 8604661016664315254, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8604681759883072418, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -18823,7 +18871,7 @@ PrefabInstance:
     - target: {fileID: 8604836048700756482, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: None
       objectReference: {fileID: 0}
     - target: {fileID: 8604842213973221340, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -18913,7 +18961,7 @@ PrefabInstance:
     - target: {fileID: 8604919019946411806, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: None
       objectReference: {fileID: 0}
     - target: {fileID: 8604926432114163288, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -19278,7 +19326,7 @@ PrefabInstance:
     - target: {fileID: 8605249366341724404, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: None
       objectReference: {fileID: 0}
     - target: {fileID: 8605259772284819456, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -19333,7 +19381,7 @@ PrefabInstance:
     - target: {fileID: 8605290361294324842, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: None
       objectReference: {fileID: 0}
     - target: {fileID: 8605292299112191804, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
@@ -19998,6 +20046,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1528103871}
+    - targetCorrespondingSourceObject: {fileID: 8604367122496853544, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 298475698}
+    - targetCorrespondingSourceObject: {fileID: 8604367122496853544, guid: beef3bcde1610f04aa96275436147bb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 298475697}
     - targetCorrespondingSourceObject: {fileID: 8604434553400904168, guid: beef3bcde1610f04aa96275436147bb9,
         type: 3}
       insertIndex: -1
@@ -31576,8 +31632,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageBackground: {fileID: 383398160}
   text: {fileID: 1075134934}
-  Info: "\uC6CC\uD0B9\uB9E8 1730\n2\uBC15 3\uC77C 1900\n\uC720\uD55C\uB3C4\uC804
-    1830\n\uCF54\uBBF8\uB514\uCF58\uC11C\uD2B8 2000"
+  Info: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\uC6CC\uD0B9\uB9E8 1730\n2\uBC15
+    3\uC77C 1900\n\uC720\uD55C\uB3C4\uC804 1830\n\uCF54\uBBF8\uB514\uCF58\uC11C\uD2B8
+    2000"
 --- !u!23 &1112318223
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32176,7 +32233,7 @@ GameObject:
   - component: {fileID: 1127256471}
   m_Layer: 7
   m_Name: Memo (1)
-  m_TagString: Untagged
+  m_TagString: None
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44967,7 +45024,7 @@ GameObject:
   - component: {fileID: 1641484599}
   m_Layer: 7
   m_Name: Memo (2)
-  m_TagString: Untagged
+  m_TagString: None
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
