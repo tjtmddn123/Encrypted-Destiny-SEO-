@@ -23,7 +23,7 @@ public class InteractManager_HT : MonoBehaviour
     private LampBtn lamp;
 
     [Header("Keypad")]
-    private NavKeypad.KeypadButton keypad;
+    private KeypadButton keypad;
 
     [Header("Interact")]
     [SerializeField] private float maxCheckDistance;    //최대 상호작용 가능 거리
@@ -35,6 +35,7 @@ public class InteractManager_HT : MonoBehaviour
     private IInteractable_HT curInteractable;
     private int i = 0;
     private SW_ItemObject itemObj; // 아이템의 데이터를 저장하는 변수
+    private SubtitleManager subtitleManager;
     /*
     [Header("ChangeTall")]
     private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
@@ -135,6 +136,10 @@ public class InteractManager_HT : MonoBehaviour
                     break;
                 case "None":
                     SetPromptText("[E] Interact");
+                    subtitleManager = lookThis.GetComponent<SubtitleManager>();
+                    break;
+                case "Finish":
+                    SetPromptText("[E] Exit");
                     curInteractable = lookThis.GetComponent<IInteractable_HT>();
                     break;
                 case "Door":
@@ -200,8 +205,8 @@ public class InteractManager_HT : MonoBehaviour
                     SetPromptText("[E] Interact");
                     break;
                 default:
-                    SetPromptText("[E] Interact");
-                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                    SetPromptText("");
+
                     break;
             }
         }
@@ -216,6 +221,9 @@ public class InteractManager_HT : MonoBehaviour
                 break;
             case "Button":
                 keypad.PressButton();
+                break;
+            case "None":
+                subtitleManager.OnInteract();
                 break;
             case "Case":
                 nightVision.AddNightVisionItem();

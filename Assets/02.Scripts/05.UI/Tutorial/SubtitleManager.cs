@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SubtitleManager : MonoBehaviour, IInteractable_HT
+public class SubtitleManager : MonoBehaviour
 {
     [SerializeField]
     [TextArea]    
