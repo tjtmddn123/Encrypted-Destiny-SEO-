@@ -11,7 +11,8 @@ public class SW_END : MonoBehaviour, IInteractable_HT
     public GameObject player; // 플레이어 게임 오브젝트
     public float delayBeforeTeleport;
     public float creditsSpeed;
-
+    [SerializeField]
+    private float creditTime = 3000;
     private void Start()
     {
         // 스크립트 및 크레딧 텍스트 비활성화 상태로 시작
@@ -52,7 +53,7 @@ public class SW_END : MonoBehaviour, IInteractable_HT
 
         // 크레딧 스크롤링
         float startY = creditsText.transform.position.y;
-        float endY = startY + 3000; // 스크롤할 높이 설정
+        float endY = startY + creditTime; // 스크롤할 높이 설정
         while (creditsText.transform.position.y < endY)
         {
             creditsText.transform.position += new Vector3(0, creditsSpeed * Time.deltaTime, 0);
