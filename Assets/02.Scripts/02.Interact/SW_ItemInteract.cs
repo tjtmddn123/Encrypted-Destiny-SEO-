@@ -1,15 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEngine.UI;
 
 
-public class SW_ItemInteract : MonoBehaviour, IInteractable_HT
+public class SW_ItemInteract : MonoBehaviour , IInteractable_HT
 {
     public SW_ItemData requiredItemData; // 필요한 아이템 데이터
-    public GameObject actionUI; // 성공 표시할 UI 오브젝트
-    public GameObject failUI; // 실패 표시할 UI 오브젝트
     public string newTag; // 상호작용 후 변경할 태그
     public void OnInteract()
     {

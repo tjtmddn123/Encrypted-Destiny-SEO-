@@ -4,11 +4,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class SW_END : MonoBehaviour, IInteractable_HT
+public class SW_END : MonoBehaviour
 {
     public Image fadePanel; // 화면을 어두워지게 할 UI 패널
     public TextMeshProUGUI creditsText; // 크레딧을 표시할 TMP 객체
     public GameObject player; // 플레이어 게임 오브젝트
+    public GameObject promptText;
     public float delayBeforeTeleport;
     public float creditsSpeed;
     [SerializeField]
@@ -26,6 +27,7 @@ public class SW_END : MonoBehaviour, IInteractable_HT
         if (gameObject.tag == "Finish")
         {
             enabled = true; // 스크립트 활성화
+            promptText.SetActive(false);
             StartCoroutine(EndSequence());
         }
     }

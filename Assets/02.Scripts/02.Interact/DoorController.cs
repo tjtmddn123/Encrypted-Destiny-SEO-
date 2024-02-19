@@ -102,34 +102,34 @@ public class DoorController : MonoBehaviour
         if (!isOpening)
         {
             StartCoroutine(DoorOpening());
-            AudioClip soundClip;
+            //AudioClip soundClip;
             if (isReverse == true)
             {
                 if (isOpen)
                 {
                     StartCoroutine(MoveRackCase(rackCase, moveRange));
-                    soundClip = SoundManager.instance.closeCase;
+                    //soundClip = SoundManager.instance.closeCase;
                 }
                 else
                 {
                     StartCoroutine(MoveRackCase(rackCase, -moveRange));
-                    soundClip = SoundManager.instance.openCase;
+                    //soundClip = SoundManager.instance.openCase;
                 }
             }
             else
             {
                 if (isOpen)
                 {
-                    StartCoroutine(MoveRackCase(rackCase, -moveRange));
-                    soundClip = SoundManager.instance.closeCase;
+                    StartCoroutine(MoveRackCase(rackCase, moveRange));
+                    //soundClip = SoundManager.instance.closeCase;
                 }
                 else
                 {
-                    StartCoroutine(MoveRackCase(rackCase, moveRange));
-                    soundClip = SoundManager.instance.openCase;
+                    StartCoroutine(MoveRackCase(rackCase, -moveRange));
+                    //soundClip = SoundManager.instance.openCase;
                 }
             }
-            SoundManager.instance.SFXPlay(isOpen ? "Openn" : "Closee", soundClip);
+            //SoundManager.instance.SFXPlay(isOpen ? "Openn" : "Closee", soundClip);
         }
     }
     

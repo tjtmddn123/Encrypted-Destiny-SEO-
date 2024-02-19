@@ -7,8 +7,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-using static UnityEngine.InputSystem.Controls.AxisControl;
-
 public interface IInteractable_HT
 {
     void OnInteract();
@@ -36,6 +34,7 @@ public class InteractManager_HT : MonoBehaviour
     private int i = 0;
     private SW_ItemObject itemObj; // 아이템의 데이터를 저장하는 변수
     private SubtitleManager subtitleManager;
+    private SW_END END;
     /*
     [Header("ChangeTall")]
     private bool isSmall = false;    //작아졌는지 여부 확인을 위한 bool 입니다
@@ -76,7 +75,7 @@ public class InteractManager_HT : MonoBehaviour
                 {
                     curInteractGameobject = hit.collider.gameObject;
                     LookAtThis(curInteractGameobject.tag, curInteractGameobject);
-                }   
+                }
             }
             else
             {
@@ -101,6 +100,7 @@ public class InteractManager_HT : MonoBehaviour
                 lamp = null;
                 promptText.gameObject.SetActive(false);
                 curInteractGameobject = null;
+                subtitleManager = null;
             }
         }
         if (curInteractGameobject != null)
@@ -136,11 +136,16 @@ public class InteractManager_HT : MonoBehaviour
                     break;
                 case "None":
                     SetPromptText("[E] Interact");
+                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                    break;
+                case "END":
+                    SetPromptText("[E] Interact");
                     subtitleManager = lookThis.GetComponent<SubtitleManager>();
+                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
                     break;
                 case "Finish":
                     SetPromptText("[E] Exit");
-                    curInteractable = lookThis.GetComponent<IInteractable_HT>();
+                    END = lookThis.GetComponent<SW_END>();
                     break;
                 case "Door":
                     doorController = lookThis.GetComponent<DoorController>();
@@ -177,22 +182,22 @@ public class InteractManager_HT : MonoBehaviour
                     {
                         if (doorController.isOpen == false)
                         {
-                            SetPromptText("[E] Open");
+                            SetPromptText("[E] Close");
                         }
                         else
                         {
-                            SetPromptText("[E] Close");
+                            SetPromptText("[E] Open");
                         }
                     }
                     if (doorController.isReverse == true)
                     {
                         if (doorController.isOpen == false)
                         {
-                            SetPromptText("[E] Close");
+                            SetPromptText("[E] Open");
                         }
                         else
                         {
-                            SetPromptText("[E] Open");
+                            SetPromptText("[E] Close");
                         }
                     }
                     break;
@@ -206,7 +211,15 @@ public class InteractManager_HT : MonoBehaviour
                     break;
                 default:
                     SetPromptText("");
-
+                    doorController = null;
+                    itemObj = null;
+                    curInteractable = null;
+                    keypad = null;
+                    cinemachine = null;
+                    lamp = null;
+                    promptText.gameObject.SetActive(false);
+                    curInteractGameobject = null;
+                    subtitleManager = null;
                     break;
             }
         }
@@ -222,8 +235,8 @@ public class InteractManager_HT : MonoBehaviour
             case "Button":
                 keypad.PressButton();
                 break;
-            case "None":
-                subtitleManager.OnInteract();
+            case "Finish":
+                END.OnInteract();
                 break;
             case "Case":
                 nightVision.AddNightVisionItem();
@@ -232,7 +245,11 @@ public class InteractManager_HT : MonoBehaviour
                     StartCoroutine(TakeItem());
                     i = 1;
                 }
-                doorController.OpenRackCase(curInteractGameobject);                               
+                doorController.OpenRackCase(curInteractGameobject);
+                break;
+            case "END":
+                SetPromptText("[E] Interact");
+                subtitleManager.OnInteract();
                 break;
             case "Lamp":
                 lamp.ToggleLight();

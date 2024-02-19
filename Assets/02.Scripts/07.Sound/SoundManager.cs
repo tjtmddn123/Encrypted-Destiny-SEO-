@@ -6,8 +6,8 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip openClip;
     public AudioClip closeClip;
-    public AudioClip openCase;
-    public AudioClip closeCase;
+    //public AudioClip openCase;
+    //public AudioClip closeCase;
     private void Awake()
     {
         if (instance == null)
@@ -35,9 +35,9 @@ public class SoundManager : MonoBehaviour
         AudioClip soundClip = isOpen ? openClip : closeClip;
         SFXPlay(isOpen ? "Open" : "Close", soundClip);
     }
-    public void PlayCaseSound(bool isOpen)
-    {
-        AudioClip soundClip = isOpen ? openCase : closeCase;
-        SFXPlay(isOpen ? "Openn" : "Closee", soundClip);
-    }
+    //public void PlayCaseSound(bool isOpen)
+    //{
+    //    AudioClip soundClip = isOpen ? openCase : closeCase;
+    //    SFXPlay(isOpen ? "Openn" : "Closee", soundClip);
+    //}
 }

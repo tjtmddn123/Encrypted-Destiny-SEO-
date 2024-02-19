@@ -14,6 +14,7 @@ TagManager:
   - Case
   - Lamp
   - CameraChanger
+  - END
   layers:
   - Default
   - TransparentFX
