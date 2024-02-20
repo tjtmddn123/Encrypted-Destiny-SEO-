@@ -7,6 +7,7 @@ public class SW_ItemRead : MonoBehaviour, IInteractable_HT
 {
     public GameObject imageBackground; // 이미지 UI에 대한 참조
     public TMPro.TextMeshProUGUI text;
+    public GameObject promptText;
 
     [SerializeField]
     [TextArea]
@@ -17,6 +18,7 @@ public class SW_ItemRead : MonoBehaviour, IInteractable_HT
         // 상호작용 시 이미지 UI 활성화
         if (imageBackground != null)
         {
+            promptText.SetActive(false);
             imageBackground.SetActive(true);
             text.text = string.Format(Info);
         }

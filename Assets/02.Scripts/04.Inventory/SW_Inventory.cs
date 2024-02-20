@@ -91,7 +91,7 @@ public class SW_Inventory : MonoBehaviour
         {
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke(); // 인벤토리 닫기 이벤트 호출
-            ToggleCursor(false);
+            //ToggleCursor(false);
 
             ResetAllSlotColors(); // 모든 슬롯 색상 초기화
 
@@ -107,7 +107,7 @@ public class SW_Inventory : MonoBehaviour
         {
             inventoryWindow.SetActive(true);
             onOpenInventory?.Invoke(); // 인벤토리 열기 이벤트 호출
-            ToggleCursor(true);
+            //ToggleCursor(true);
         }
     }
     public void ToggleCursor(bool toggle)
