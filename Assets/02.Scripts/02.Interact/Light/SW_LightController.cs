@@ -7,6 +7,9 @@ public class SW_LightController : MonoBehaviour, IInteractable_HT
     public List<GameObject> lightsOn; // 켜져 있는 라이트 오브젝트 목록
     public List<GameObject> lightsOff; // 꺼져 있는 라이트 오브젝트 목록
 
+    public AudioSource turnOnSound; 
+    public AudioSource turnOffSound;
+
     // IInteractable_HT 인터페이스의 OnInteract 메서드 구현
     public void OnInteract()
     {
@@ -20,12 +23,14 @@ public class SW_LightController : MonoBehaviour, IInteractable_HT
         foreach (var obj in lightsOff)
         {
             obj.SetActive(true);
+            turnOnSound.Play();
         }
 
         // 켜져 있는 오브젝트들을 꺼짐 상태로 전환
         foreach (var obj in lightsOn)
         {
             obj.SetActive(false);
+            turnOffSound.Play();
         }
     }
 }
