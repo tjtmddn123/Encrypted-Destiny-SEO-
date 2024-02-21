@@ -560,8 +560,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: 9779c59f88eeb434396310cb5d6a727b, type: 2}
-  actionUI: {fileID: 0}
-  failUI: {fileID: 0}
   newTag: Door
 --- !u!114 &20808412
 MonoBehaviour:
@@ -6281,6 +6279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageBackground: {fileID: 383398160}
   text: {fileID: 1075134934}
+  promptText: {fileID: 0}
   Info: "(\uC790\uAE30 - \uB3C4\uC804\uD558\uAE30) * (\uC6C3\uAE30 - \uAC77\uAE30)"
 --- !u!64 &242121773
 MeshCollider:
@@ -6971,8 +6970,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: e9920bb5c23f64443a4495256fbab90b, type: 2}
-  actionUI: {fileID: 0}
-  failUI: {fileID: 0}
   newTag: Door
 --- !u!114 &291686370
 MonoBehaviour:
@@ -23302,8 +23299,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: 752028d68a1fba245bbcd5b714edc905, type: 2}
-  actionUI: {fileID: 643099103}
-  failUI: {fileID: 517887752}
   newTag: Lamp
 --- !u!114 &775141147
 MonoBehaviour:
@@ -29065,8 +29060,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: 13c4d33d8f621cf4eb4e354711491bf8, type: 2}
-  actionUI: {fileID: 0}
-  failUI: {fileID: 0}
   newTag: Door
 --- !u!1 &1051832851
 GameObject:
@@ -30124,7 +30117,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1074764688}
-  - component: {fileID: 1074764689}
+  - component: {fileID: 1074764690}
+  - component: {fileID: 1074764691}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -30147,7 +30141,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1074764689
+--- !u!114 &1074764690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074764686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ffdff64dad36d44a8bd2b0fee0d1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1074764691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30160,18 +30166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameObjectStates:
-  - gameObject: {fileID: 20808409}
-    gameObjectName: 
+  - gameObjectName: 
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
-  - gameObject: {fileID: 1809057399}
-    gameObjectName: 
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
-  - gameObject: {fileID: 1309784360}
-    gameObjectName: 
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
+  gameObjectToAdd: {fileID: 20808409}
 --- !u!1 &1075134932
 GameObject:
   m_ObjectHideFlags: 0
@@ -31633,6 +31631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageBackground: {fileID: 383398160}
   text: {fileID: 1075134934}
+  promptText: {fileID: 0}
   Info: "\uC6CC\uD0B9\uB9E8 1730\n2\uBC15 3\uC77C 1900\n\uC720\uD55C\uB3C4\uC804
     1830\n\uCF54\uBBF8\uB514\uCF58\uC11C\uD2B8 2000"
 --- !u!23 &1112318223
@@ -34783,8 +34782,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: 85c5c44f6744ac04d9f0c71de85c2ea6, type: 2}
-  actionUI: {fileID: 0}
-  failUI: {fileID: 0}
   newTag: Case
 --- !u!114 &1244083476
 MonoBehaviour:
@@ -36416,8 +36413,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openClip: {fileID: 8300000, guid: a200ceb3276a64815ba89e6db4488604, type: 3}
   closeClip: {fileID: 8300000, guid: 0210c1127dd754ced9c723f73428cc1c, type: 3}
-  openCase: {fileID: 0}
-  closeCase: {fileID: 0}
 --- !u!4 &1302823083
 Transform:
   m_ObjectHideFlags: 0
@@ -36776,8 +36771,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: 03b46ab1ee65440429ae1147646d6ab3, type: 2}
-  actionUI: {fileID: 0}
-  failUI: {fileID: 0}
   newTag: Door
 --- !u!1 &1310344971
 GameObject:
@@ -41337,8 +41330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: 789d52ad2c02bd24eb08ebb05ddbc985, type: 2}
-  actionUI: {fileID: 0}
-  failUI: {fileID: 0}
   newTag: Door
 --- !u!1 &1507158820
 GameObject:
@@ -42176,8 +42167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: 5698667289805ac4dbf2f4c188081670, type: 2}
-  actionUI: {fileID: 0}
-  failUI: {fileID: 0}
   newTag: Door
 --- !u!114 &1539517715
 MonoBehaviour:
@@ -54083,6 +54072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageBackground: {fileID: 383398160}
   text: {fileID: 1075134934}
+  promptText: {fileID: 0}
   Info: "\n\n\n\n\n\n\n\n           1.  1\uBC88 \uC5F4\uC1E0\uC640  2\uBC88 \uC5F4\uC1E0
     \uC870\uD569"
 --- !u!1 &1991145146
@@ -57477,8 +57467,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemData: {fileID: 11400000, guid: 72bb17d8281b8fe42a87c4aba0ca6214, type: 2}
-  actionUI: {fileID: 0}
-  failUI: {fileID: 0}
   newTag: Door
 --- !u!114 &2134631155
 MonoBehaviour:
