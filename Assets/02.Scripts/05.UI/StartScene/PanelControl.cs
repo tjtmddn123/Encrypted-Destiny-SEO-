@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MenuOption : MonoBehaviour
 {
@@ -34,16 +30,12 @@ public class MenuOption : MonoBehaviour
 
     void PauseGame()
     {       
-        Cursor.lockState = CursorLockMode.None; 
-        Cursor.visible = true; 
         option.SetActive(true); 
         isPaused = true;
     }
 
     void ResumeGame()
     {      
-        Cursor.lockState = CursorLockMode.Locked; 
-        Cursor.visible = false; 
         option.SetActive(false); 
         isPaused = false;
     }
@@ -59,8 +51,5 @@ public class MenuOption : MonoBehaviour
     {
         menu.SetActive(false);
         option.SetActive(true);
-    }
-
-   
-    
+    }    
 }

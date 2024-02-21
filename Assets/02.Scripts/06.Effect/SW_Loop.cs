@@ -7,6 +7,12 @@ public class SW_Loop : MonoBehaviour
     public Transform loopEndPosition; // 루프 앤드 위치
     public float delayBeforeTeleport; // 플레이어가 텔레포트되기 전 지연 시간
     public Image fadePanel; // 화면을 어두워지게 할 UI 패널
+    private SubtitleManager subtitleManager;
+
+    private void Start()
+    {
+        subtitleManager = GetComponent<SubtitleManager>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +21,7 @@ public class SW_Loop : MonoBehaviour
         {
             // 플레이어와의 충돌을 감지하면 코루틴 실행
             StartCoroutine(FadeScreenAndTeleport(other.gameObject));
+            subtitleManager.OnInteract();
         }
     }
 

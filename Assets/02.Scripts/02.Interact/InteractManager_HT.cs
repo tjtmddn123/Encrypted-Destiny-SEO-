@@ -1,6 +1,4 @@
 using NavKeypad;
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -264,7 +262,7 @@ public class InteractManager_HT : MonoBehaviour
     {
         getText.gameObject.SetActive(true);
         getText.text = string.Format("야간투시경을 주웠다. \n N을 눌러 사용 할 수 있다.");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
 
         getText.gameObject.SetActive(false);
     }

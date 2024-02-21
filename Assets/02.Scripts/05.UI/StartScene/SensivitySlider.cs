@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
-using System;
 
 public class CameraSensitivityController : MonoBehaviour
 {
