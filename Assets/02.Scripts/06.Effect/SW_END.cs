@@ -12,7 +12,7 @@ public class SW_END : MonoBehaviour
     public GameObject player; // 플레이어 게임 오브젝트
     public GameObject promptText;
     public float delayBeforeTeleport;
-    public float creditsSpeed;
+    private float creditsSpeed;
     private float creditSpeedModifier;
     private float creditTime;
 
