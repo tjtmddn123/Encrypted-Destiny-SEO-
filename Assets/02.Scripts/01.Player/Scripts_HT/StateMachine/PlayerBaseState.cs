@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,7 +31,7 @@ public class PlayerBaseState : IState
 
     public virtual void Update()
     {
-        if (stateMachine.Player.IsUIOpening())
+        if (stateMachine.Player.UIManager.IsUIOpening())
         {
             SpeedModifier = 0;
         }
@@ -42,7 +39,7 @@ public class PlayerBaseState : IState
         {
             SpeedModifier = 1f;
 
-            if (isCrouch == false && Input.GetKey(KeyCode.LeftShift))
+            if (stateMachine.Player.Controller.height == 1.8f && Input.GetKey(KeyCode.LeftShift))
             {
                 SpeedModifier = 1.6f;
             }
@@ -85,13 +82,11 @@ public class PlayerBaseState : IState
         {
             stateMachine.Player.Controller.height = 0.7f;
             SpeedModifier = 0.6f;
-            stateMachine.Player.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         }
         else
         {
             stateMachine.Player.Controller.height = 1.8f;
             SpeedModifier = 1f;
-            stateMachine.Player.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 

@@ -26,7 +26,7 @@ public class CameraSensitivityController : MonoBehaviour
 
     private void Update()
     {
-        if (player.IsUIOpening())
+        if (player.UIManager.IsUIOpening())
         {
             CameraStop();
         }

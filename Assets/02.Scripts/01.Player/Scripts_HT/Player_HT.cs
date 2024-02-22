@@ -18,7 +18,7 @@ public class Player_HT : MonoBehaviour
 
     public CinemachineVirtualCamera virtualCamera;
 
-    public GameObject[] OpenableUI;
+    public UIManager UIManager;
 
     private void Awake()
     {
@@ -40,17 +40,5 @@ public class Player_HT : MonoBehaviour
         stateMachine.HandleInput();
         stateMachine.Update();
     }
-    public bool IsUIOpening()
-    {
-        if (Array.Find(OpenableUI, element => element.activeInHierarchy == true))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            return true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            return false;
-        }
-    }
+
 }

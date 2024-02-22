@@ -15,6 +15,7 @@ TagManager:
   - Lamp
   - CameraChanger
   - END
+  - Menu
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - PostFX
   - Item
   - Hint
-  - 
+  - Windows
   - 
   - 
   - 

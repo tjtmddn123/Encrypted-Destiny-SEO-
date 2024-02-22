@@ -56,6 +56,8 @@ public class SW_Inventory : MonoBehaviour
 
     private SW_ItemSlotUI firstMixSlotUI = null;
 
+    public UIManager UIManager;
+
 
     void Awake()
     {
@@ -87,7 +89,7 @@ public class SW_Inventory : MonoBehaviour
     public void Toggle()
     {
         // 인벤토리 창 상태 변경. 창이 열려 있으면 닫고, 닫혀 있으면 염
-        if (inventoryWindow.activeInHierarchy)
+        if (UIManager.IsUIOpening())
         {
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke(); // 인벤토리 닫기 이벤트 호출
@@ -103,16 +105,12 @@ public class SW_Inventory : MonoBehaviour
             isMixing = false;
 
         }
-        else
+        else if(UIManager.IsUIOpening() == false)
         {
             inventoryWindow.SetActive(true);
             onOpenInventory?.Invoke(); // 인벤토리 열기 이벤트 호출
             //ToggleCursor(true);
         }
-    }
-    public void ToggleCursor(bool toggle)
-    {
-        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked; // 커서 상태 변경
     }
 
     public bool IsOpen()

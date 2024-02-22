@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class Reticle : MonoBehaviour
 {
-
     public GameObject crossHair;
-    void Update()
+    void Start()
     {
         // 화면 가운데로 이동
         Transform rectTransform = crossHair.GetComponent<Transform>();

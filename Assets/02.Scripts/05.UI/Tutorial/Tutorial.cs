@@ -1,26 +1,57 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
+
+    public float fadeDuration = 2.0f; // 사라지는 데 걸리는 시간
+    private float currentFadeTime = 0.0f;
     public TextMeshProUGUI tutorial;
 
     private Vector3 lastMousePosition;
 
-    void Start()
+
+    private void Start()
     {
         lastMousePosition = Input.mousePosition;
+        StartCoroutine(ShowTutorial());
     }
-    void Update()
+
+    private void Update()
     {
         Vector3 currentMousePosition = Input.mousePosition;
-        float mouseMovementThreshold = 0.1f; // 임계값 설정
 
-        if (Vector3.Distance(currentMousePosition, lastMousePosition) > mouseMovementThreshold)
+
+        if (currentMousePosition != lastMousePosition)
         {
-            tutorial.gameObject.SetActive(false);
+            Tutorials();
         }
 
         lastMousePosition = currentMousePosition;
+    }
+    public void Tutorials()
+    {
+        // 페이드 인터폴레이션 계산
+        currentFadeTime += Time.deltaTime;
+        float alpha = 1.0f - Mathf.Clamp01(currentFadeTime / fadeDuration);
+
+        // 알파 값을 설정하여 Text를 사라지게 함
+        Color textColor = tutorial.color;
+        textColor.a = alpha;
+        tutorial.color = textColor;
+
+        // 사라질 때 추가 작업 수행
+        if (alpha <= 0.0f)
+        {
+            textColor.a = 1f;
+            tutorial.gameObject.SetActive(false); // Text를 비활성화하여 완전히 사라지도록 함
+        }
+    }
+
+    private IEnumerator ShowTutorial()
+    {
+        yield return new WaitForSeconds(2f);
+        tutorial.gameObject.SetActive(true);
     }
 }
