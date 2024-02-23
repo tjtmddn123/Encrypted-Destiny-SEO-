@@ -2839,7 +2839,7 @@ GameObject:
   m_TagString: None
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &103802100
 MonoBehaviour:
@@ -5030,6 +5030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1057610062}
   option: {fileID: 829076528}
+  isPaused: 0
 --- !u!4 &177977216
 Transform:
   m_ObjectHideFlags: 0
@@ -6959,6 +6960,7 @@ MonoBehaviour:
   imageBackground: {fileID: 383398160}
   text: {fileID: 1075134934}
   promptText: {fileID: 1277124184}
+  UIManager: {fileID: 0}
   Info: "\uB0B4\uAC00 \uC88B\uC544 \uD558\uB294 \uACFC\uC77C\uB4E4\n\uC0AC\uACFC,
     \uB538\uAE30,  \uC624\uB80C\uC9C0, \uBC14\uB098\uB098!\n\n\uB0B4\uAC00 \uC2EB\uC5B4\uD558\uB294
     \uACFC\uC77C\uB4E4\n\uBC30, \uD3EC\uB3C4, \uC218\uBC15"
@@ -8136,11 +8138,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadePanel: {fileID: 1620560877}
   creditsText: {fileID: 388935598}
+  ClickText: {fileID: 0}
   player: {fileID: 1309784360}
   promptText: {fileID: 1277124184}
   delayBeforeTeleport: 1
-  creditsSpeed: 250
-  creditTime: 8000
 --- !u!114 &299248800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16466,6 +16467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1057610062}
   option: {fileID: 829076528}
+  isPaused: 0
 --- !u!114 &565716964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34008,6 +34010,7 @@ MonoBehaviour:
   imageBackground: {fileID: 383398160}
   text: {fileID: 1075134934}
   promptText: {fileID: 1277124184}
+  UIManager: {fileID: 0}
   Info: "\uC0AC\uACFC\uAC00 \uD558\uB098\uC5D0 3000\uC6D0\uC778\uB370 5\uAC1C\uAC00\uC788\uACE0\n\uC218\uBC15\uC774
     \uD558\uB098\uC5D0 8000\uC6D0\uC778\uB370 2\uAC1C\uAC00 \uC788\uACE0 \n\uC624\uB80C\uC9C0\uAC00
     \uD558\uB098\uC5D0 5000\uC6D0\uC778\uB370 10\uAC1C\uAC00 \uC788\uACE0\n\uD3EC\uB3C4\uAC00
@@ -34140,6 +34143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1057610062}
   option: {fileID: 829076528}
+  isPaused: 0
 --- !u!114 &1121372710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39302,15 +39306,7 @@ MonoBehaviour:
   <Data>k__BackingField: {fileID: 11400000, guid: 3497ff85118365142af160363455b5c1,
     type: 2}
   virtualCamera: {fileID: 1841712220}
-  OpenableUI:
-  - {fileID: 555923629}
-  - {fileID: 383398160}
-  - {fileID: 1057610062}
-  - {fileID: 829076528}
-  - {fileID: 1838432092}
-  - {fileID: 1998618730}
-  - {fileID: 1768071751}
-  - {fileID: 934829338}
+  UIManager: {fileID: 0}
 --- !u!143 &1309784365
 CharacterController:
   m_ObjectHideFlags: 0
@@ -39402,6 +39398,7 @@ MonoBehaviour:
   mixFailedUI: {fileID: 1204011540}
   mixingUI: {fileID: 831582026}
   isInventoryOpen: 0
+  UIManager: {fileID: 0}
 --- !u!114 &1309784368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54823,6 +54820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8df6ab9f31ee34eb2f5b45104842a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 2
   tutorial: {fileID: 155479063}
 --- !u!1001 &1842180162
 PrefabInstance:
