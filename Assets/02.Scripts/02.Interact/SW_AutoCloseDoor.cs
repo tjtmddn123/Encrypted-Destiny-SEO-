@@ -7,6 +7,8 @@ public class SW_AutoCloseDoor : MonoBehaviour
     public GameObject door; // 자동으로 닫힐 문 객체
     public GameObject autoCloseTrigger; // AutoCloseTrigger 오브젝트
     private ChangeCinemachine change;
+    public GameObject soundSource1;
+    public GameObject soundSource2;
     public string newTag; // 문이 닫힌 후 적용할 새 태그
 
     private bool hasAutoClosed = false; // 문이 자동으로 닫힌 적이 있는지 확인
@@ -38,6 +40,7 @@ public class SW_AutoCloseDoor : MonoBehaviour
 
         // 문 닫히는 애니메이션 시작
         StartCoroutine(AutoCloseDoor());
+        
     }
 
     private IEnumerator AutoCloseDoor()
@@ -45,10 +48,10 @@ public class SW_AutoCloseDoor : MonoBehaviour
         yield return new WaitForSeconds(2f);
         // 닫히는 과정 시작
         float elapsedTime = 0f;
-        float closeSpeed = 0.5f; // 닫히는데 걸리는 시간
+        float closeSpeed = 0.1f; // 닫히는데 걸리는 시간
         Quaternion initialRotation = door.transform.localRotation;
         Quaternion targetRotation = Quaternion.Euler(0, 0, 0); // 목표 회전값 (0,0,0)
-
+        PlayDoorCloseSound();
         while (elapsedTime < closeSpeed)
         {
             door.transform.localRotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / closeSpeed);
@@ -61,5 +64,13 @@ public class SW_AutoCloseDoor : MonoBehaviour
         // isOpening 상태 업데이트 및 자동 닫힘 플래그 설정
         doorController.isOpen = false;
         hasAutoClosed = true;
+    }
+
+    private void PlayDoorCloseSound()
+    {
+        AudioSource soundSource1Component = soundSource1.GetComponent<AudioSource>();
+        AudioSource soundSource2Component = soundSource2.GetComponent<AudioSource>();
+        soundSource1Component.Play();
+        soundSource2Component.Play();
     }
 }
