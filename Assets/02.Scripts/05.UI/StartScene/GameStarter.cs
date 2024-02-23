@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -15,7 +14,6 @@ public class GameStarter : MonoBehaviour
 
     public void GameStart()
     {
-
         Array.ForEach(DisactiveObj, disactiveObj => { disactiveObj.SetActive(false); });
 
         Array.ForEach(ActiveObj, activeObj => { activeObj.SetActive(true); });

@@ -28,8 +28,10 @@ public class InteractManager_HT : MonoBehaviour
     private float lastCheckTime;
     public TextMeshProUGUI promptText;
     private GameObject curInteractGameobject;
+    private GameObject curInteractItem;
     private IInteractable_HT curInteractable;
     private int i = 0;
+    private int x = 0;
     private SW_ItemObject itemObj; // 아이템의 데이터를 저장하는 변수
     private SubtitleManager subtitleManager;
     private SW_END END;
@@ -69,34 +71,37 @@ public class InteractManager_HT : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-                if (hit.collider.gameObject != curInteractGameobject)
+                if (hit.collider.gameObject.tag == "Item")
+                {
+                    curInteractItem = hit.collider.gameObject;
+                    x = 1;
+                    LookAtThis(curInteractItem.tag, curInteractItem);
+                }
+                else
                 {
                     curInteractGameobject = hit.collider.gameObject;
+
                     LookAtThis(curInteractGameobject.tag, curInteractGameobject);
+                    if (curInteractGameobject != curInteractItem && curInteractItem != null)
+                    {
+                        RemoveMaterial();
+                    }
                 }
             }
             else
             {
-                if (curInteractGameobject != null)
+                if ( x == 1 )
                 {
-                    if (curInteractGameobject.tag == "Item")
-                    {
-                        Renderer renderer = curInteractGameobject.GetComponent<Renderer>();
-
-                        materialList.Clear();
-                        materialList.AddRange(renderer.sharedMaterials);
-                        materialList.Remove(material);
-
-                        renderer.materials = materialList.ToArray();
-                    }
+                    RemoveMaterial();                   
                 }
+                SetPromptText(""); 
+                promptText.gameObject.SetActive(false);
                 doorController = null;
                 itemObj = null;
                 curInteractable = null;
                 keypad = null;
                 cinemachine = null;
-                lamp = null;
-                promptText.gameObject.SetActive(false);
+                lamp = null;                
                 curInteractGameobject = null;
                 subtitleManager = null;
             }
@@ -110,6 +115,28 @@ public class InteractManager_HT : MonoBehaviour
         }
     }
 
+    private void RemoveMaterial()
+    {
+        if (curInteractItem != curInteractGameobject)
+        {
+            Renderer renderer = curInteractItem.GetComponent<Renderer>();
+
+            materialList.Clear();
+            materialList.AddRange(renderer.sharedMaterials);
+            materialList.Remove(material);
+
+            renderer.materials = materialList.ToArray();
+
+            curInteractItem = null;
+            x = 0;
+        }
+        else
+        {
+            x = 0;
+            return;
+        }
+    }
+
     private void LookAtThis(string tag, GameObject lookThis)
     {
         if (CameraChaging == false)
@@ -117,11 +144,11 @@ public class InteractManager_HT : MonoBehaviour
             switch (tag)
             {
                 case "Item":
-                    itemObj = curInteractGameobject.GetComponent<SW_ItemObject>();
+                    itemObj = lookThis.GetComponent<SW_ItemObject>();
                     curInteractable = lookThis.GetComponent<IInteractable_HT>();                    
                     SetPromptText($"[E] Take {itemObj.item.displayName}");
 
-                    renderers = curInteractGameobject.GetComponent<Renderer>();
+                    renderers = lookThis.GetComponent<Renderer>();
                     materialList.Clear();
                     materialList.AddRange(renderers.sharedMaterials);
                     materialList.Add(material);
@@ -130,6 +157,10 @@ public class InteractManager_HT : MonoBehaviour
                         materialList.RemoveAt(materialList.Count - 1);
                     }
                     renderers.materials = materialList.ToArray();
+                    if (lookThis == null)
+                    {
+                        RemoveMaterial();
+                    }
 
                     break;
                 case "None":
@@ -215,8 +246,8 @@ public class InteractManager_HT : MonoBehaviour
                     keypad = null;
                     cinemachine = null;
                     lamp = null;
-                    promptText.gameObject.SetActive(false);
                     curInteractGameobject = null;
+                    curInteractItem = null;
                     subtitleManager = null;
                     break;
             }
@@ -276,8 +307,15 @@ public class InteractManager_HT : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started && curInteractable != null)
         {
-            curInteractable.OnInteract();            
-            curInteractGameobject = null;
+            curInteractable.OnInteract();
+            if (curInteractGameobject != null)
+            {
+                curInteractGameobject = null;
+            }
+            if (curInteractItem != null)
+            {
+                curInteractItem = null;
+            }
             curInteractable = null;
             promptText.gameObject.SetActive(false);
         }
