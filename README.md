@@ -11,6 +11,8 @@
 1인칭, 퍼즐, 3D, 약간의 호러
 ### 프로젝트 기간
 2024/01/10 → 2024/03/08
+## 시연영상
+<https://www.youtube.com/watch?v=GsI7tZUte58>
 # 게임다운로드 링크
 <https://drive.google.com/file/d/1aHvSFvNvNponi1m4zFzUDEdH4gtQ8pam/view>
 
